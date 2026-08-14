@@ -388,3 +388,17 @@
 - **History squash:** Entire repository history (278 commits) was squashed into a single root commit with no parent, using an orphan branch. The squash commit tree was verified byte-for-byte identical to the pre-squash working tree (392 files, working tree clean, `git rev-list --count main` = 1, parent field empty). Squash permanently eliminates all prior commit messages, author emails, and any sensitive values that survived in old commit bodies.
 - **Ref cleanup:** Tags referencing old history deleted locally and from origin. Only `refs/heads/main` remains on origin. Local safety net (`backup/pre-rewrite-main` branch + `disputes-pre-squash-backup.bundle`) retained.
 - **Key lesson:** Never write a literal sensitive token inside the record of removing it — not in commit messages, not in squad notes, not in decision files. Describe removed tokens generically (e.g., "the resource-name token", "the subscription identifier"). This lesson applies to all future sweeps.
+
+### Untracked-file blind spot (2026-08-14)
+
+- **Root cause of post-squash regression:** A subsequent squad agent committed 27 inbox files
+  that had been untracked at the time of the redaction sweep. Because `git grep` only scans
+  tracked content, those files were never checked — they still contained the resource-name
+  token and other sensitive identifiers. The agent merged them into `.squad/decisions.md` and
+  committed, re-introducing sensitive content into HEAD.
+- **Resolution:** The leaking commit and its follow-up redaction commit were collapsed into a
+  single clean commit via `git reset --soft` + re-commit. Force-pushed with `--force-with-lease`.
+- **Rule going forward:** Any redaction sweep MUST run `git status --porcelain --untracked-files=all`
+  and scan EVERY untracked file before declaring the tree clean. `git grep` alone is not
+  sufficient — it is blind to untracked content. Use a dedicated pattern-scan step (e.g.,
+  `Select-String` or `grep -r`) that covers the full working directory, not just the index.

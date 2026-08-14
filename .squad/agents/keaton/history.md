@@ -48,6 +48,10 @@
 - **`update_case_status` is synthetic-safe**: In `CASE_STORE=synthetic` mode (the default for local dev), `update_case_status` is a no-op that logs a warning. Calling it unconditionally from the action triggers is safe — no Cosmos connection attempted.
 - **Terminal "submitted" state**: The `submit_to_network` activity (called by the orchestrator on the approve path) now also calls `update_case_status(case_id, "submitted")` so the final terminal state is persisted after the network submission completes.
 - **Test pattern for persistence**: Patch `triggers.case_actions.update_case_status` (the name at the import site in the module under test) to verify it is called with the correct status per action. Assert it is NOT called on 404 paths. Assert that `side_effect=KeyError(...)` on the mock does not change the HTTP response status (resilience guard).
+
+### 2026-08-14 — Team update: Public-Repo Security Prep Complete
+**By:** Fenster, Coordinator
+📌 **Team update (2026-08-14T18:15:50Z):** Multi-phase public-repo security redaction completed. Phase 1: redacted subscription ID & internal program names at HEAD. Phase 2: rewrote commit messages to scrub sensitive reference. Phase 3: redacted Azure resource identifiers (7 resource tokens, tenant domain, 2 SWA hostnames) across 16 files, squashed 278-commit history into single root commit, deleted tags, verified 403 tests pass with zero sensitive-pattern matches. Known outstanding risk: 51 PR refs remain accessible (pre-squash history). Mitigation: service principal credential rotation (pending organizational action). Repository ready for publication. — Fenster (DevOps), Coordinator (verification)
 ### 2026-07-08 — Story #51: Synthetic mode guarantee + local-dev docs
 
 - **Synthetic mode is zero-Cosmos by design**: `case_store.py` imports `services.cosmos_store` only inside the `CASE_STORE=cosmos` branch (lazy import inside function body). In synthetic mode, neither `services.cosmos_store` nor `cosmos_client` are ever imported. Proven by the `sys.modules` eviction pattern: evict both modules, call `list_cases()`, assert still absent.

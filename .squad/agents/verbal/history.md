@@ -48,5 +48,9 @@
 
 - **Kept:** `3-ARCHITECTURE-PACKAGE.md`, `5-REUSABLE-CODE.md`, `6-DEPLOYMENT-GUIDE.md`, `8-LEARNING-LOG.md`, `9-TECHNICAL-DEEP-DIVE.md`.
 - **Removed:** `1-BUSINESS-NARRATIVE.md`, `2-DISCOVERY-KIT.md`, `4-SECURITY-GOVERNANCE.md`, `7-DEMO-KIT.md`, `10-TEAM-DEMO-SCRIPT.md`, the bundled `Delivery-Package.docx`, and the delivery-package generator scripts.
+
+### 2026-08-14 — Team update: Public-Repo Security Prep Complete
+**By:** Fenster, Coordinator
+📌 **Team update (2026-08-14T18:15:50Z):** Multi-phase public-repo security redaction completed. Phase 1: redacted subscription ID & internal program names at HEAD. Phase 2: rewrote commit messages to scrub sensitive reference. Phase 3: redacted Azure resource identifiers (7 resource tokens, tenant domain, 2 SWA hostnames) across 16 files, squashed 278-commit history into single root commit, deleted tags, verified 403 tests pass with zero sensitive-pattern matches. Known outstanding risk: 51 PR refs remain accessible (pre-squash history). Mitigation: service principal credential rotation (pending organizational action). Repository ready for publication. — Fenster (DevOps), Coordinator (verification)
 - **Reasoning:** The public repo should showcase the accelerator's architecture and implementation, not internal-style qualification, sales, or scripted demo material. Even the security/governance package read more like delivery collateral than a source-of-truth engineering document, so it was excluded with the other audience-shaped assets.
 - **Follow-through:** Rewrote `docs/delivery/README.md` and `docs/delivery/DELIVERY-SUMMARY.md` to present the folder as a technical companion only, and scrubbed remaining internal program name references from public-facing docs/infra comments so repo-wide searches no longer surface internal program names outside squad records.
