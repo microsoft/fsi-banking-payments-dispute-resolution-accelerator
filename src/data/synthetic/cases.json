@@ -1,0 +1,4587 @@
+[
+  {
+    "caseId": "00000000-0000-0000-0000-000000000001",
+    "orchestrationId": "00000000-0000-0000-0000-000000000001",
+    "disputeRef": "VISA-2026-10001",
+    "status": "pending_review",
+    "cardNetwork": "visa",
+    "merchantName": "Acme Electronics",
+    "cardholderName": "Jane Cardholder",
+    "transactionAmount": 349.99,
+    "transactionDate": "2026-06-15",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "reasonCode": "Visa 13.1",
+    "reasonCodeLabel": "Merchandise/Services Not Received",
+    "reasonCodeChecklist": [
+      {
+        "item": "Proof of delivery or non-delivery",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Signed delivery confirmation",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Merchant response to cardholder",
+        "required": false,
+        "satisfied": true
+      },
+      {
+        "item": "Transaction receipt",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "ev-0001-0001",
+        "type": "transaction",
+        "sourceSystem": "CoreBanking",
+        "retrievedAt": "2026-07-01T10:05:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0001-0001.json",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "ev-0001-0002",
+        "type": "shipping",
+        "sourceSystem": "ShipTrack",
+        "retrievedAt": "2026-07-01T10:06:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0001-0002.json",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "ev-0001-0003",
+        "type": "communication",
+        "sourceSystem": "CRMSystem",
+        "retrievedAt": "2026-07-01T10:07:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0001-0003.json",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Signed delivery confirmation",
+        "reason": "Carrier portal returned no signature record",
+        "impact": "high"
+      }
+    ],
+    "winProbability": 0.82,
+    "riskLevel": "low",
+    "rebuttalDraft": {
+      "text": "The cardholder disputes receipt of the purchased item (Visa 13.1). Transaction records [ev-0001-0001] confirm a valid $349.99 charge on 2026-06-15. Shipping data [ev-0001-0002] shows the package was dispatched and partially tracked. CRM communication logs [ev-0001-0003] confirm no prior dispute or return request was filed. The missing signed delivery confirmation weakens the rebuttal slightly; however, overall evidence supports the merchant position.",
+      "citations": [
+        {
+          "evidenceId": "ev-0001-0001",
+          "excerpt": "Transaction confirmed: $349.99 on 2026-06-15"
+        },
+        {
+          "evidenceId": "ev-0001-0002",
+          "excerpt": "Package dispatched, partial tracking available"
+        },
+        {
+          "evidenceId": "ev-0001-0003",
+          "excerpt": "No prior dispute or return request on file"
+        }
+      ]
+    },
+    "deadline": {
+      "network": "Visa",
+      "dueDate": "2026-07-09",
+      "daysRemaining": 3
+    },
+    "createdAt": "2026-07-01T10:00:00Z",
+    "updatedAt": "2026-07-05T14:30:00Z"
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000002",
+    "orchestrationId": "00000000-0000-0000-0000-000000000002",
+    "disputeRef": "MC-2026-20002",
+    "status": "pending_review",
+    "cardNetwork": "mastercard",
+    "merchantName": "Global Apparel Co.",
+    "cardholderName": "Bob Buyer",
+    "transactionAmount": 129,
+    "transactionDate": "2026-06-20",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "reasonCode": "MC 4853",
+    "reasonCodeLabel": "Cardholder Dispute — Defective Merchandise",
+    "reasonCodeChecklist": [
+      {
+        "item": "Proof of defect documentation",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Return shipping evidence",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Merchant refund policy",
+        "required": false,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "ev-0002-0001",
+        "type": "receipt",
+        "sourceSystem": "OrderMgmt",
+        "retrievedAt": "2026-07-02T08:20:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0002-0001.json",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "ev-0002-0002",
+        "type": "order",
+        "sourceSystem": "OrderMgmt",
+        "retrievedAt": "2026-07-02T08:21:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0002-0002.json",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Proof of defect documentation",
+        "reason": "Customer photo/video evidence not yet retrieved",
+        "impact": "critical"
+      }
+    ],
+    "winProbability": 0.55,
+    "riskLevel": "medium",
+    "rebuttalDraft": {
+      "text": "Cardholder claims defective merchandise (MC 4853). Order records [ev-0002-0001] confirm the purchase. Return shipping evidence [ev-0002-0002] is partially available. Critical gap: proof of defect documentation has not been retrieved, materially impacting win probability.",
+      "citations": [
+        {
+          "evidenceId": "ev-0002-0001",
+          "excerpt": "Order confirmed: $129.00 on 2026-06-20"
+        },
+        {
+          "evidenceId": "ev-0002-0002",
+          "excerpt": "Return label issued, delivery pending"
+        }
+      ]
+    },
+    "deadline": {
+      "network": "Mastercard",
+      "dueDate": "2026-07-15",
+      "daysRemaining": 9
+    },
+    "createdAt": "2026-07-02T08:15:00Z",
+    "updatedAt": "2026-07-05T16:00:00Z"
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000003",
+    "orchestrationId": "00000000-0000-0000-0000-000000000003",
+    "disputeRef": "AMEX-2026-30003",
+    "status": "evidence_gathering",
+    "cardNetwork": "amex",
+    "merchantName": "TravelNow LLC",
+    "cardholderName": "Carol Passenger",
+    "transactionAmount": 1250,
+    "transactionDate": "2026-06-25",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "reasonCode": "Amex C08",
+    "reasonCodeLabel": "Goods / Services Not Received",
+    "reasonCodeChecklist": [
+      {
+        "item": "Booking confirmation or itinerary",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Proof of service delivery (check-in record / boarding pass)",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Merchant communication log",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Refund or cancellation policy",
+        "required": false,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "ev-0003-0001",
+        "type": "transaction",
+        "sourceSystem": "CoreBanking",
+        "retrievedAt": "2026-07-03T12:05:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0003-0001.json",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "ev-0003-0002",
+        "type": "contract",
+        "sourceSystem": "BookingPlatform",
+        "retrievedAt": "2026-07-03T12:06:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0003-0002.json",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Proof of service delivery (check-in record / boarding pass)",
+        "reason": "Merchant portal has not responded; cardholder claims no travel was fulfilled",
+        "impact": "critical"
+      },
+      {
+        "missingItem": "Merchant communication log",
+        "reason": "CRM query returned no email or chat thread between cardholder and TravelNow LLC",
+        "impact": "high"
+      },
+      {
+        "missingItem": "Refund or cancellation policy",
+        "reason": "Merchant website policy page unavailable during retrieval",
+        "impact": "medium"
+      }
+    ],
+    "winProbability": 0.31,
+    "riskLevel": "high",
+    "rebuttalDraft": {
+      "text": "Cardholder disputes a $1,250.00 charge from TravelNow LLC on 2026-06-25 under Amex C08 (Goods / Services Not Received). Transaction records [ev-0003-0001] confirm the charge. A partial booking confirmation [ev-0003-0002] was retrieved, but critical evidence is still outstanding: no check-in record or boarding pass has been located, and the merchant has not supplied a communication log. Without proof of service delivery, the current rebuttal position is weak. Evidence gathering is ongoing — resolution is blocked pending merchant response.",
+      "citations": [
+        {
+          "evidenceId": "ev-0003-0001",
+          "excerpt": "Transaction confirmed: $1,250.00 on 2026-06-25 — TravelNow LLC"
+        },
+        {
+          "evidenceId": "ev-0003-0002",
+          "excerpt": "Booking reference retrieved; itinerary details incomplete"
+        }
+      ]
+    },
+    "deadline": {
+      "network": "Amex",
+      "dueDate": "2026-07-08",
+      "daysRemaining": 2
+    },
+    "createdAt": "2026-07-03T12:00:00Z",
+    "updatedAt": "2026-07-06T09:00:00Z"
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000010",
+    "orchestrationId": "00000000-0000-0000-0000-000000000010",
+    "disputeRef": "VISA-2026-10010",
+    "status": "intake",
+    "cardNetwork": "visa",
+    "merchantName": "QuickPay Services",
+    "cardholderName": "Jane Cardholder",
+    "transactionAmount": 892.5,
+    "transactionDate": "2026-06-28",
+    "reasonCode": "Visa 10.4",
+    "reasonCodeLabel": "Other Fraud — Card Absent Environment",
+    "reasonCodeChecklist": [
+      {
+        "item": "Proof of cardholder authorization",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "IP address / device fingerprint",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Merchant fraud detection logs",
+        "required": false,
+        "satisfied": false
+      }
+    ],
+    "evidence": [],
+    "evidenceGaps": [
+      {
+        "missingItem": "Proof of cardholder authorization",
+        "reason": "Case just opened — evidence collection not started",
+        "impact": "critical"
+      },
+      {
+        "missingItem": "IP address / device fingerprint",
+        "reason": "Awaiting merchant system access",
+        "impact": "high"
+      }
+    ],
+    "riskLevel": "high",
+    "deadline": {
+      "network": "Visa",
+      "dueDate": "2026-07-20",
+      "daysRemaining": 12
+    },
+    "createdAt": "2026-07-07T09:00:00Z",
+    "updatedAt": "2026-07-07T09:00:00Z"
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000011",
+    "orchestrationId": "00000000-0000-0000-0000-000000000011",
+    "disputeRef": "DISC-2026-40011",
+    "status": "intake",
+    "cardNetwork": "discover",
+    "merchantName": "StreamFlix Digital",
+    "cardholderName": "Jane Cardholder",
+    "transactionAmount": 49.99,
+    "transactionDate": "2026-07-01",
+    "reasonCode": "Discover DA",
+    "reasonCodeLabel": "Fraud — No Cardholder Authorization",
+    "reasonCodeChecklist": [
+      {
+        "item": "Transaction authentication record",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Cardholder statement of fraud",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [],
+    "evidenceGaps": [
+      {
+        "missingItem": "Transaction authentication record",
+        "reason": "Pending intake processing",
+        "impact": "high"
+      }
+    ],
+    "riskLevel": "medium",
+    "deadline": {
+      "network": "Discover",
+      "dueDate": "2026-07-25",
+      "daysRemaining": 17
+    },
+    "createdAt": "2026-07-08T06:30:00Z",
+    "updatedAt": "2026-07-08T06:30:00Z"
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000012",
+    "orchestrationId": "00000000-0000-0000-0000-000000000012",
+    "disputeRef": "MC-2026-20012",
+    "status": "intake",
+    "cardNetwork": "mastercard",
+    "merchantName": "Metro Gas Station #47",
+    "cardholderName": "Jane Cardholder",
+    "transactionAmount": 78.23,
+    "transactionDate": "2026-07-03",
+    "reasonCode": "MC 4834",
+    "reasonCodeLabel": "Point-of-Interaction Error",
+    "reasonCodeChecklist": [
+      {
+        "item": "Terminal transaction log",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Duplicate transaction evidence",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [],
+    "evidenceGaps": [
+      {
+        "missingItem": "Terminal transaction log",
+        "reason": "Pending merchant terminal data retrieval",
+        "impact": "high"
+      }
+    ],
+    "riskLevel": "low",
+    "deadline": {
+      "network": "Mastercard",
+      "dueDate": "2026-08-01",
+      "daysRemaining": 24
+    },
+    "createdAt": "2026-07-08T08:15:00Z",
+    "updatedAt": "2026-07-08T08:15:00Z"
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000013",
+    "orchestrationId": "00000000-0000-0000-0000-000000000013",
+    "disputeRef": "VISA-2026-10013",
+    "status": "ai_drafting",
+    "cardNetwork": "visa",
+    "merchantName": "HomeFurnish Direct",
+    "cardholderName": "Tom Henderson",
+    "transactionAmount": 599,
+    "transactionDate": "2026-06-18",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "reasonCode": "Visa 13.3",
+    "reasonCodeLabel": "Not as Described or Defective",
+    "reasonCodeChecklist": [
+      {
+        "item": "Product description from listing",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Photo evidence of defect",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Return/exchange communication",
+        "required": false,
+        "satisfied": true
+      },
+      {
+        "item": "Manufacturer warranty terms",
+        "required": false,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "ev-0013-0001",
+        "type": "receipt",
+        "sourceSystem": "OrderMgmt",
+        "retrievedAt": "2026-07-02T10:00:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0013-0001.json",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "ev-0013-0002",
+        "type": "communication",
+        "sourceSystem": "CRMSystem",
+        "retrievedAt": "2026-07-02T10:05:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0013-0002.json",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "ev-0013-0003",
+        "type": "photo",
+        "sourceSystem": "CustomerUpload",
+        "retrievedAt": "2026-07-03T14:00:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0013-0003.json",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [],
+    "winProbability": 0.68,
+    "riskLevel": "medium",
+    "rebuttalDraft": {
+      "text": "Cardholder reports item not as described (Visa 13.3). Product listing [ev-0013-0001] confirms the advertised specifications. Customer-submitted photos [ev-0013-0003] show a discrepancy between listing and received goods. Merchant communication [ev-0013-0002] shows one exchange attempt was made. AI is currently drafting the full rebuttal narrative.",
+      "citations": [
+        {
+          "evidenceId": "ev-0013-0001",
+          "excerpt": "Order receipt: $599.00 — HomeFurnish Direct sofa, grey fabric"
+        },
+        {
+          "evidenceId": "ev-0013-0002",
+          "excerpt": "Email thread: customer requested exchange on 2026-06-22"
+        },
+        {
+          "evidenceId": "ev-0013-0003",
+          "excerpt": "Photo shows color mismatch vs. listing image"
+        }
+      ]
+    },
+    "deadline": {
+      "network": "Visa",
+      "dueDate": "2026-07-18",
+      "daysRemaining": 10
+    },
+    "createdAt": "2026-07-01T14:00:00Z",
+    "updatedAt": "2026-07-07T11:00:00Z"
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000014",
+    "orchestrationId": "00000000-0000-0000-0000-000000000014",
+    "disputeRef": "AMEX-2026-30014",
+    "status": "escalated",
+    "cardNetwork": "amex",
+    "merchantName": "LuxWatch Online",
+    "cardholderName": "Michael Torres",
+    "transactionAmount": 4200,
+    "transactionDate": "2026-06-10",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "reasonCode": "Amex F29",
+    "reasonCodeLabel": "Card Not Present Fraud",
+    "reasonCodeChecklist": [
+      {
+        "item": "Cardholder statement of fraud",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "3D Secure authentication record",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "IP geolocation and device data",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Shipping address verification",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Merchant fraud screening results",
+        "required": false,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "ev-0014-0001",
+        "type": "transaction",
+        "sourceSystem": "CoreBanking",
+        "retrievedAt": "2026-06-29T08:00:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0014-0001.json",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "ev-0014-0002",
+        "type": "fraud_screening",
+        "sourceSystem": "FraudDetect",
+        "retrievedAt": "2026-06-29T08:05:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0014-0002.json",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "ev-0014-0003",
+        "type": "device_fingerprint",
+        "sourceSystem": "DeviceGraph",
+        "retrievedAt": "2026-07-01T09:00:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0014-0003.json",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "3D Secure authentication record",
+        "reason": "Transaction was not enrolled in 3DS; merchant did not require step-up",
+        "impact": "critical"
+      },
+      {
+        "missingItem": "Shipping address verification",
+        "reason": "Item shipped to alternate address; AVS mismatch flagged",
+        "impact": "high"
+      }
+    ],
+    "winProbability": 0.22,
+    "riskLevel": "critical",
+    "rebuttalDraft": {
+      "text": "High-value CNP fraud dispute ($4,200.00) under Amex F29. Transaction [ev-0014-0001] was processed without 3D Secure authentication. Fraud screening [ev-0014-0002] flagged the transaction but merchant overrode the hold. Device fingerprint [ev-0014-0003] shows an unrecognized device from a different geographic region than cardholder's billing address. The shipping address does not match cardholder records. ESCALATED: Win probability is low (22%) due to missing 3DS and AVS mismatch. Recommend senior review before proceeding.",
+      "citations": [
+        {
+          "evidenceId": "ev-0014-0001",
+          "excerpt": "Transaction: $4,200.00 on 2026-06-10 — LuxWatch Online, no 3DS"
+        },
+        {
+          "evidenceId": "ev-0014-0002",
+          "excerpt": "Fraud score 87/100 — merchant override applied"
+        },
+        {
+          "evidenceId": "ev-0014-0003",
+          "excerpt": "Device: unrecognized, IP geolocation: Lagos, NG (billing: Miami, FL)"
+        }
+      ]
+    },
+    "deadline": {
+      "network": "Amex",
+      "dueDate": "2026-07-10",
+      "daysRemaining": 2
+    },
+    "createdAt": "2026-06-28T16:00:00Z",
+    "updatedAt": "2026-07-07T08:00:00Z"
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000020",
+    "orchestrationId": "00000000-0000-0000-0000-000000000020",
+    "disputeRef": "VISA-2026-10020",
+    "status": "approved",
+    "cardNetwork": "visa",
+    "merchantName": "BrightHome Supplies",
+    "cardholderName": "Linda Park",
+    "transactionAmount": 215,
+    "transactionDate": "2026-06-05",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "reasonCode": "Visa 13.1",
+    "reasonCodeLabel": "Merchandise/Services Not Received",
+    "reasonCodeChecklist": [
+      {
+        "item": "Proof of delivery or non-delivery",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Signed delivery confirmation",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Merchant communication",
+        "required": false,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "ev-0020-0001",
+        "type": "transaction",
+        "sourceSystem": "CoreBanking",
+        "retrievedAt": "2026-06-21T10:00:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0020-0001.json",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "ev-0020-0002",
+        "type": "shipping",
+        "sourceSystem": "ShipTrack",
+        "retrievedAt": "2026-06-21T10:05:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0020-0002.json",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [],
+    "winProbability": 0.91,
+    "riskLevel": "low",
+    "rebuttalDraft": {
+      "text": "Dispute resolved in favor of merchant. Delivery confirmation [ev-0020-0002] with signature verified. Case approved.",
+      "citations": [
+        {
+          "evidenceId": "ev-0020-0001",
+          "excerpt": "Transaction confirmed: $215.00 on 2026-06-05"
+        },
+        {
+          "evidenceId": "ev-0020-0002",
+          "excerpt": "Signed delivery confirmed 2026-06-08"
+        }
+      ]
+    },
+    "deadline": {
+      "network": "Visa",
+      "dueDate": "2026-07-05",
+      "daysRemaining": 0
+    },
+    "createdAt": "2026-06-20T09:00:00Z",
+    "updatedAt": "2026-07-04T10:00:00Z"
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000021",
+    "orchestrationId": "00000000-0000-0000-0000-000000000021",
+    "disputeRef": "MC-2026-20021",
+    "status": "denied",
+    "cardNetwork": "mastercard",
+    "merchantName": "FitGear Pro",
+    "cardholderName": "Kevin Walsh",
+    "transactionAmount": 89.99,
+    "transactionDate": "2026-06-01",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "reasonCode": "MC 4855",
+    "reasonCodeLabel": "Goods or Services Not Provided",
+    "reasonCodeChecklist": [
+      {
+        "item": "Proof of delivery",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Cardholder receipt acknowledgment",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "ev-0021-0001",
+        "type": "shipping",
+        "sourceSystem": "ShipTrack",
+        "retrievedAt": "2026-06-16T11:00:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0021-0001.json",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [],
+    "winProbability": 0.12,
+    "riskLevel": "low",
+    "rebuttalDraft": {
+      "text": "Dispute denied. Delivery records confirm item was received. Cardholder claim unsupported by evidence.",
+      "citations": [
+        {
+          "evidenceId": "ev-0021-0001",
+          "excerpt": "Package delivered and signed for on 2026-06-04"
+        }
+      ]
+    },
+    "deadline": {
+      "network": "Mastercard",
+      "dueDate": "2026-07-01",
+      "daysRemaining": 0
+    },
+    "createdAt": "2026-06-15T11:00:00Z",
+    "updatedAt": "2026-06-30T15:00:00Z"
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000022",
+    "orchestrationId": "00000000-0000-0000-0000-000000000022",
+    "disputeRef": "DISC-2026-40022",
+    "status": "submitted",
+    "cardNetwork": "discover",
+    "merchantName": "CryptoExchange Ltd",
+    "cardholderName": "Rachel Simmons",
+    "transactionAmount": 3500,
+    "transactionDate": "2026-05-28",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "reasonCode": "Discover UA01",
+    "reasonCodeLabel": "Fraud — Unauthorized Transaction",
+    "reasonCodeChecklist": [
+      {
+        "item": "Cardholder fraud affidavit",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Account activity anomaly report",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Merchant transaction logs",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "ev-0022-0001",
+        "type": "transaction",
+        "sourceSystem": "CoreBanking",
+        "retrievedAt": "2026-06-11T14:00:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0022-0001.json",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "ev-0022-0002",
+        "type": "fraud_screening",
+        "sourceSystem": "FraudDetect",
+        "retrievedAt": "2026-06-11T14:10:00Z",
+        "contentRef": "https://storage.example.com/evidence/ev-0022-0002.json",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [],
+    "winProbability": 0.76,
+    "riskLevel": "medium",
+    "rebuttalDraft": {
+      "text": "Unauthorized transaction dispute submitted to Discover network. Fraud affidavit on file. Account activity shows anomalous pattern consistent with compromised credentials. Rebuttal package submitted.",
+      "citations": [
+        {
+          "evidenceId": "ev-0022-0001",
+          "excerpt": "Transaction: $3,500.00 on 2026-05-28 — CryptoExchange Ltd"
+        },
+        {
+          "evidenceId": "ev-0022-0002",
+          "excerpt": "Fraud score 94/100 — account compromise pattern detected"
+        }
+      ]
+    },
+    "deadline": {
+      "network": "Discover",
+      "dueDate": "2026-06-28",
+      "daysRemaining": 0
+    },
+    "createdAt": "2026-06-10T14:00:00Z",
+    "updatedAt": "2026-06-27T16:00:00Z"
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000100",
+    "status": "intake",
+    "reasonCode": "13.1",
+    "reasonCodeLabel": "Merchandise/Services Not Received",
+    "cardNetwork": "visa",
+    "merchantName": "CloudNine Electronics",
+    "transactionAmount": 36.45,
+    "riskLevel": "low",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-07-09",
+      "daysRemaining": 0
+    },
+    "createdAt": "2026-05-06T23:49:12.266Z",
+    "updatedAt": "2026-05-11T23:49:12.266Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000100",
+    "disputeRef": "VISA-2026-10100",
+    "cardholderName": "James Whitfield",
+    "transactionDate": "2026-05-02",
+    "reasonCodeChecklist": [
+      {
+        "item": "Proof of delivery",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Shipping confirmation",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Customer communication",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [],
+    "evidenceGaps": []
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000101",
+    "status": "intake",
+    "reasonCode": "10.4",
+    "reasonCodeLabel": "Other Fraud – Card Absent Environment",
+    "cardNetwork": "visa",
+    "merchantName": "Pacific Rim Imports",
+    "transactionAmount": 110.27,
+    "riskLevel": "low",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-08-08",
+      "daysRemaining": 30
+    },
+    "createdAt": "2026-05-31T09:57:47.011Z",
+    "updatedAt": "2026-06-01T09:57:47.011Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000101",
+    "disputeRef": "VISA-2026-10101",
+    "cardholderName": "Maria Gonzalez",
+    "transactionDate": "2026-05-18",
+    "reasonCodeChecklist": [
+      {
+        "item": "AVS match",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "CVV verification",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "3D Secure authentication",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [],
+    "evidenceGaps": []
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000102",
+    "status": "intake",
+    "reasonCode": "13.3",
+    "reasonCodeLabel": "Not as Described",
+    "cardNetwork": "visa",
+    "merchantName": "GreenLeaf Organics",
+    "transactionAmount": 1779.8,
+    "riskLevel": "medium",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-07-29",
+      "daysRemaining": 20
+    },
+    "createdAt": "2026-06-03T23:28:20.713Z",
+    "updatedAt": "2026-06-08T23:28:20.713Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000102",
+    "disputeRef": "VISA-2026-10102",
+    "cardholderName": "David Park",
+    "transactionDate": "2026-05-21",
+    "reasonCodeChecklist": [
+      {
+        "item": "Product description at purchase",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Return policy disclosure",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Customer complaint details",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [],
+    "evidenceGaps": []
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000103",
+    "status": "intake",
+    "reasonCode": "13.6",
+    "reasonCodeLabel": "Credit Not Processed",
+    "cardNetwork": "visa",
+    "merchantName": "StellarTech Solutions",
+    "transactionAmount": 2363,
+    "riskLevel": "medium",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-08-06",
+      "daysRemaining": 28
+    },
+    "createdAt": "2026-05-10T12:49:20.605Z",
+    "updatedAt": "2026-05-17T12:49:20.605Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000103",
+    "disputeRef": "VISA-2026-10103",
+    "cardholderName": "Amara Okafor",
+    "transactionDate": "2026-04-27",
+    "reasonCodeChecklist": [
+      {
+        "item": "Refund policy",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Return receipt",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Refund processing evidence",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [],
+    "evidenceGaps": []
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000104",
+    "status": "intake",
+    "reasonCode": "13.7",
+    "reasonCodeLabel": "Cancelled Merchandise/Services",
+    "cardNetwork": "visa",
+    "merchantName": "Midnight Express Delivery",
+    "transactionAmount": 9303.05,
+    "riskLevel": "critical",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-08-07",
+      "daysRemaining": 29
+    },
+    "createdAt": "2026-05-13T06:36:10.847Z",
+    "updatedAt": "2026-05-17T06:36:10.847Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000104",
+    "disputeRef": "VISA-2026-10104",
+    "cardholderName": "Rebecca Torres",
+    "transactionDate": "2026-05-09",
+    "reasonCodeChecklist": [
+      {
+        "item": "Cancellation policy",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Service agreement",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Cancellation request record",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [],
+    "evidenceGaps": []
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000105",
+    "status": "intake",
+    "reasonCode": "4837",
+    "reasonCodeLabel": "No Cardholder Authorization",
+    "cardNetwork": "mastercard",
+    "merchantName": "Urban Threads Apparel",
+    "transactionAmount": 84.83,
+    "riskLevel": "low",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-07-07",
+      "daysRemaining": -2
+    },
+    "createdAt": "2026-05-11T13:26:22.772Z",
+    "updatedAt": "2026-05-17T13:26:22.772Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000105",
+    "disputeRef": "MASTERCARD-2026-10105",
+    "cardholderName": "Samuel Richardson",
+    "transactionDate": "2026-05-04",
+    "reasonCodeChecklist": [
+      {
+        "item": "Authorization log",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Chip/PIN verification",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Signature comparison",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [],
+    "evidenceGaps": []
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000106",
+    "status": "intake",
+    "reasonCode": "4853",
+    "reasonCodeLabel": "Cardholder Dispute – Defective",
+    "cardNetwork": "mastercard",
+    "merchantName": "Blue Horizon Travel",
+    "transactionAmount": 108.98,
+    "riskLevel": "low",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-07-31",
+      "daysRemaining": 22
+    },
+    "createdAt": "2026-06-06T12:51:18.996Z",
+    "updatedAt": "2026-06-12T12:51:18.996Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000106",
+    "disputeRef": "MASTERCARD-2026-10106",
+    "cardholderName": "Yuki Tanaka",
+    "transactionDate": "2026-05-25",
+    "reasonCodeChecklist": [
+      {
+        "item": "Product specifications",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Quality inspection report",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Return authorization",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [],
+    "evidenceGaps": []
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000107",
+    "status": "intake",
+    "reasonCode": "4855",
+    "reasonCodeLabel": "Goods or Services Not Provided",
+    "cardNetwork": "mastercard",
+    "merchantName": "Quantum Fitness Pro",
+    "transactionAmount": 1071.14,
+    "riskLevel": "medium",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-08-01",
+      "daysRemaining": 23
+    },
+    "createdAt": "2026-06-09T19:47:31.097Z",
+    "updatedAt": "2026-06-14T19:47:31.097Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000107",
+    "disputeRef": "MASTERCARD-2026-10107",
+    "cardholderName": "Isabella Martinez",
+    "transactionDate": "2026-05-30",
+    "reasonCodeChecklist": [
+      {
+        "item": "Delivery confirmation",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Service completion record",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Tracking number",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [],
+    "evidenceGaps": []
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000108",
+    "status": "evidence_gathering",
+    "reasonCode": "4834",
+    "reasonCodeLabel": "Point of Interaction Error",
+    "cardNetwork": "mastercard",
+    "merchantName": "Maple & Oak Furniture",
+    "transactionAmount": 5961.15,
+    "winProbability": 0.47,
+    "riskLevel": "high",
+    "assignedAnalystId": "analyst-003",
+    "assignedAnalystName": "Priya Sharma",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-07-16",
+      "daysRemaining": 7
+    },
+    "createdAt": "2026-05-07T15:48:57.236Z",
+    "updatedAt": "2026-05-09T15:48:57.236Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000108",
+    "disputeRef": "MASTERCARD-2026-10108",
+    "cardholderName": "Thomas Andersen",
+    "transactionDate": "2026-04-30",
+    "reasonCodeChecklist": [
+      {
+        "item": "Terminal transaction log",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Batch settlement record",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Duplicate check",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000080",
+        "type": "contract",
+        "sourceSystem": "PaymentGateway",
+        "retrievedAt": "2026-05-08T15:48:57.236Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000108/0.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": []
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000109",
+    "status": "evidence_gathering",
+    "reasonCode": "4863",
+    "reasonCodeLabel": "Cardholder Does Not Recognize",
+    "cardNetwork": "mastercard",
+    "merchantName": "Zenith Digital Services",
+    "transactionAmount": 10612.59,
+    "winProbability": 0.47,
+    "riskLevel": "critical",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-07-20",
+      "daysRemaining": 11
+    },
+    "createdAt": "2026-06-24T17:10:44.780Z",
+    "updatedAt": "2026-06-27T17:10:44.780Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000109",
+    "disputeRef": "MASTERCARD-2026-10109",
+    "cardholderName": "Fatima Al-Rashid",
+    "transactionDate": "2026-06-20",
+    "reasonCodeChecklist": [
+      {
+        "item": "Billing descriptor clarification",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Purchase confirmation email",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Account login evidence",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000090",
+        "type": "photo",
+        "sourceSystem": "ShippingProvider",
+        "retrievedAt": "2026-06-25T17:10:44.780Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000109/0.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000091",
+        "type": "fraud_screening",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-06-26T17:10:44.780Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000109/1.pdf",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Billing descriptor explanation to customer",
+        "reason": "Document expired past retention period",
+        "impact": "high"
+      }
+    ]
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000110",
+    "status": "evidence_gathering",
+    "reasonCode": "C08",
+    "reasonCodeLabel": "Goods/Services Not Received",
+    "cardNetwork": "amex",
+    "merchantName": "Ivory Coast Cosmetics",
+    "transactionAmount": 16.62,
+    "winProbability": 0.48,
+    "riskLevel": "low",
+    "assignedAnalystId": "analyst-002",
+    "assignedAnalystName": "Marcus Rivera",
+    "deadline": {
+      "network": "amex",
+      "dueDate": "2026-07-08",
+      "daysRemaining": -1
+    },
+    "createdAt": "2026-05-23T17:02:10.776Z",
+    "updatedAt": "2026-05-30T17:02:10.776Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000110",
+    "disputeRef": "AMEX-2026-10110",
+    "cardholderName": "Nathan Brooks",
+    "transactionDate": "2026-05-09",
+    "reasonCodeChecklist": [
+      {
+        "item": "Shipping proof",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Tracking information",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Delivery confirmation",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000100",
+        "type": "transaction",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-05-26T17:02:10.776Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000110/0.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000101",
+        "type": "shipping",
+        "sourceSystem": "FraudEngine",
+        "retrievedAt": "2026-05-24T17:02:10.776Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000110/1.pdf",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Delivery confirmation with signature",
+        "reason": "Customer did not respond to request",
+        "impact": "critical"
+      }
+    ]
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000111",
+    "status": "evidence_gathering",
+    "reasonCode": "C28",
+    "reasonCodeLabel": "Cancelled Recurring Billing",
+    "cardNetwork": "amex",
+    "merchantName": "Red Mountain Outfitters",
+    "transactionAmount": 448.52,
+    "winProbability": 0.61,
+    "riskLevel": "low",
+    "assignedAnalystId": "analyst-003",
+    "assignedAnalystName": "Priya Sharma",
+    "deadline": {
+      "network": "amex",
+      "dueDate": "2026-08-08",
+      "daysRemaining": 30
+    },
+    "createdAt": "2026-05-23T21:27:48.694Z",
+    "updatedAt": "2026-05-26T21:27:48.694Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000111",
+    "disputeRef": "AMEX-2026-10111",
+    "cardholderName": "Sophia Patel",
+    "transactionDate": "2026-05-21",
+    "reasonCodeChecklist": [
+      {
+        "item": "Subscription agreement",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Cancellation policy",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Prior notification",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000110",
+        "type": "receipt",
+        "sourceSystem": "FraudEngine",
+        "retrievedAt": "2026-05-26T21:27:48.694Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000111/0.pdf",
+        "completeness": "missing"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "3D Secure authentication result",
+        "reason": "Third-party vendor has not provided data",
+        "impact": "critical"
+      }
+    ]
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000112",
+    "status": "evidence_gathering",
+    "reasonCode": "FR2",
+    "reasonCodeLabel": "Fraud – Full Recourse",
+    "cardNetwork": "amex",
+    "merchantName": "Apex Gaming Lounge",
+    "transactionAmount": 654.46,
+    "winProbability": 0.76,
+    "riskLevel": "low",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "deadline": {
+      "network": "amex",
+      "dueDate": "2026-07-21",
+      "daysRemaining": 12
+    },
+    "createdAt": "2026-06-24T18:57:34.788Z",
+    "updatedAt": "2026-06-28T18:57:34.788Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000112",
+    "disputeRef": "AMEX-2026-10112",
+    "cardholderName": "Eric Johansson",
+    "transactionDate": "2026-06-14",
+    "reasonCodeChecklist": [
+      {
+        "item": "Fraud detection records",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Authentication evidence",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Velocity checks",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000120",
+        "type": "order",
+        "sourceSystem": "OrderManagement",
+        "retrievedAt": "2026-06-27T18:57:34.788Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000112/0.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000121",
+        "type": "photo",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-06-27T18:57:34.788Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000112/1.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Customer communication log showing resolution attempt",
+        "reason": "Source system unavailable during retrieval window",
+        "impact": "critical"
+      }
+    ]
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000113",
+    "status": "evidence_gathering",
+    "reasonCode": "F29",
+    "reasonCodeLabel": "Card Not Present Fraud",
+    "cardNetwork": "amex",
+    "merchantName": "Silver Creek Winery",
+    "transactionAmount": 2474.37,
+    "winProbability": 0.58,
+    "riskLevel": "medium",
+    "assignedAnalystId": "analyst-002",
+    "assignedAnalystName": "Marcus Rivera",
+    "deadline": {
+      "network": "amex",
+      "dueDate": "2026-07-31",
+      "daysRemaining": 22
+    },
+    "createdAt": "2026-05-08T23:33:19.431Z",
+    "updatedAt": "2026-05-10T23:33:19.431Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000113",
+    "disputeRef": "AMEX-2026-10113",
+    "cardholderName": "Carmen Delgado",
+    "transactionDate": "2026-04-29",
+    "reasonCodeChecklist": [
+      {
+        "item": "SafeKey authentication",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "AVS result",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "CID match",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000130",
+        "type": "device_fingerprint",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-05-11T23:33:19.431Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000113/0.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000131",
+        "type": "transaction",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-05-11T23:33:19.431Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000113/1.pdf",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "IP geolocation data for transaction",
+        "reason": "Document expired past retention period",
+        "impact": "critical"
+      }
+    ]
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000114",
+    "status": "evidence_gathering",
+    "reasonCode": "C32",
+    "reasonCodeLabel": "Goods/Services Damaged or Defective",
+    "cardNetwork": "amex",
+    "merchantName": "NovaStar Auto Parts",
+    "transactionAmount": 8944.08,
+    "winProbability": 0.29,
+    "riskLevel": "critical",
+    "assignedAnalystId": "analyst-003",
+    "assignedAnalystName": "Priya Sharma",
+    "deadline": {
+      "network": "amex",
+      "dueDate": "2026-08-04",
+      "daysRemaining": 26
+    },
+    "createdAt": "2026-05-16T10:57:16.227Z",
+    "updatedAt": "2026-05-21T10:57:16.227Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000114",
+    "disputeRef": "AMEX-2026-10114",
+    "cardholderName": "Kevin O'Brien",
+    "transactionDate": "2026-05-03",
+    "reasonCodeChecklist": [
+      {
+        "item": "Quality report",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Return instructions sent",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Inspection evidence",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000140",
+        "type": "communication",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-05-18T10:57:16.227Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000114/0.pdf",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Device fingerprint matching previous purchases",
+        "reason": "Integration timeout during evidence collection",
+        "impact": "low"
+      },
+      {
+        "missingItem": "Return merchandise authorization form",
+        "reason": "Source system unavailable during retrieval window",
+        "impact": "critical"
+      }
+    ]
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000115",
+    "status": "evidence_gathering",
+    "reasonCode": "UA01",
+    "reasonCodeLabel": "Fraud – Card Present",
+    "cardNetwork": "discover",
+    "merchantName": "Petal & Bloom Florist",
+    "transactionAmount": 74.26,
+    "winProbability": 0.73,
+    "riskLevel": "low",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "deadline": {
+      "network": "discover",
+      "dueDate": "2026-07-10",
+      "daysRemaining": 1
+    },
+    "createdAt": "2026-05-28T07:28:39.197Z",
+    "updatedAt": "2026-05-30T07:28:39.197Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000115",
+    "disputeRef": "DISCOVER-2026-10115",
+    "cardholderName": "Lena Novak",
+    "transactionDate": "2026-05-26",
+    "reasonCodeChecklist": [
+      {
+        "item": "Chip read verification",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Signature comparison",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Video evidence",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000150",
+        "type": "fraud_signal",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-05-30T07:28:39.197Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000115/0.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000151",
+        "type": "order",
+        "sourceSystem": "PaymentGateway",
+        "retrievedAt": "2026-05-31T07:28:39.197Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000115/1.pdf",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": []
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000116",
+    "status": "evidence_gathering",
+    "reasonCode": "UA02",
+    "reasonCodeLabel": "Fraud – Card Not Present",
+    "cardNetwork": "discover",
+    "merchantName": "TerraVista Landscaping",
+    "transactionAmount": 360.67,
+    "winProbability": 0.79,
+    "riskLevel": "low",
+    "assignedAnalystId": "analyst-002",
+    "assignedAnalystName": "Marcus Rivera",
+    "deadline": {
+      "network": "discover",
+      "dueDate": "2026-07-14",
+      "daysRemaining": 5
+    },
+    "createdAt": "2026-05-29T23:10:15.871Z",
+    "updatedAt": "2026-06-04T23:10:15.871Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000116",
+    "disputeRef": "DISCOVER-2026-10116",
+    "cardholderName": "Robert Chang",
+    "transactionDate": "2026-05-22",
+    "reasonCodeChecklist": [
+      {
+        "item": "CVV verification",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "AVS match",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Device fingerprint",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000160",
+        "type": "fraud_screening",
+        "sourceSystem": "PaymentGateway",
+        "retrievedAt": "2026-05-31T23:10:15.871Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000116/0.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000161",
+        "type": "device_fingerprint",
+        "sourceSystem": "ShippingProvider",
+        "retrievedAt": "2026-06-01T23:10:15.871Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000116/1.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Return merchandise authorization form",
+        "reason": "Integration timeout during evidence collection",
+        "impact": "low"
+      }
+    ]
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000117",
+    "status": "evidence_gathering",
+    "reasonCode": "DA",
+    "reasonCodeLabel": "Declined Authorization",
+    "cardNetwork": "discover",
+    "merchantName": "Cobalt Media Group",
+    "transactionAmount": 615.88,
+    "winProbability": 0.72,
+    "riskLevel": "low",
+    "assignedAnalystId": "analyst-003",
+    "assignedAnalystName": "Priya Sharma",
+    "deadline": {
+      "network": "discover",
+      "dueDate": "2026-07-23",
+      "daysRemaining": 14
+    },
+    "createdAt": "2026-07-06T13:17:21.593Z",
+    "updatedAt": "2026-07-12T13:17:21.593Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000117",
+    "disputeRef": "DISCOVER-2026-10117",
+    "cardholderName": "Olivia Hawkins",
+    "transactionDate": "2026-07-03",
+    "reasonCodeChecklist": [
+      {
+        "item": "Authorization response code",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Force-post evidence",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "System logs",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000170",
+        "type": "shipping",
+        "sourceSystem": "ShippingProvider",
+        "retrievedAt": "2026-07-08T13:17:21.593Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000117/0.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Delivery confirmation with signature",
+        "reason": "Document expired past retention period",
+        "impact": "critical"
+      }
+    ]
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000118",
+    "status": "ai_drafting",
+    "reasonCode": "RG",
+    "reasonCodeLabel": "Non-Receipt of Goods/Services",
+    "cardNetwork": "discover",
+    "merchantName": "Summit Health Supplements",
+    "transactionAmount": 3132.69,
+    "winProbability": 0.57,
+    "riskLevel": "medium",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "deadline": {
+      "network": "discover",
+      "dueDate": "2026-07-21",
+      "daysRemaining": 12
+    },
+    "createdAt": "2026-06-27T04:26:57.842Z",
+    "updatedAt": "2026-07-04T04:26:57.842Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000118",
+    "disputeRef": "DISCOVER-2026-10118",
+    "cardholderName": "Hassan Mahmoud",
+    "transactionDate": "2026-06-24",
+    "reasonCodeChecklist": [
+      {
+        "item": "Shipping confirmation",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Delivery proof",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Tracking details",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000180",
+        "type": "contract",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-06-28T04:26:57.842Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000118/0.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000181",
+        "type": "fraud_signal",
+        "sourceSystem": "FraudEngine",
+        "retrievedAt": "2026-06-28T04:26:57.842Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000118/1.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000182",
+        "type": "order",
+        "sourceSystem": "OrderManagement",
+        "retrievedAt": "2026-06-28T04:26:57.842Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000118/2.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "IP geolocation data for transaction",
+        "reason": "Integration timeout during evidence collection",
+        "impact": "medium"
+      },
+      {
+        "missingItem": "Cancellation policy as shown at checkout",
+        "reason": "Customer did not respond to request",
+        "impact": "high"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "This transaction was processed with full EMV chip authentication. The terminal log confirms a successful chip read with PIN verification. No authorization reversals were requested, and the card was present at the point of sale during the transaction.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000180",
+          "excerpt": "Evidence from CRM (contract) retrieved 2026-06-28 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000181",
+          "excerpt": "Evidence from FraudEngine (fraud_signal) retrieved 2026-06-28 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000182",
+          "excerpt": "Evidence from OrderManagement (order) retrieved 2026-06-28 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000119",
+    "status": "ai_drafting",
+    "reasonCode": "NR",
+    "reasonCodeLabel": "No Refund/Return Policy Violation",
+    "cardNetwork": "discover",
+    "merchantName": "Echo Valley Records",
+    "transactionAmount": 9180.2,
+    "winProbability": 0.32,
+    "riskLevel": "critical",
+    "assignedAnalystId": "analyst-002",
+    "assignedAnalystName": "Marcus Rivera",
+    "deadline": {
+      "network": "discover",
+      "dueDate": "2026-07-22",
+      "daysRemaining": 13
+    },
+    "createdAt": "2026-05-28T11:06:14.896Z",
+    "updatedAt": "2026-05-29T11:06:14.896Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000119",
+    "disputeRef": "DISCOVER-2026-10119",
+    "cardholderName": "Claire Dubois",
+    "transactionDate": "2026-05-18",
+    "reasonCodeChecklist": [
+      {
+        "item": "Published return policy",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Refund timeline",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Return receipt",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000190",
+        "type": "photo",
+        "sourceSystem": "FraudEngine",
+        "retrievedAt": "2026-05-29T11:06:14.896Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000119/0.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000191",
+        "type": "fraud_screening",
+        "sourceSystem": "OrderManagement",
+        "retrievedAt": "2026-05-29T11:06:14.896Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000119/1.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000192",
+        "type": "device_fingerprint",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-05-29T11:06:14.896Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000119/2.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Billing descriptor explanation to customer",
+        "reason": "Customer did not respond to request",
+        "impact": "low"
+      },
+      {
+        "missingItem": "Cancellation policy as shown at checkout",
+        "reason": "Third-party vendor has not provided data",
+        "impact": "high"
+      },
+      {
+        "missingItem": "Billing descriptor explanation to customer",
+        "reason": "Source system unavailable during retrieval window",
+        "impact": "high"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "Our investigation reveals that the cardholder received a full refund on {refundDate} via the original payment method. The refund reference number is {refRef}, and the credit should appear within 5-10 business days of the processing date.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000190",
+          "excerpt": "Evidence from FraudEngine (photo) retrieved 2026-05-29 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000191",
+          "excerpt": "Evidence from OrderManagement (fraud_screening) retrieved 2026-05-29 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000192",
+          "excerpt": "Evidence from CustomerPortal (device_fingerprint) retrieved 2026-05-29 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000120",
+    "status": "ai_drafting",
+    "reasonCode": "13.1",
+    "reasonCodeLabel": "Merchandise/Services Not Received",
+    "cardNetwork": "visa",
+    "merchantName": "Nimbus Cloud Hosting",
+    "transactionAmount": 55.32,
+    "winProbability": 0.46,
+    "riskLevel": "low",
+    "assignedAnalystId": "analyst-003",
+    "assignedAnalystName": "Priya Sharma",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-07-10",
+      "daysRemaining": 1
+    },
+    "createdAt": "2026-06-10T08:34:16.644Z",
+    "updatedAt": "2026-06-15T08:34:16.644Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000120",
+    "disputeRef": "VISA-2026-10120",
+    "cardholderName": "James Whitfield",
+    "transactionDate": "2026-06-02",
+    "reasonCodeChecklist": [
+      {
+        "item": "Proof of delivery",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Shipping confirmation",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Customer communication",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000200",
+        "type": "transaction",
+        "sourceSystem": "OrderManagement",
+        "retrievedAt": "2026-06-11T08:34:16.644Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000120/0.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000201",
+        "type": "shipping",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-06-12T08:34:16.644Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000120/1.pdf",
+        "completeness": "missing"
+      }
+    ],
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "Based on the evidence gathered, the transaction on {date} for ${amount} at {merchant} was authorized by the cardholder. Our records indicate that the goods were delivered on {deliveryDate} as confirmed by tracking number {tracking}. The delivery was signed for at the address on file.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000200",
+          "excerpt": "Evidence from OrderManagement (transaction) retrieved 2026-06-11 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000201",
+          "excerpt": "Evidence from CustomerPortal (shipping) retrieved 2026-06-12 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000121",
+    "status": "ai_drafting",
+    "reasonCode": "10.4",
+    "reasonCodeLabel": "Other Fraud – Card Absent Environment",
+    "cardNetwork": "visa",
+    "merchantName": "Artisan Bread Co",
+    "transactionAmount": 192.74,
+    "winProbability": 0.52,
+    "riskLevel": "low",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-08-06",
+      "daysRemaining": 28
+    },
+    "createdAt": "2026-05-29T10:42:02.848Z",
+    "updatedAt": "2026-06-05T10:42:02.848Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000121",
+    "disputeRef": "VISA-2026-10121",
+    "cardholderName": "Maria Gonzalez",
+    "transactionDate": "2026-05-25",
+    "reasonCodeChecklist": [
+      {
+        "item": "AVS match",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "CVV verification",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "3D Secure authentication",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000210",
+        "type": "receipt",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-05-30T10:42:02.848Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000121/0.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000211",
+        "type": "contract",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-05-30T10:42:02.848Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000121/1.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000212",
+        "type": "fraud_signal",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-06-01T10:42:02.848Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000121/2.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Return merchandise authorization form",
+        "reason": "Customer did not respond to request",
+        "impact": "critical"
+      },
+      {
+        "missingItem": "Cancellation policy as shown at checkout",
+        "reason": "Document expired past retention period",
+        "impact": "critical"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "We respectfully dispute this chargeback. The cardholder completed a verified 3D Secure authentication at the time of purchase. Additionally, the shipping address matches the billing address, and the device fingerprint matches three previous successful transactions on this account.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000210",
+          "excerpt": "Evidence from CustomerPortal (receipt) retrieved 2026-05-30 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000211",
+          "excerpt": "Evidence from EmailArchive (contract) retrieved 2026-05-30 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000212",
+          "excerpt": "Evidence from DocumentStore (fraud_signal) retrieved 2026-06-01 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000122",
+    "status": "ai_drafting",
+    "reasonCode": "13.3",
+    "reasonCodeLabel": "Not as Described",
+    "cardNetwork": "visa",
+    "merchantName": "Falcon Security Systems",
+    "transactionAmount": 1924.91,
+    "winProbability": 0.61,
+    "riskLevel": "medium",
+    "assignedAnalystId": "analyst-002",
+    "assignedAnalystName": "Marcus Rivera",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-07-27",
+      "daysRemaining": 18
+    },
+    "createdAt": "2026-07-02T21:21:21.696Z",
+    "updatedAt": "2026-07-03T21:21:21.696Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000122",
+    "disputeRef": "VISA-2026-10122",
+    "cardholderName": "David Park",
+    "transactionDate": "2026-06-28",
+    "reasonCodeChecklist": [
+      {
+        "item": "Product description at purchase",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Return policy disclosure",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Customer complaint details",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000220",
+        "type": "order",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-07-05T21:21:21.696Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000122/0.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000221",
+        "type": "photo",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-07-04T21:21:21.696Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000122/1.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000222",
+        "type": "fraud_screening",
+        "sourceSystem": "PaymentGateway",
+        "retrievedAt": "2026-07-04T21:21:21.696Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000122/2.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "3D Secure authentication result",
+        "reason": "Customer did not respond to request",
+        "impact": "low"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "The services described in the original order were fully rendered as agreed. Our system logs confirm the cardholder accessed and utilized the service on multiple occasions after the transaction date. Customer support records show no complaints were filed prior to the dispute.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000220",
+          "excerpt": "Evidence from EmailArchive (order) retrieved 2026-07-05 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000221",
+          "excerpt": "Evidence from DocumentStore (photo) retrieved 2026-07-04 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000222",
+          "excerpt": "Evidence from PaymentGateway (fraud_screening) retrieved 2026-07-04 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000123",
+    "status": "ai_drafting",
+    "reasonCode": "13.6",
+    "reasonCodeLabel": "Credit Not Processed",
+    "cardNetwork": "visa",
+    "merchantName": "Sunridge Solar Energy",
+    "transactionAmount": 4008.84,
+    "winProbability": 0.7,
+    "riskLevel": "high",
+    "assignedAnalystId": "analyst-003",
+    "assignedAnalystName": "Priya Sharma",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-07-21",
+      "daysRemaining": 12
+    },
+    "createdAt": "2026-07-06T15:13:42.927Z",
+    "updatedAt": "2026-07-11T15:13:42.927Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000123",
+    "disputeRef": "VISA-2026-10123",
+    "cardholderName": "Amara Okafor",
+    "transactionDate": "2026-06-24",
+    "reasonCodeChecklist": [
+      {
+        "item": "Refund policy",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Return receipt",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Refund processing evidence",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000230",
+        "type": "device_fingerprint",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-07-09T15:13:42.927Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000123/0.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000231",
+        "type": "transaction",
+        "sourceSystem": "PaymentGateway",
+        "retrievedAt": "2026-07-08T15:13:42.927Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000123/1.pdf",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Fraud screening report from transaction time",
+        "reason": "Integration timeout during evidence collection",
+        "impact": "medium"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "This transaction was processed with full EMV chip authentication. The terminal log confirms a successful chip read with PIN verification. No authorization reversals were requested, and the card was present at the point of sale during the transaction.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000230",
+          "excerpt": "Evidence from DocumentStore (device_fingerprint) retrieved 2026-07-09 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000231",
+          "excerpt": "Evidence from PaymentGateway (transaction) retrieved 2026-07-08 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000124",
+    "status": "ai_drafting",
+    "reasonCode": "13.7",
+    "reasonCodeLabel": "Cancelled Merchandise/Services",
+    "cardNetwork": "visa",
+    "merchantName": "Opal & Jade Jewelry",
+    "transactionAmount": 9384.2,
+    "winProbability": 0.51,
+    "riskLevel": "critical",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-08-02",
+      "daysRemaining": 24
+    },
+    "createdAt": "2026-05-04T09:05:59.357Z",
+    "updatedAt": "2026-05-07T09:05:59.357Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000124",
+    "disputeRef": "VISA-2026-10124",
+    "cardholderName": "Rebecca Torres",
+    "transactionDate": "2026-04-27",
+    "reasonCodeChecklist": [
+      {
+        "item": "Cancellation policy",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Service agreement",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Cancellation request record",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000240",
+        "type": "communication",
+        "sourceSystem": "PaymentGateway",
+        "retrievedAt": "2026-05-07T09:05:59.357Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000124/0.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000241",
+        "type": "receipt",
+        "sourceSystem": "ShippingProvider",
+        "retrievedAt": "2026-05-06T09:05:59.357Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000124/1.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000242",
+        "type": "contract",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-05-07T09:05:59.357Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000124/2.pdf",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Cancellation policy as shown at checkout",
+        "reason": "Record not found in expected system",
+        "impact": "medium"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "Our investigation reveals that the cardholder received a full refund on {refundDate} via the original payment method. The refund reference number is {refRef}, and the credit should appear within 5-10 business days of the processing date.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000240",
+          "excerpt": "Evidence from PaymentGateway (communication) retrieved 2026-05-07 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000241",
+          "excerpt": "Evidence from ShippingProvider (receipt) retrieved 2026-05-06 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000242",
+          "excerpt": "Evidence from CRM (contract) retrieved 2026-05-07 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000125",
+    "status": "ai_drafting",
+    "reasonCode": "4837",
+    "reasonCodeLabel": "No Cardholder Authorization",
+    "cardNetwork": "mastercard",
+    "merchantName": "Maverick Sports Gear",
+    "transactionAmount": 97.65,
+    "winProbability": 0.37,
+    "riskLevel": "low",
+    "assignedAnalystId": "analyst-002",
+    "assignedAnalystName": "Marcus Rivera",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-07-11",
+      "daysRemaining": 2
+    },
+    "createdAt": "2026-06-09T03:30:22.130Z",
+    "updatedAt": "2026-06-12T03:30:22.130Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000125",
+    "disputeRef": "MASTERCARD-2026-10125",
+    "cardholderName": "Samuel Richardson",
+    "transactionDate": "2026-05-30",
+    "reasonCodeChecklist": [
+      {
+        "item": "Authorization log",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Chip/PIN verification",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Signature comparison",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000250",
+        "type": "fraud_signal",
+        "sourceSystem": "ShippingProvider",
+        "retrievedAt": "2026-06-12T03:30:22.130Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000125/0.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000251",
+        "type": "order",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-06-11T03:30:22.130Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000125/1.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000252",
+        "type": "photo",
+        "sourceSystem": "FraudEngine",
+        "retrievedAt": "2026-06-12T03:30:22.130Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000125/2.pdf",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "IP geolocation data for transaction",
+        "reason": "Source system unavailable during retrieval window",
+        "impact": "high"
+      },
+      {
+        "missingItem": "Billing descriptor explanation to customer",
+        "reason": "Integration timeout during evidence collection",
+        "impact": "high"
+      },
+      {
+        "missingItem": "3D Secure authentication result",
+        "reason": "Integration timeout during evidence collection",
+        "impact": "high"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "Based on the evidence gathered, the transaction on {date} for ${amount} at {merchant} was authorized by the cardholder. Our records indicate that the goods were delivered on {deliveryDate} as confirmed by tracking number {tracking}. The delivery was signed for at the address on file.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000250",
+          "excerpt": "Evidence from ShippingProvider (fraud_signal) retrieved 2026-06-12 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000251",
+          "excerpt": "Evidence from CRM (order) retrieved 2026-06-11 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000252",
+          "excerpt": "Evidence from FraudEngine (photo) retrieved 2026-06-12 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000126",
+    "status": "pending_review",
+    "reasonCode": "4853",
+    "reasonCodeLabel": "Cardholder Dispute – Defective",
+    "cardNetwork": "mastercard",
+    "merchantName": "Tidewater Marine Supply",
+    "transactionAmount": 287.11,
+    "winProbability": 0.6,
+    "riskLevel": "medium",
+    "assignedAnalystId": "analyst-003",
+    "assignedAnalystName": "Priya Sharma",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-08-04",
+      "daysRemaining": 26
+    },
+    "createdAt": "2026-06-19T00:51:32.465Z",
+    "updatedAt": "2026-06-23T00:51:32.465Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000126",
+    "disputeRef": "MASTERCARD-2026-10126",
+    "cardholderName": "Yuki Tanaka",
+    "transactionDate": "2026-06-18",
+    "reasonCodeChecklist": [
+      {
+        "item": "Product specifications",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Quality inspection report",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Return authorization",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000260",
+        "type": "fraud_screening",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-06-21T00:51:32.465Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000126/0.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000261",
+        "type": "device_fingerprint",
+        "sourceSystem": "FraudEngine",
+        "retrievedAt": "2026-06-21T00:51:32.465Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000126/1.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000262",
+        "type": "transaction",
+        "sourceSystem": "OrderManagement",
+        "retrievedAt": "2026-06-22T00:51:32.465Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000126/2.pdf",
+        "completeness": "missing"
+      }
+    ],
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "We respectfully dispute this chargeback. The cardholder completed a verified 3D Secure authentication at the time of purchase. Additionally, the shipping address matches the billing address, and the device fingerprint matches three previous successful transactions on this account.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000260",
+          "excerpt": "Evidence from CRM (fraud_screening) retrieved 2026-06-21 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000261",
+          "excerpt": "Evidence from FraudEngine (device_fingerprint) retrieved 2026-06-21 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000262",
+          "excerpt": "Evidence from OrderManagement (transaction) retrieved 2026-06-22 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000127",
+    "status": "pending_review",
+    "reasonCode": "4855",
+    "reasonCodeLabel": "Goods or Services Not Provided",
+    "cardNetwork": "mastercard",
+    "merchantName": "Pinnacle Consulting LLC",
+    "transactionAmount": 1597.14,
+    "winProbability": 0.86,
+    "riskLevel": "medium",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-08-08",
+      "daysRemaining": 30
+    },
+    "createdAt": "2026-06-20T05:24:50.263Z",
+    "updatedAt": "2026-06-24T05:24:50.263Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000127",
+    "disputeRef": "MASTERCARD-2026-10127",
+    "cardholderName": "Isabella Martinez",
+    "transactionDate": "2026-06-06",
+    "reasonCodeChecklist": [
+      {
+        "item": "Delivery confirmation",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Service completion record",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Tracking number",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000270",
+        "type": "shipping",
+        "sourceSystem": "FraudEngine",
+        "retrievedAt": "2026-06-22T05:24:50.263Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000127/0.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000271",
+        "type": "communication",
+        "sourceSystem": "OrderManagement",
+        "retrievedAt": "2026-06-22T05:24:50.263Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000127/1.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000272",
+        "type": "receipt",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-06-21T05:24:50.263Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000127/2.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000273",
+        "type": "contract",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-06-22T05:24:50.263Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000127/3.pdf",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "The services described in the original order were fully rendered as agreed. Our system logs confirm the cardholder accessed and utilized the service on multiple occasions after the transaction date. Customer support records show no complaints were filed prior to the dispute.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000270",
+          "excerpt": "Evidence from FraudEngine (shipping) retrieved 2026-06-22 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000271",
+          "excerpt": "Evidence from OrderManagement (communication) retrieved 2026-06-22 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000272",
+          "excerpt": "Evidence from CustomerPortal (receipt) retrieved 2026-06-21 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000128",
+    "status": "pending_review",
+    "reasonCode": "4834",
+    "reasonCodeLabel": "Point of Interaction Error",
+    "cardNetwork": "mastercard",
+    "merchantName": "Velvet Lounge Restaurant",
+    "transactionAmount": 4484.02,
+    "winProbability": 0.73,
+    "riskLevel": "high",
+    "assignedAnalystId": "analyst-002",
+    "assignedAnalystName": "Marcus Rivera",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-07-19",
+      "daysRemaining": 10
+    },
+    "createdAt": "2026-05-04T17:04:37.356Z",
+    "updatedAt": "2026-05-08T17:04:37.356Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000128",
+    "disputeRef": "MASTERCARD-2026-10128",
+    "cardholderName": "Thomas Andersen",
+    "transactionDate": "2026-04-25",
+    "reasonCodeChecklist": [
+      {
+        "item": "Terminal transaction log",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Batch settlement record",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Duplicate check",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000280",
+        "type": "contract",
+        "sourceSystem": "OrderManagement",
+        "retrievedAt": "2026-05-06T17:04:37.356Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000128/0.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000281",
+        "type": "fraud_signal",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-05-05T17:04:37.356Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000128/1.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000282",
+        "type": "order",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-05-07T17:04:37.356Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000128/2.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000283",
+        "type": "photo",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-05-06T17:04:37.356Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000128/3.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "This transaction was processed with full EMV chip authentication. The terminal log confirms a successful chip read with PIN verification. No authorization reversals were requested, and the card was present at the point of sale during the transaction.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000280",
+          "excerpt": "Evidence from OrderManagement (contract) retrieved 2026-05-06 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000281",
+          "excerpt": "Evidence from CustomerPortal (fraud_signal) retrieved 2026-05-05 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000282",
+          "excerpt": "Evidence from EmailArchive (order) retrieved 2026-05-07 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000129",
+    "status": "pending_review",
+    "reasonCode": "4863",
+    "reasonCodeLabel": "Cardholder Does Not Recognize",
+    "cardNetwork": "mastercard",
+    "merchantName": "Brightline Education",
+    "transactionAmount": 10483.4,
+    "winProbability": 0.36,
+    "riskLevel": "critical",
+    "assignedAnalystId": "analyst-003",
+    "assignedAnalystName": "Priya Sharma",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-07-28",
+      "daysRemaining": 19
+    },
+    "createdAt": "2026-07-03T22:52:50.713Z",
+    "updatedAt": "2026-07-07T22:52:50.713Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000129",
+    "disputeRef": "MASTERCARD-2026-10129",
+    "cardholderName": "Fatima Al-Rashid",
+    "transactionDate": "2026-06-28",
+    "reasonCodeChecklist": [
+      {
+        "item": "Billing descriptor clarification",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Purchase confirmation email",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Account login evidence",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000290",
+        "type": "photo",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-07-05T22:52:50.713Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000129/0.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000291",
+        "type": "fraud_screening",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-07-06T22:52:50.713Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000129/1.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000292",
+        "type": "device_fingerprint",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-07-06T22:52:50.713Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000129/2.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Service completion acknowledgment",
+        "reason": "Source system unavailable during retrieval window",
+        "impact": "high"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "Our investigation reveals that the cardholder received a full refund on {refundDate} via the original payment method. The refund reference number is {refRef}, and the credit should appear within 5-10 business days of the processing date.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000290",
+          "excerpt": "Evidence from CustomerPortal (photo) retrieved 2026-07-05 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000291",
+          "excerpt": "Evidence from EmailArchive (fraud_screening) retrieved 2026-07-06 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000292",
+          "excerpt": "Evidence from DocumentStore (device_fingerprint) retrieved 2026-07-06 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000130",
+    "status": "pending_review",
+    "reasonCode": "C08",
+    "reasonCodeLabel": "Goods/Services Not Received",
+    "cardNetwork": "amex",
+    "merchantName": "Iron Wolf Gym",
+    "transactionAmount": 63.52,
+    "winProbability": 0.51,
+    "riskLevel": "medium",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "deadline": {
+      "network": "amex",
+      "dueDate": "2026-07-07",
+      "daysRemaining": -2
+    },
+    "createdAt": "2026-05-28T17:03:18.413Z",
+    "updatedAt": "2026-06-02T17:03:18.413Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000130",
+    "disputeRef": "AMEX-2026-10130",
+    "cardholderName": "Nathan Brooks",
+    "transactionDate": "2026-05-27",
+    "reasonCodeChecklist": [
+      {
+        "item": "Shipping proof",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Tracking information",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Delivery confirmation",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000300",
+        "type": "transaction",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-05-29T17:03:18.413Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000130/0.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000301",
+        "type": "shipping",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-05-31T17:03:18.413Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000130/1.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000302",
+        "type": "communication",
+        "sourceSystem": "PaymentGateway",
+        "retrievedAt": "2026-05-31T17:03:18.413Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000130/2.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000303",
+        "type": "receipt",
+        "sourceSystem": "ShippingProvider",
+        "retrievedAt": "2026-05-30T17:03:18.413Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000130/3.pdf",
+        "completeness": "missing"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Service completion acknowledgment",
+        "reason": "Integration timeout during evidence collection",
+        "impact": "critical"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "Based on the evidence gathered, the transaction on {date} for ${amount} at {merchant} was authorized by the cardholder. Our records indicate that the goods were delivered on {deliveryDate} as confirmed by tracking number {tracking}. The delivery was signed for at the address on file.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000300",
+          "excerpt": "Evidence from EmailArchive (transaction) retrieved 2026-05-29 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000301",
+          "excerpt": "Evidence from DocumentStore (shipping) retrieved 2026-05-31 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000302",
+          "excerpt": "Evidence from PaymentGateway (communication) retrieved 2026-05-31 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000131",
+    "status": "pending_review",
+    "reasonCode": "C28",
+    "reasonCodeLabel": "Cancelled Recurring Billing",
+    "cardNetwork": "amex",
+    "merchantName": "Aurora Borealis Spa",
+    "transactionAmount": 143.17,
+    "winProbability": 0.6,
+    "riskLevel": "medium",
+    "assignedAnalystId": "analyst-002",
+    "assignedAnalystName": "Marcus Rivera",
+    "deadline": {
+      "network": "amex",
+      "dueDate": "2026-08-08",
+      "daysRemaining": 30
+    },
+    "createdAt": "2026-05-20T04:57:48.729Z",
+    "updatedAt": "2026-05-24T04:57:48.729Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000131",
+    "disputeRef": "AMEX-2026-10131",
+    "cardholderName": "Sophia Patel",
+    "transactionDate": "2026-05-13",
+    "reasonCodeChecklist": [
+      {
+        "item": "Subscription agreement",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Cancellation policy",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Prior notification",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000310",
+        "type": "receipt",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-05-21T04:57:48.729Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000131/0.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000311",
+        "type": "contract",
+        "sourceSystem": "PaymentGateway",
+        "retrievedAt": "2026-05-23T04:57:48.729Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000131/1.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000312",
+        "type": "fraud_signal",
+        "sourceSystem": "ShippingProvider",
+        "retrievedAt": "2026-05-23T04:57:48.729Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000131/2.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000313",
+        "type": "order",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-05-21T04:57:48.729Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000131/3.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Service completion acknowledgment",
+        "reason": "Document expired past retention period",
+        "impact": "low"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "We respectfully dispute this chargeback. The cardholder completed a verified 3D Secure authentication at the time of purchase. Additionally, the shipping address matches the billing address, and the device fingerprint matches three previous successful transactions on this account.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000310",
+          "excerpt": "Evidence from DocumentStore (receipt) retrieved 2026-05-21 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000311",
+          "excerpt": "Evidence from PaymentGateway (contract) retrieved 2026-05-23 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000312",
+          "excerpt": "Evidence from ShippingProvider (fraud_signal) retrieved 2026-05-23 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000132",
+    "status": "pending_review",
+    "reasonCode": "FR2",
+    "reasonCodeLabel": "Fraud – Full Recourse",
+    "cardNetwork": "amex",
+    "merchantName": "Granite Peak Adventures",
+    "transactionAmount": 1502.87,
+    "winProbability": 0.74,
+    "riskLevel": "medium",
+    "assignedAnalystId": "analyst-003",
+    "assignedAnalystName": "Priya Sharma",
+    "deadline": {
+      "network": "amex",
+      "dueDate": "2026-08-06",
+      "daysRemaining": 28
+    },
+    "createdAt": "2026-05-25T13:46:00.080Z",
+    "updatedAt": "2026-05-30T13:46:00.080Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000132",
+    "disputeRef": "AMEX-2026-10132",
+    "cardholderName": "Eric Johansson",
+    "transactionDate": "2026-05-21",
+    "reasonCodeChecklist": [
+      {
+        "item": "Fraud detection records",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Authentication evidence",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Velocity checks",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000320",
+        "type": "order",
+        "sourceSystem": "PaymentGateway",
+        "retrievedAt": "2026-05-26T13:46:00.080Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000132/0.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000321",
+        "type": "photo",
+        "sourceSystem": "ShippingProvider",
+        "retrievedAt": "2026-05-26T13:46:00.080Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000132/1.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000322",
+        "type": "fraud_screening",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-05-26T13:46:00.080Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000132/2.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "CVV/AVS verification record",
+        "reason": "Record not found in expected system",
+        "impact": "low"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "The services described in the original order were fully rendered as agreed. Our system logs confirm the cardholder accessed and utilized the service on multiple occasions after the transaction date. Customer support records show no complaints were filed prior to the dispute.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000320",
+          "excerpt": "Evidence from PaymentGateway (order) retrieved 2026-05-26 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000321",
+          "excerpt": "Evidence from ShippingProvider (photo) retrieved 2026-05-26 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000322",
+          "excerpt": "Evidence from CRM (fraud_screening) retrieved 2026-05-26 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000133",
+    "status": "pending_review",
+    "reasonCode": "F29",
+    "reasonCodeLabel": "Card Not Present Fraud",
+    "cardNetwork": "amex",
+    "merchantName": "Digital Frontier Labs",
+    "transactionAmount": 5528.6,
+    "winProbability": 0.64,
+    "riskLevel": "high",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "deadline": {
+      "network": "amex",
+      "dueDate": "2026-07-20",
+      "daysRemaining": 11
+    },
+    "createdAt": "2026-06-14T13:31:17.213Z",
+    "updatedAt": "2026-06-20T13:31:17.213Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000133",
+    "disputeRef": "AMEX-2026-10133",
+    "cardholderName": "Carmen Delgado",
+    "transactionDate": "2026-06-05",
+    "reasonCodeChecklist": [
+      {
+        "item": "SafeKey authentication",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "AVS result",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "CID match",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000330",
+        "type": "device_fingerprint",
+        "sourceSystem": "ShippingProvider",
+        "retrievedAt": "2026-06-15T13:31:17.213Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000133/0.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000331",
+        "type": "transaction",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-06-16T13:31:17.213Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000133/1.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000332",
+        "type": "shipping",
+        "sourceSystem": "FraudEngine",
+        "retrievedAt": "2026-06-15T13:31:17.213Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000133/2.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000333",
+        "type": "communication",
+        "sourceSystem": "OrderManagement",
+        "retrievedAt": "2026-06-17T13:31:17.213Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000133/3.pdf",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Delivery confirmation with signature",
+        "reason": "Record not found in expected system",
+        "impact": "medium"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "This transaction was processed with full EMV chip authentication. The terminal log confirms a successful chip read with PIN verification. No authorization reversals were requested, and the card was present at the point of sale during the transaction.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000330",
+          "excerpt": "Evidence from ShippingProvider (device_fingerprint) retrieved 2026-06-15 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000331",
+          "excerpt": "Evidence from CRM (transaction) retrieved 2026-06-16 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000332",
+          "excerpt": "Evidence from FraudEngine (shipping) retrieved 2026-06-15 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000134",
+    "status": "pending_review",
+    "reasonCode": "C32",
+    "reasonCodeLabel": "Goods/Services Damaged or Defective",
+    "cardNetwork": "amex",
+    "merchantName": "Harmony Music Academy",
+    "transactionAmount": 6882.91,
+    "winProbability": 0.51,
+    "riskLevel": "high",
+    "assignedAnalystId": "analyst-002",
+    "assignedAnalystName": "Marcus Rivera",
+    "deadline": {
+      "network": "amex",
+      "dueDate": "2026-08-03",
+      "daysRemaining": 25
+    },
+    "createdAt": "2026-05-08T00:30:56.403Z",
+    "updatedAt": "2026-05-11T00:30:56.403Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000134",
+    "disputeRef": "AMEX-2026-10134",
+    "cardholderName": "Kevin O'Brien",
+    "transactionDate": "2026-05-01",
+    "reasonCodeChecklist": [
+      {
+        "item": "Quality report",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Return instructions sent",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Inspection evidence",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000340",
+        "type": "communication",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-05-09T00:30:56.403Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000134/0.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000341",
+        "type": "receipt",
+        "sourceSystem": "FraudEngine",
+        "retrievedAt": "2026-05-10T00:30:56.403Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000134/1.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000342",
+        "type": "contract",
+        "sourceSystem": "OrderManagement",
+        "retrievedAt": "2026-05-11T00:30:56.403Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000134/2.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000343",
+        "type": "fraud_signal",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-05-11T00:30:56.403Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000134/3.pdf",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "Our investigation reveals that the cardholder received a full refund on {refundDate} via the original payment method. The refund reference number is {refRef}, and the credit should appear within 5-10 business days of the processing date.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000340",
+          "excerpt": "Evidence from CRM (communication) retrieved 2026-05-09 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000341",
+          "excerpt": "Evidence from FraudEngine (receipt) retrieved 2026-05-10 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000342",
+          "excerpt": "Evidence from OrderManagement (contract) retrieved 2026-05-11 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000135",
+    "status": "pending_review",
+    "reasonCode": "UA01",
+    "reasonCodeLabel": "Fraud – Card Present",
+    "cardNetwork": "discover",
+    "merchantName": "Coral Reef Aquatics",
+    "transactionAmount": 69.75,
+    "winProbability": 0.83,
+    "riskLevel": "medium",
+    "assignedAnalystId": "analyst-003",
+    "assignedAnalystName": "Priya Sharma",
+    "deadline": {
+      "network": "discover",
+      "dueDate": "2026-07-09",
+      "daysRemaining": 0
+    },
+    "createdAt": "2026-05-20T19:58:59.989Z",
+    "updatedAt": "2026-05-25T19:58:59.989Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000135",
+    "disputeRef": "DISCOVER-2026-10135",
+    "cardholderName": "Lena Novak",
+    "transactionDate": "2026-05-14",
+    "reasonCodeChecklist": [
+      {
+        "item": "Chip read verification",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Signature comparison",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Video evidence",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000350",
+        "type": "fraud_signal",
+        "sourceSystem": "FraudEngine",
+        "retrievedAt": "2026-05-23T19:58:59.989Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000135/0.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000351",
+        "type": "order",
+        "sourceSystem": "OrderManagement",
+        "retrievedAt": "2026-05-22T19:58:59.989Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000135/1.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000352",
+        "type": "photo",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-05-21T19:58:59.989Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000135/2.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "Based on the evidence gathered, the transaction on {date} for ${amount} at {merchant} was authorized by the cardholder. Our records indicate that the goods were delivered on {deliveryDate} as confirmed by tracking number {tracking}. The delivery was signed for at the address on file.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000350",
+          "excerpt": "Evidence from FraudEngine (fraud_signal) retrieved 2026-05-23 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000351",
+          "excerpt": "Evidence from OrderManagement (order) retrieved 2026-05-22 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000352",
+          "excerpt": "Evidence from CustomerPortal (photo) retrieved 2026-05-21 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000136",
+    "status": "pending_review",
+    "reasonCode": "UA02",
+    "reasonCodeLabel": "Fraud – Card Not Present",
+    "cardNetwork": "discover",
+    "merchantName": "Ember & Stone Pizza",
+    "transactionAmount": 392.23,
+    "winProbability": 0.71,
+    "riskLevel": "medium",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "deadline": {
+      "network": "discover",
+      "dueDate": "2026-08-03",
+      "daysRemaining": 25
+    },
+    "createdAt": "2026-06-21T05:56:18.060Z",
+    "updatedAt": "2026-06-26T05:56:18.060Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000136",
+    "disputeRef": "DISCOVER-2026-10136",
+    "cardholderName": "Robert Chang",
+    "transactionDate": "2026-06-17",
+    "reasonCodeChecklist": [
+      {
+        "item": "CVV verification",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "AVS match",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Device fingerprint",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000360",
+        "type": "fraud_screening",
+        "sourceSystem": "OrderManagement",
+        "retrievedAt": "2026-06-24T05:56:18.060Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000136/0.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000361",
+        "type": "device_fingerprint",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-06-24T05:56:18.060Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000136/1.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000362",
+        "type": "transaction",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-06-24T05:56:18.060Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000136/2.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000363",
+        "type": "shipping",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-06-23T05:56:18.060Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000136/3.pdf",
+        "completeness": "missing"
+      }
+    ],
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "We respectfully dispute this chargeback. The cardholder completed a verified 3D Secure authentication at the time of purchase. Additionally, the shipping address matches the billing address, and the device fingerprint matches three previous successful transactions on this account.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000360",
+          "excerpt": "Evidence from OrderManagement (fraud_screening) retrieved 2026-06-24 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000361",
+          "excerpt": "Evidence from CustomerPortal (device_fingerprint) retrieved 2026-06-24 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000362",
+          "excerpt": "Evidence from EmailArchive (transaction) retrieved 2026-06-24 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000137",
+    "status": "pending_review",
+    "reasonCode": "DA",
+    "reasonCodeLabel": "Declined Authorization",
+    "cardNetwork": "discover",
+    "merchantName": "Cascade Software Inc",
+    "transactionAmount": 1940.8,
+    "winProbability": 0.82,
+    "riskLevel": "medium",
+    "assignedAnalystId": "analyst-002",
+    "assignedAnalystName": "Marcus Rivera",
+    "deadline": {
+      "network": "discover",
+      "dueDate": "2026-07-26",
+      "daysRemaining": 17
+    },
+    "createdAt": "2026-06-29T21:42:32.595Z",
+    "updatedAt": "2026-07-01T21:42:32.595Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000137",
+    "disputeRef": "DISCOVER-2026-10137",
+    "cardholderName": "Olivia Hawkins",
+    "transactionDate": "2026-06-20",
+    "reasonCodeChecklist": [
+      {
+        "item": "Authorization response code",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Force-post evidence",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "System logs",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000370",
+        "type": "shipping",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-06-30T21:42:32.595Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000137/0.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000371",
+        "type": "communication",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-06-30T21:42:32.595Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000137/1.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000372",
+        "type": "receipt",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-07-01T21:42:32.595Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000137/2.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000373",
+        "type": "contract",
+        "sourceSystem": "PaymentGateway",
+        "retrievedAt": "2026-07-02T21:42:32.595Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000137/3.pdf",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "CVV/AVS verification record",
+        "reason": "Source system unavailable during retrieval window",
+        "impact": "critical"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "The services described in the original order were fully rendered as agreed. Our system logs confirm the cardholder accessed and utilized the service on multiple occasions after the transaction date. Customer support records show no complaints were filed prior to the dispute.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000370",
+          "excerpt": "Evidence from CustomerPortal (shipping) retrieved 2026-06-30 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000371",
+          "excerpt": "Evidence from EmailArchive (communication) retrieved 2026-06-30 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000372",
+          "excerpt": "Evidence from DocumentStore (receipt) retrieved 2026-07-01 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000138",
+    "status": "escalated",
+    "reasonCode": "RG",
+    "reasonCodeLabel": "Non-Receipt of Goods/Services",
+    "cardNetwork": "discover",
+    "merchantName": "Prairie Wind Farms",
+    "transactionAmount": 4790.51,
+    "winProbability": 0.15,
+    "riskLevel": "critical",
+    "assignedAnalystId": "analyst-003",
+    "assignedAnalystName": "Priya Sharma",
+    "deadline": {
+      "network": "discover",
+      "dueDate": "2026-07-19",
+      "daysRemaining": 10
+    },
+    "createdAt": "2026-05-30T17:50:56.888Z",
+    "updatedAt": "2026-05-31T17:50:56.888Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000138",
+    "disputeRef": "DISCOVER-2026-10138",
+    "cardholderName": "Hassan Mahmoud",
+    "transactionDate": "2026-05-18",
+    "reasonCodeChecklist": [
+      {
+        "item": "Shipping confirmation",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Delivery proof",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Tracking details",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000380",
+        "type": "contract",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-06-02T17:50:56.888Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000138/0.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000381",
+        "type": "fraud_signal",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-05-31T17:50:56.888Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000138/1.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "CVV/AVS verification record",
+        "reason": "Third-party vendor has not provided data",
+        "impact": "low"
+      },
+      {
+        "missingItem": "Delivery confirmation with signature",
+        "reason": "Document expired past retention period",
+        "impact": "medium"
+      },
+      {
+        "missingItem": "Return merchandise authorization form",
+        "reason": "Document expired past retention period",
+        "impact": "critical"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "This transaction was processed with full EMV chip authentication. The terminal log confirms a successful chip read with PIN verification. No authorization reversals were requested, and the card was present at the point of sale during the transaction.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000380",
+          "excerpt": "Evidence from EmailArchive (contract) retrieved 2026-06-02 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000381",
+          "excerpt": "Evidence from DocumentStore (fraud_signal) retrieved 2026-05-31 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000139",
+    "status": "escalated",
+    "reasonCode": "NR",
+    "reasonCodeLabel": "No Refund/Return Policy Violation",
+    "cardNetwork": "discover",
+    "merchantName": "Atlas Global Shipping",
+    "transactionAmount": 8319.36,
+    "winProbability": 0.34,
+    "riskLevel": "critical",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "deadline": {
+      "network": "discover",
+      "dueDate": "2026-07-26",
+      "daysRemaining": 17
+    },
+    "createdAt": "2026-06-15T14:26:40.553Z",
+    "updatedAt": "2026-06-20T14:26:40.553Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000139",
+    "disputeRef": "DISCOVER-2026-10139",
+    "cardholderName": "Claire Dubois",
+    "transactionDate": "2026-06-13",
+    "reasonCodeChecklist": [
+      {
+        "item": "Published return policy",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Refund timeline",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Return receipt",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000390",
+        "type": "photo",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-06-17T14:26:40.553Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000139/0.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000391",
+        "type": "fraud_screening",
+        "sourceSystem": "PaymentGateway",
+        "retrievedAt": "2026-06-16T14:26:40.553Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000139/1.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000392",
+        "type": "device_fingerprint",
+        "sourceSystem": "ShippingProvider",
+        "retrievedAt": "2026-06-18T14:26:40.553Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000139/2.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "Our investigation reveals that the cardholder received a full refund on {refundDate} via the original payment method. The refund reference number is {refRef}, and the credit should appear within 5-10 business days of the processing date.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000390",
+          "excerpt": "Evidence from DocumentStore (photo) retrieved 2026-06-17 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000391",
+          "excerpt": "Evidence from PaymentGateway (fraud_screening) retrieved 2026-06-16 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000392",
+          "excerpt": "Evidence from ShippingProvider (device_fingerprint) retrieved 2026-06-18 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000140",
+    "status": "escalated",
+    "reasonCode": "13.1",
+    "reasonCodeLabel": "Merchandise/Services Not Received",
+    "cardNetwork": "visa",
+    "merchantName": "Crimson Fox Publishing",
+    "transactionAmount": 63.58,
+    "winProbability": 0.33,
+    "riskLevel": "critical",
+    "assignedAnalystId": "analyst-002",
+    "assignedAnalystName": "Marcus Rivera",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-08-08",
+      "daysRemaining": 30
+    },
+    "createdAt": "2026-05-10T20:25:47.921Z",
+    "updatedAt": "2026-05-12T20:25:47.921Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000140",
+    "disputeRef": "VISA-2026-10140",
+    "cardholderName": "James Whitfield",
+    "transactionDate": "2026-04-28",
+    "reasonCodeChecklist": [
+      {
+        "item": "Proof of delivery",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Shipping confirmation",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Customer communication",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000400",
+        "type": "transaction",
+        "sourceSystem": "PaymentGateway",
+        "retrievedAt": "2026-05-12T20:25:47.921Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000140/0.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000401",
+        "type": "shipping",
+        "sourceSystem": "ShippingProvider",
+        "retrievedAt": "2026-05-13T20:25:47.921Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000140/1.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000402",
+        "type": "communication",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-05-12T20:25:47.921Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000140/2.pdf",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "IP geolocation data for transaction",
+        "reason": "Document expired past retention period",
+        "impact": "low"
+      },
+      {
+        "missingItem": "Return merchandise authorization form",
+        "reason": "Integration timeout during evidence collection",
+        "impact": "low"
+      },
+      {
+        "missingItem": "Fraud screening report from transaction time",
+        "reason": "Integration timeout during evidence collection",
+        "impact": "high"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "Based on the evidence gathered, the transaction on {date} for ${amount} at {merchant} was authorized by the cardholder. Our records indicate that the goods were delivered on {deliveryDate} as confirmed by tracking number {tracking}. The delivery was signed for at the address on file.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000400",
+          "excerpt": "Evidence from PaymentGateway (transaction) retrieved 2026-05-12 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000401",
+          "excerpt": "Evidence from ShippingProvider (shipping) retrieved 2026-05-13 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000402",
+          "excerpt": "Evidence from CRM (communication) retrieved 2026-05-12 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000141",
+    "status": "escalated",
+    "reasonCode": "10.4",
+    "reasonCodeLabel": "Other Fraud – Card Absent Environment",
+    "cardNetwork": "visa",
+    "merchantName": "Sapphire Bay Resorts",
+    "transactionAmount": 406.83,
+    "winProbability": 0.15,
+    "riskLevel": "critical",
+    "assignedAnalystId": "analyst-003",
+    "assignedAnalystName": "Priya Sharma",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-08-05",
+      "daysRemaining": 27
+    },
+    "createdAt": "2026-05-16T05:22:15.161Z",
+    "updatedAt": "2026-05-22T05:22:15.161Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000141",
+    "disputeRef": "VISA-2026-10141",
+    "cardholderName": "Maria Gonzalez",
+    "transactionDate": "2026-05-03",
+    "reasonCodeChecklist": [
+      {
+        "item": "AVS match",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "CVV verification",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "3D Secure authentication",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000410",
+        "type": "receipt",
+        "sourceSystem": "ShippingProvider",
+        "retrievedAt": "2026-05-17T05:22:15.161Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000141/0.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000411",
+        "type": "contract",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-05-18T05:22:15.161Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000141/1.pdf",
+        "completeness": "missing"
+      }
+    ],
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "We respectfully dispute this chargeback. The cardholder completed a verified 3D Secure authentication at the time of purchase. Additionally, the shipping address matches the billing address, and the device fingerprint matches three previous successful transactions on this account.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000410",
+          "excerpt": "Evidence from ShippingProvider (receipt) retrieved 2026-05-17 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000411",
+          "excerpt": "Evidence from CRM (contract) retrieved 2026-05-18 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000142",
+    "status": "approved",
+    "reasonCode": "13.3",
+    "reasonCodeLabel": "Not as Described",
+    "cardNetwork": "visa",
+    "merchantName": "Thunderbolt Electric",
+    "transactionAmount": 1786.23,
+    "winProbability": 0.72,
+    "riskLevel": "medium",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-07-22",
+      "daysRemaining": 13
+    },
+    "createdAt": "2026-06-16T05:15:48.916Z",
+    "updatedAt": "2026-06-23T05:15:48.916Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000142",
+    "disputeRef": "VISA-2026-10142",
+    "cardholderName": "David Park",
+    "transactionDate": "2026-06-07",
+    "reasonCodeChecklist": [
+      {
+        "item": "Product description at purchase",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Return policy disclosure",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Customer complaint details",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000420",
+        "type": "order",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-06-19T05:15:48.916Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000142/0.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000421",
+        "type": "photo",
+        "sourceSystem": "FraudEngine",
+        "retrievedAt": "2026-06-18T05:15:48.916Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000142/1.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000422",
+        "type": "fraud_screening",
+        "sourceSystem": "OrderManagement",
+        "retrievedAt": "2026-06-18T05:15:48.916Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000142/2.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000423",
+        "type": "device_fingerprint",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-06-18T05:15:48.916Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000142/3.pdf",
+        "completeness": "missing"
+      }
+    ],
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "The services described in the original order were fully rendered as agreed. Our system logs confirm the cardholder accessed and utilized the service on multiple occasions after the transaction date. Customer support records show no complaints were filed prior to the dispute.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000420",
+          "excerpt": "Evidence from CRM (order) retrieved 2026-06-19 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000421",
+          "excerpt": "Evidence from FraudEngine (photo) retrieved 2026-06-18 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000422",
+          "excerpt": "Evidence from OrderManagement (fraud_screening) retrieved 2026-06-18 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000143",
+    "status": "approved",
+    "reasonCode": "13.6",
+    "reasonCodeLabel": "Credit Not Processed",
+    "cardNetwork": "visa",
+    "merchantName": "Willow Creek Pharmacy",
+    "transactionAmount": 5563.13,
+    "winProbability": 0.81,
+    "riskLevel": "high",
+    "assignedAnalystId": "analyst-002",
+    "assignedAnalystName": "Marcus Rivera",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-07-17",
+      "daysRemaining": 8
+    },
+    "createdAt": "2026-06-21T11:14:46.772Z",
+    "updatedAt": "2026-06-25T11:14:46.772Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000143",
+    "disputeRef": "VISA-2026-10143",
+    "cardholderName": "Amara Okafor",
+    "transactionDate": "2026-06-10",
+    "reasonCodeChecklist": [
+      {
+        "item": "Refund policy",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Return receipt",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Refund processing evidence",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000430",
+        "type": "device_fingerprint",
+        "sourceSystem": "FraudEngine",
+        "retrievedAt": "2026-06-22T11:14:46.772Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000143/0.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000431",
+        "type": "transaction",
+        "sourceSystem": "OrderManagement",
+        "retrievedAt": "2026-06-24T11:14:46.772Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000143/1.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000432",
+        "type": "shipping",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-06-23T11:14:46.772Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000143/2.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000433",
+        "type": "communication",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-06-23T11:14:46.772Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000143/3.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "This transaction was processed with full EMV chip authentication. The terminal log confirms a successful chip read with PIN verification. No authorization reversals were requested, and the card was present at the point of sale during the transaction.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000430",
+          "excerpt": "Evidence from FraudEngine (device_fingerprint) retrieved 2026-06-22 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000431",
+          "excerpt": "Evidence from OrderManagement (transaction) retrieved 2026-06-24 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000432",
+          "excerpt": "Evidence from CustomerPortal (shipping) retrieved 2026-06-23 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000144",
+    "status": "approved",
+    "reasonCode": "13.7",
+    "reasonCodeLabel": "Cancelled Merchandise/Services",
+    "cardNetwork": "visa",
+    "merchantName": "Obsidian Craft Brewery",
+    "transactionAmount": 8998,
+    "winProbability": 0.7,
+    "riskLevel": "critical",
+    "assignedAnalystId": "analyst-003",
+    "assignedAnalystName": "Priya Sharma",
+    "deadline": {
+      "network": "visa",
+      "dueDate": "2026-07-16",
+      "daysRemaining": 7
+    },
+    "createdAt": "2026-05-17T08:42:37.384Z",
+    "updatedAt": "2026-05-19T08:42:37.384Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000144",
+    "disputeRef": "VISA-2026-10144",
+    "cardholderName": "Rebecca Torres",
+    "transactionDate": "2026-05-11",
+    "reasonCodeChecklist": [
+      {
+        "item": "Cancellation policy",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Service agreement",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Cancellation request record",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000440",
+        "type": "communication",
+        "sourceSystem": "OrderManagement",
+        "retrievedAt": "2026-05-18T08:42:37.384Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000144/0.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000441",
+        "type": "receipt",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-05-18T08:42:37.384Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000144/1.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000442",
+        "type": "contract",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-05-19T08:42:37.384Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000144/2.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000443",
+        "type": "fraud_signal",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-05-19T08:42:37.384Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000144/3.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "Our investigation reveals that the cardholder received a full refund on {refundDate} via the original payment method. The refund reference number is {refRef}, and the credit should appear within 5-10 business days of the processing date.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000440",
+          "excerpt": "Evidence from OrderManagement (communication) retrieved 2026-05-18 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000441",
+          "excerpt": "Evidence from CustomerPortal (receipt) retrieved 2026-05-18 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000442",
+          "excerpt": "Evidence from EmailArchive (contract) retrieved 2026-05-19 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000145",
+    "status": "approved",
+    "reasonCode": "4837",
+    "reasonCodeLabel": "No Cardholder Authorization",
+    "cardNetwork": "mastercard",
+    "merchantName": "Nordic Trail Equipment",
+    "transactionAmount": 82.45,
+    "winProbability": 0.87,
+    "riskLevel": "low",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-07-26",
+      "daysRemaining": 17
+    },
+    "createdAt": "2026-05-16T10:08:35.564Z",
+    "updatedAt": "2026-05-18T10:08:35.564Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000145",
+    "disputeRef": "MASTERCARD-2026-10145",
+    "cardholderName": "Samuel Richardson",
+    "transactionDate": "2026-05-14",
+    "reasonCodeChecklist": [
+      {
+        "item": "Authorization log",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Chip/PIN verification",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Signature comparison",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000450",
+        "type": "fraud_signal",
+        "sourceSystem": "CustomerPortal",
+        "retrievedAt": "2026-05-19T10:08:35.564Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000145/0.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000451",
+        "type": "order",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-05-19T10:08:35.564Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000145/1.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000452",
+        "type": "photo",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-05-18T10:08:35.564Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000145/2.pdf",
+        "completeness": "missing"
+      }
+    ],
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "Based on the evidence gathered, the transaction on {date} for ${amount} at {merchant} was authorized by the cardholder. Our records indicate that the goods were delivered on {deliveryDate} as confirmed by tracking number {tracking}. The delivery was signed for at the address on file.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000450",
+          "excerpt": "Evidence from CustomerPortal (fraud_signal) retrieved 2026-05-19 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000451",
+          "excerpt": "Evidence from EmailArchive (order) retrieved 2026-05-19 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000452",
+          "excerpt": "Evidence from DocumentStore (photo) retrieved 2026-05-18 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000146",
+    "status": "denied",
+    "reasonCode": "4853",
+    "reasonCodeLabel": "Cardholder Dispute – Defective",
+    "cardNetwork": "mastercard",
+    "merchantName": "Cerulean Wave Surfboards",
+    "transactionAmount": 492.11,
+    "winProbability": 0.24,
+    "riskLevel": "low",
+    "assignedAnalystId": "analyst-002",
+    "assignedAnalystName": "Marcus Rivera",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-07-17",
+      "daysRemaining": 8
+    },
+    "createdAt": "2026-05-09T09:29:46.121Z",
+    "updatedAt": "2026-05-10T09:29:46.121Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000146",
+    "disputeRef": "MASTERCARD-2026-10146",
+    "cardholderName": "Yuki Tanaka",
+    "transactionDate": "2026-04-27",
+    "reasonCodeChecklist": [
+      {
+        "item": "Product specifications",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Quality inspection report",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Return authorization",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000460",
+        "type": "fraud_screening",
+        "sourceSystem": "EmailArchive",
+        "retrievedAt": "2026-05-10T09:29:46.121Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000146/0.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000461",
+        "type": "device_fingerprint",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-05-11T09:29:46.121Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000146/1.pdf",
+        "completeness": "complete"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Device fingerprint matching previous purchases",
+        "reason": "Source system unavailable during retrieval window",
+        "impact": "high"
+      },
+      {
+        "missingItem": "IP geolocation data for transaction",
+        "reason": "Integration timeout during evidence collection",
+        "impact": "critical"
+      }
+    ]
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000147",
+    "status": "denied",
+    "reasonCode": "4855",
+    "reasonCodeLabel": "Goods or Services Not Provided",
+    "cardNetwork": "mastercard",
+    "merchantName": "Phoenix Rise Marketing",
+    "transactionAmount": 1172.88,
+    "winProbability": 0.15,
+    "riskLevel": "high",
+    "assignedAnalystId": "analyst-003",
+    "assignedAnalystName": "Priya Sharma",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-07-28",
+      "daysRemaining": 19
+    },
+    "createdAt": "2026-06-18T23:54:06.778Z",
+    "updatedAt": "2026-06-21T23:54:06.778Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000147",
+    "disputeRef": "MASTERCARD-2026-10147",
+    "cardholderName": "Isabella Martinez",
+    "transactionDate": "2026-06-14",
+    "reasonCodeChecklist": [
+      {
+        "item": "Delivery confirmation",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Service completion record",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Tracking number",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000470",
+        "type": "shipping",
+        "sourceSystem": "DocumentStore",
+        "retrievedAt": "2026-06-21T23:54:06.778Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000147/0.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": []
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000148",
+    "status": "submitted",
+    "reasonCode": "4834",
+    "reasonCodeLabel": "Point of Interaction Error",
+    "cardNetwork": "mastercard",
+    "merchantName": "Driftwood Antiques",
+    "transactionAmount": 5052.55,
+    "winProbability": 0.63,
+    "riskLevel": "high",
+    "assignedAnalystId": "analyst-001",
+    "assignedAnalystName": "Sarah Chen",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-07-18",
+      "daysRemaining": 9
+    },
+    "createdAt": "2026-06-28T16:22:43.025Z",
+    "updatedAt": "2026-06-30T16:22:43.025Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000148",
+    "disputeRef": "MASTERCARD-2026-10148",
+    "cardholderName": "Thomas Andersen",
+    "transactionDate": "2026-06-23",
+    "reasonCodeChecklist": [
+      {
+        "item": "Terminal transaction log",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Batch settlement record",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Duplicate check",
+        "required": true,
+        "satisfied": true
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000480",
+        "type": "contract",
+        "sourceSystem": "PaymentGateway",
+        "retrievedAt": "2026-07-01T16:22:43.025Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000148/0.pdf",
+        "completeness": "partial"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000481",
+        "type": "fraud_signal",
+        "sourceSystem": "ShippingProvider",
+        "retrievedAt": "2026-07-01T16:22:43.025Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000148/1.pdf",
+        "completeness": "missing"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000482",
+        "type": "order",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-06-29T16:22:43.025Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000148/2.pdf",
+        "completeness": "partial"
+      }
+    ],
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "This transaction was processed with full EMV chip authentication. The terminal log confirms a successful chip read with PIN verification. No authorization reversals were requested, and the card was present at the point of sale during the transaction.",
+      "citations": [
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000480",
+          "excerpt": "Evidence from PaymentGateway (contract) retrieved 2026-07-01 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000481",
+          "excerpt": "Evidence from ShippingProvider (fraud_signal) retrieved 2026-07-01 confirms transaction details."
+        },
+        {
+          "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000482",
+          "excerpt": "Evidence from CRM (order) retrieved 2026-06-29 confirms transaction details."
+        }
+      ]
+    }
+  },
+  {
+    "caseId": "00000000-0000-0000-0000-000000000149",
+    "status": "expired",
+    "reasonCode": "4863",
+    "reasonCodeLabel": "Cardholder Does Not Recognize",
+    "cardNetwork": "mastercard",
+    "merchantName": "Vertex Aerospace Parts",
+    "transactionAmount": 11527.33,
+    "winProbability": 0.16,
+    "riskLevel": "critical",
+    "assignedAnalystId": "analyst-002",
+    "assignedAnalystName": "Marcus Rivera",
+    "deadline": {
+      "network": "mastercard",
+      "dueDate": "2026-07-06",
+      "daysRemaining": -3
+    },
+    "createdAt": "2026-06-01T10:42:07.038Z",
+    "updatedAt": "2026-06-02T10:42:07.038Z",
+    "orchestrationId": "00000000-0000-0000-0000-000000000149",
+    "disputeRef": "MASTERCARD-2026-10149",
+    "cardholderName": "Fatima Al-Rashid",
+    "transactionDate": "2026-05-21",
+    "reasonCodeChecklist": [
+      {
+        "item": "Billing descriptor clarification",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Purchase confirmation email",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Account login evidence",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000490",
+        "type": "photo",
+        "sourceSystem": "ShippingProvider",
+        "retrievedAt": "2026-06-03T10:42:07.038Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000149/0.pdf",
+        "completeness": "complete"
+      },
+      {
+        "evidenceId": "eeeeeeee-eeee-eeee-eeee-000000000491",
+        "type": "fraud_screening",
+        "sourceSystem": "CRM",
+        "retrievedAt": "2026-06-04T10:42:07.038Z",
+        "contentRef": "blob://evidence-store/00000000-0000-0000-0000-000000000149/1.pdf",
+        "completeness": "missing"
+      }
+    ],
+    "evidenceGaps": [
+      {
+        "missingItem": "Return merchandise authorization form",
+        "reason": "Customer did not respond to request",
+        "impact": "high"
+      },
+      {
+        "missingItem": "CVV/AVS verification record",
+        "reason": "Customer did not respond to request",
+        "impact": "high"
+      },
+      {
+        "missingItem": "Fraud screening report from transaction time",
+        "reason": "Third-party vendor has not provided data",
+        "impact": "low"
+      }
+    ]
+  }
+]

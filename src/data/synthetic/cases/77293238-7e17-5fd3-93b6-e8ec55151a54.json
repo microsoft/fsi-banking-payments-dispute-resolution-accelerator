@@ -1,0 +1,100 @@
+{
+  "caseId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+  "orchestrationId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+  "disputeRef": "DFS-UA02-2026-44102",
+  "cardNetwork": "discover",
+  "merchantName": "LuxeTravel Bookings",
+  "cardholderName": "James O'Brien",
+  "transactionAmount": 2340.0,
+  "transactionDate": "2026-05-20",
+  "status": "pending_review",
+  "reasonCode": "UA02",
+  "reasonCodeLabel": "Fraudulent Transaction — Card Not Present",
+  "reasonCodeChecklist": [
+    {
+      "item": "Transaction authorization record with CVV2 and AVS match",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "3D Secure v2 authentication proof",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Customer identity verification log",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "IP address and device fingerprint report",
+      "required": false,
+      "satisfied": true
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "aa4aef54-98c1-5e81-93b2-266f88772ce1",
+      "type": "transaction",
+      "sourceSystem": "Discover Authorization System",
+      "retrievedAt": "2026-06-02T09:00:44Z",
+      "contentRef": "blob://disputes-demo/case-04/txn-record.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "7b4df10f-e43a-5f69-b240-329eb6471878",
+      "type": "fraud_signal",
+      "sourceSystem": "FraudShield AI v3",
+      "retrievedAt": "2026-06-02T09:02:18Z",
+      "contentRef": "blob://disputes-demo/case-04/fraud-signal.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "e0298857-cd62-5ffe-9e7d-e504ffaa9b5f",
+      "type": "communication",
+      "sourceSystem": "LuxeTravel CRM",
+      "retrievedAt": "2026-06-02T09:04:01Z",
+      "contentRef": "blob://disputes-demo/case-04/crm-comms.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "e904d513-35c1-5a19-8721-89a3b691e324",
+      "type": "receipt",
+      "sourceSystem": "LuxeTravel Booking Engine",
+      "retrievedAt": "2026-06-02T09:05:30Z",
+      "contentRef": "blob://disputes-demo/case-04/booking-receipt.pdf",
+      "completeness": "complete"
+    }
+  ],
+  "evidenceGaps": [],
+  "winProbability": 0.88,
+  "riskLevel": "low",
+  "rebuttalDraft": {
+    "text": "Merchant disputes Discover UA02 chargeback. The $2,340.00 transaction on 2026-05-20 passed all fraud controls: CVV2 matched, AVS returned a full match, and 3D Secure v2.2 authentication was completed by the cardholder's issuing bank (see evidence [aa4aef54-98c1-5e81-93b2-266f88772ce1]). FraudShield AI scored this transaction 12/100 (low risk) at authorization time, with the device fingerprint matching the cardholder's registered browser profile (see evidence [7b4df10f-e43a-5f69-b240-329eb6471878]). The booking confirmation was sent to the cardholder's verified email address and the cardholder subsequently interacted with the booking portal on 2026-05-21 (see evidence [e0298857-cd62-5ffe-9e7d-e504ffaa9b5f]). The full booking receipt is attached for reference (see evidence [e904d513-35c1-5a19-8721-89a3b691e324]). Merchant requests reversal.",
+    "citations": [
+      {
+        "evidenceId": "aa4aef54-98c1-5e81-93b2-266f88772ce1",
+        "excerpt": "Discover Auth: TXN DFS-2026-05-20-44102, $2,340.00, CVV2=MATCH, AVS=FULL, 3DS2 ECI=05 (fully authenticated)"
+      },
+      {
+        "evidenceId": "7b4df10f-e43a-5f69-b240-329eb6471878",
+        "excerpt": "FraudShield AI: risk_score=12, device_match=TRUE, ip_geo=US-IL (matches billing state), velocity_flag=FALSE"
+      },
+      {
+        "evidenceId": "e0298857-cd62-5ffe-9e7d-e504ffaa9b5f",
+        "excerpt": "LuxeTravel CRM: Booking BKG-LT-7821 confirmed by email 2026-05-20T19:45Z; portal login by JOBrien@email.com on 2026-05-21T08:12Z"
+      },
+      {
+        "evidenceId": "e904d513-35c1-5a19-8721-89a3b691e324",
+        "excerpt": "LuxeTravel receipt: Round-trip ORD→MIA, depart 2026-06-14, return 2026-06-21, total $2,340.00, ref LT-7821"
+      }
+    ]
+  },
+  "deadline": {
+    "network": "Discover",
+    "dueDate": "2026-07-31",
+    "daysRemaining": 25
+  },
+  "createdAt": "2026-06-02T08:30:00Z",
+  "updatedAt": "2026-06-28T16:00:00Z"
+}

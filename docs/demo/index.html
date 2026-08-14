@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payments Dispute Resolution — Architecture Demo</title>
+  <style>
+    /* ── Reset & base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue:    #58a6ff;
+      --blue-dk: #79c0ff;
+      --teal:    #3fb950;
+      --amber:   #e3b341;
+      --red:     #f85149;
+      --green:   #3fb950;
+      --surface: #0d1117;
+      --surface2:#161b22;
+      --card:    #21262d;
+      --card-hov:#2d333b;
+      --white:   #e6edf3;
+      --text:    #c9d1d9;
+      --text-lt: #8b949e;
+      --border:  #30363d;
+      --radius:  8px;
+      --shadow:  0 2px 8px rgba(0,0,0,.5);
+      --max-w:   1100px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── Top nav ──────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 0 1.5rem;
+      height: 52px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.45);
+    }
+    nav .brand {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .02em;
+      white-space: nowrap;
+      margin-right: 1.5rem;
+      color: var(--white);
+    }
+    nav a {
+      color: var(--text-lt);
+      text-decoration: none;
+      font-size: .82rem;
+      padding: 0 .7rem;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 3px solid transparent;
+      transition: color .15s, border-color .15s;
+      white-space: nowrap;
+    }
+    nav a:hover { color: var(--white); border-bottom-color: var(--blue); }
+    nav .spacer { flex: 1; }
+    nav .badge {
+      background: rgba(88,166,255,.12);
+      color: var(--blue);
+      border: 1px solid rgba(88,166,255,.3);
+      font-size: .72rem;
+      font-weight: 600;
+      border-radius: 20px;
+      padding: .2rem .65rem;
+    }
+
+    /* ── Hero ─────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #0d1117 0%, #0d2040 55%, #161b22 100%);
+      border-bottom: 1px solid var(--border);
+      color: var(--white);
+      text-align: center;
+      padding: 4rem 2rem 3rem;
+    }
+    .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.2; }
+    .hero p  { font-size: 1.1rem; opacity: .70; max-width: 680px; margin: .9rem auto 0; }
+    .hero .tags { margin-top: 1.4rem; display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center; }
+    .hero .tag {
+      background: rgba(88,166,255,.1);
+      border: 1px solid rgba(88,166,255,.25);
+      border-radius: 20px;
+      padding: .2rem .75rem;
+      font-size: .78rem;
+      color: var(--blue);
+    }
+
+    /* ── Main layout ──────────────────────────────────── */
+    main { max-width: var(--max-w); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+    /* ── Section ──────────────────────────────────────── */
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 2rem 1.8rem;
+      margin-bottom: 2rem;
+      scroll-margin-top: 60px;
+    }
+    section h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      color: var(--blue);
+    }
+    section h2 .icon { font-size: 1.25rem; }
+    section h3 { font-size: 1rem; font-weight: 600; margin: 1.2rem 0 .4rem; color: var(--white); }
+    section p  { margin-bottom: .8rem; color: var(--text); }
+    section ul { padding-left: 1.3rem; margin-bottom: .8rem; }
+    section li { margin-bottom: .3rem; }
+    section strong { color: var(--blue-dk); }
+    section code {
+      background: rgba(110,118,129,.15);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: .1rem .35rem;
+      font-size: .82rem;
+      font-family: "Cascadia Code", "Consolas", monospace;
+      color: #ffa657;
+    }
+    section code {
+      background: rgba(110,118,129,.15);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: .1rem .35rem;
+      font-size: .82rem;
+      font-family: "Cascadia Code", "Consolas", monospace;
+      color: #ffa657;
+    }
+
+    /* ── Architecture image ───────────────────────────── */
+    .arch-img-wrap {
+      margin: 1.2rem 0;
+      text-align: center;
+    }
+    .arch-img-wrap img {
+      max-width: 100%;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .arch-img-wrap figcaption {
+      font-size: .8rem;
+      color: var(--text-lt);
+      margin-top: .5rem;
+    }
+
+    /* ── Flow steps ───────────────────────────────────── */
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.2rem 0 .5rem;
+    }
+    .step {
+      flex: 1 1 180px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      position: relative;
+    }
+    .step .step-num {
+      background: var(--blue);
+      color: #0d1117;
+      border-radius: 50%;
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; font-weight: 700;
+      margin-bottom: .5rem;
+    }
+    .step h4 { font-size: .88rem; font-weight: 700; margin-bottom: .3rem; color: var(--white); }
+    .step p  { font-size: .82rem; color: var(--text); margin: 0; }
+
+    /* ── Grid cards ───────────────────────────────────── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+    .card h4 { font-size: .88rem; font-weight: 700; margin-bottom: .3rem; color: var(--blue); }
+    .card p  { font-size: .82rem; color: var(--text); margin: 0; }
+
+    /* ── Pipeline evidence panel ──────────────────────── */
+    .pipeline-panel {
+      border: 1px solid rgba(227,179,65,.35);
+      border-left: 3px solid var(--amber);
+      background: rgba(227,179,65,.05);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.8rem;
+      margin: 1.2rem 0;
+    }
+    .pipeline-panel h3 {
+      color: var(--amber);
+      font-size: 1rem;
+      margin-bottom: .6rem;
+      display: flex; align-items: center; gap: .4rem;
+    }
+    .pipeline-panel p { font-size: .88rem; margin-bottom: .5rem; }
+    .pipeline-panel a { color: var(--blue); font-weight: 600; }
+
+    /* ── CI/CD step list ──────────────────────────────── */
+    .pipeline-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin: .8rem 0;
+    }
+    .ps {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: .45rem .85rem;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex; align-items: center; gap: .35rem;
+    }
+    .ps .dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+
+    /* ── Source link cards ────────────────────────────── */
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: .9rem;
+      margin: 1rem 0;
+    }
+    .link-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--blue);
+      border-radius: var(--radius);
+      padding: .85rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: box-shadow .15s, border-left-color .15s, background .15s;
+    }
+    .link-card:hover { background: var(--card-hov); box-shadow: 0 4px 14px rgba(0,0,0,.4); border-left-color: var(--teal); }
+    .link-card .lc-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--text-lt); }
+    .link-card .lc-title { font-size: .92rem; font-weight: 600; color: var(--blue); }
+    .link-card .lc-url   { font-size: .73rem; color: var(--text-lt); word-break: break-all; }
+
+    /* ── Azure portal callout ─────────────────────────── */
+    .portal-box {
+      background: rgba(88,166,255,.05);
+      border: 1px solid rgba(88,166,255,.2);
+      border-left: 4px solid var(--blue);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      margin: 1rem 0;
+    }
+    .portal-box p { font-size: .88rem; margin-bottom: .4rem; }
+    .portal-box code {
+      background: rgba(110,118,129,.15);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: .1rem .35rem;
+      font-size: .82rem;
+      font-family: "Cascadia Code", "Consolas", monospace;
+      color: #ffa657;
+    }
+
+    /* ── Phase labels ─────────────────────────────────── */
+    .phase-tag {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      border-radius: 20px;
+      padding: .15rem .55rem;
+      vertical-align: middle;
+      margin-left: .4rem;
+    }
+    .mvp   { background: rgba(63,185,80,.1); color: var(--green); border: 1px solid rgba(63,185,80,.3); }
+    .future { background: rgba(227,179,65,.1); color: var(--amber); border: 1px solid rgba(227,179,65,.3); }
+
+    /* ── Credits ──────────────────────────────────────── */
+    .credits {
+      background: linear-gradient(135deg, #0d2040 0%, #161b22 100%);
+      border: 1px solid var(--border);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .credits h2 { color: var(--white); font-size: 1.3rem; margin-bottom: .7rem; }
+    .credits p  { opacity: .75; margin-bottom: 1rem; }
+    .credits .credit-links {
+      display: flex; flex-wrap: wrap; gap: .7rem; justify-content: center;
+    }
+    .credits .credit-links a {
+      background: rgba(88,166,255,.1);
+      border: 1px solid rgba(88,166,255,.25);
+      border-radius: var(--radius);
+      color: var(--blue);
+      text-decoration: none;
+      padding: .45rem 1rem;
+      font-size: .85rem;
+      font-weight: 600;
+      transition: background .15s;
+    }
+    .credits .credit-links a:hover { background: rgba(88,166,255,.2); }
+
+    /* ── Footer ───────────────────────────────────────── */
+    footer {
+      text-align: center;
+      font-size: .78rem;
+      color: var(--text-lt);
+      padding: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── App launch cards ─────────────────────────────── */
+    .app-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 1.2rem 0 1.8rem;
+    }
+    .app-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
+    }
+    .app-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.5); }
+    .app-card .app-screenshot {
+      width: 100%;
+      display: block;
+      border-bottom: 1px solid var(--border);
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      object-position: top left;
+    }
+    .app-card .app-info { padding: 1rem 1.1rem 1.2rem; }
+    .app-card .app-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--text-lt); margin-bottom: .3rem; }
+    .app-card .app-title { font-size: 1rem; font-weight: 700; color: var(--blue); margin-bottom: .3rem; }
+    .app-card .app-desc  { font-size: .82rem; color: var(--text); margin-bottom: 0; }
+
+
+    /* ── Screenshot gallery ───────────────────────────── */
+    .screenshot-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .ss-item { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .ss-item a { display: block; }
+    .ss-item img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; object-position: top left; }
+    .ss-item .ss-caption { font-size: .75rem; color: var(--text-lt); padding: .4rem .6rem; background: var(--surface2); border-top: 1px solid var(--border); }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (max-width: 640px) {
+      nav a { display: none; }
+      nav a.brand-link { display: flex; }
+      .flow { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav role="navigation" aria-label="Page navigation">
+  <span class="brand">💳 Disputes Accelerator</span>
+  <a href="#screenshots">Screenshots</a>
+  <a href="#architecture">Architecture</a>
+  <a href="#web-apps">Web Apps</a>
+  <a href="#cosmos">Cosmos DB</a>
+  <a href="#flow">Dispute Flow</a>
+  <a href="#iac">IaC &amp; AZD</a>
+  <a href="#cicd">CI/CD</a>
+  <a href="#portal">Azure Portal</a>
+  <a href="#sources">Sources</a>
+  <span class="spacer"></span>
+  <span class="badge">Payments Dispute Resolution</span>
+</nav>
+
+<!-- ── Hero ── -->
+<header class="hero" role="banner">
+  <h1>Payments Dispute Resolution<br>Architecture Demo</h1>
+  <p>
+    An end-to-end agentic accelerator that assembles chargeback evidence,
+    scores win-probability, drafts AI-grounded rebuttals, and keeps a human in the loop —
+    built on Azure, deployed via <code style="background:rgba(88,166,255,.15);padding:.1rem .4rem;border-radius:4px;color:#e6edf3">azd up</code>.
+  </p>
+  <div class="tags">
+    <span class="tag">React 18 + Vite + TypeScript</span>
+    <span class="tag">Azure Functions (Durable)</span>
+    <span class="tag">Azure AI Foundry</span>
+    <span class="tag">Cosmos DB</span>
+    <span class="tag">Azure Static Web Apps</span>
+    <span class="tag">Bicep / AZD</span>
+    <span class="tag">GitHub Actions CI/CD</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     §0 — Application Screenshots
+═══════════════════════════════════════════════════════════════ -->
+<section id="screenshots" aria-labelledby="screenshots-heading">
+  <h2><span class="icon">🖼️</span> <span id="screenshots-heading">Application Screenshots</span></h2>
+  <p>
+    Dark-mode captures from the deployed application environments. Both Static Web Apps are built on
+    React 18 · TypeScript · Vite · Fluent UI v9 and hosted as Azure Static Web Apps with
+    managed-identity Function App integration.
+  </p>
+
+  <div class="app-cards">
+    <div class="app-card">
+      <img
+        class="app-screenshot"
+        src="../images/readme/dashboard.png"
+        alt="Dispute Resolution Portal — dark mode dashboard showing KPI tiles (98 total cases, 78 open, 21 pending review, 46 at risk, 56% avg win rate), dispute volume line chart, cases by network donut chart, and risk distribution bar chart"
+        loading="lazy"
+      />
+      <div class="app-info">
+        <div class="app-label">Analyst Portal — Azure Static Web App</div>
+        <div class="app-title">Dispute Resolution Portal</div>
+        <div class="app-desc">Analyst-facing SPA — case queue with SLA countdown badges, AI win-probability scores, evidence review, and HITL approve/deny/escalate. Stack: React 18 · TypeScript · Vite · Fluent UI v9.</div>
+      </div>
+    </div>
+
+    <div class="app-card">
+      <img
+        class="app-screenshot"
+        src="../images/readme/customer-portal.png"
+        alt="Customer Portal — showing 'Select the charge to dispute' page with list of recent American Express transactions including merchant name, description, category, date, amount, and Dispute this charge buttons"
+        loading="lazy"
+      />
+      <div class="app-info">
+        <div class="app-label">Customer Portal — Azure Static Web App (Simulation)</div>
+        <div class="app-title">Customer Dispute Portal</div>
+        <div class="app-desc">Dispute submission simulation tool — select a transaction, enter dispute details, upload supporting documents, and submit to drive the full agentic pipeline end-to-end. Stack: React 18 · TypeScript · Vite · Fluent UI v9.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Additional Views</h3>
+  <div class="screenshot-gallery">
+    <div class="ss-item">
+      <img
+        src="../images/readme/case-queue.png"
+        alt="Dispute Case Queue — dark mode, showing sortable table with case IDs, merchant names, network, amount, reason code, win probability, risk level, status, and recent activity; Operations Center panel with 78 open / 50 active / 28 needs review; queue controls with tab filters"
+        loading="lazy"
+      />
+      <div class="ss-caption">Case Queue — sortable table, Operations Center, customer-activity triage</div>
+    </div>
+    <div class="ss-item">
+      <img
+        src="../images/readme/case-detail.png"
+        alt="Case Detail — dark mode, showing Iron Wolf Gym case (denied), SLA Progress bar across pipeline stages, 51% win probability, AI recommendation 'Review &amp; Strengthen', Case Details sidebar with cardholder and transaction info, Collaboration panel"
+        loading="lazy"
+      />
+      <div class="ss-caption">Case Detail — SLA timeline, AI decision support, collaboration panel</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     §1 — Architecture Overview
+═══════════════════════════════════════════════════════════════ -->
+<section id="architecture" aria-labelledby="arch-heading">
+  <h2><span class="icon">🏗️</span> <span id="arch-heading">Azure Application Landing Zone</span></h2>
+  <p>
+    The diagram below shows the target Azure application landing zone pattern for this accelerator.
+    Internet traffic enters through a WAF ingress layer, is routed to two Static Web App instances
+    (the Analyst Portal and the Customer Portal), which call a shared Function App backend.
+    Private endpoints connect the Function App to Cosmos DB, Storage, Key Vault, Microsoft Foundry,
+    Azure AI Search, Event Grid, and Application Insights.
+  </p>
+
+  <figure class="arch-img-wrap">
+    <img
+      src="../images/landing-zone-architecture.png"
+      alt="Azure application landing zone diagram showing internet users → WAF ingress → two Static Web Apps (Web App 1 and Web App 2) on an App Service Integration Subnet → Function App with VNet integration → Private Endpoint Subnet → Private PaaS Services including Cosmos DB (operational data), Storage Blob (documents/artifacts), Key Vault (secrets/certificates), Microsoft Foundry (models/projects), Azure AI Search (indexes/retrieval), Event Grid (event publishing), and Application Insights via Azure Monitor Private Link Scope"
+      loading="lazy"
+    />
+    <figcaption>
+      Azure Application Landing Zone — 2 Web Apps · 1 Function App · Private PaaS back-plane
+      <br><em>MVP/demo: public endpoints used for deployment convenience.
+      Private-link plumbing is in place for a future hardening phase (see <code>infra/modules/private-endpoints.bicep</code>).</em>
+    </figcaption>
+  </figure>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>🌐 Ingress Layer</h4>
+      <p>Internet traffic enters via public HTTPS to the two Static Web Apps. WAF (Front Door Premium or Application Gateway) is the intended ingress path in a hardened configuration.</p>
+    </div>
+    <div class="card">
+      <h4>📱 App Service Integration Subnet</h4>
+      <p>Both Static Web Apps are deployed to Azure's Static Web App service. The Function App uses outbound VNet integration for private east–west calls.</p>
+    </div>
+    <div class="card">
+      <h4>🔒 Private Endpoint Subnet</h4>
+      <p>Service private endpoints are provisioned in <code>infra/modules/private-endpoints.bicep</code>. Currently scoped to a future-phase rollout while the MVP runs on public endpoints.</p>
+    </div>
+    <div class="card">
+      <h4>☁️ Private PaaS Services</h4>
+      <p>Cosmos DB, Blob Storage, Key Vault, Microsoft Foundry, Azure AI Search, Event Grid, and Application Insights — all connected via managed identity + RBAC, no connection-string secrets at runtime.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     §2 — Web Applications
+═══════════════════════════════════════════════════════════════ -->
+<section id="web-apps" aria-labelledby="webapps-heading">
+  <h2><span class="icon">💻</span> <span id="webapps-heading">Two Web Applications</span></h2>
+
+  <div class="card-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+    <div class="card">
+      <h4>🔎 Analyst Disputes Portal <span class="phase-tag mvp">MVP</span></h4>
+      <p>
+        <strong>Source:</strong> <code>src/web/</code><br>
+        <strong>Stack:</strong> React 18 · TypeScript · Vite · Fluent UI v9 · React Router v6 · Recharts<br>
+        <strong>Host:</strong> Azure Static Web App (Standard SKU) — linked as primary backend to the Function App<br>
+        <strong>Deployed as:</strong> <code>azd-service-name: web</code> in <code>azure.yaml</code>
+      </p>
+      <p style="margin-top:.5rem;font-size:.82rem;color:var(--text)">
+        The analyst-facing SPA provides: case queue with SLA countdown badges, case detail with evidence timeline,
+        AI-score display, approve/deny/escalate HITL actions, and a processing metrics dashboard.
+        Calls the Function App backend via the <code>/api</code> reverse-proxy set up by the SWA linked-backend feature.
+      </p>
+    </div>
+    <div class="card">
+      <h4>🙋 Customer Portal <span class="phase-tag mvp">Simulation tool</span></h4>
+      <p>
+        <strong>Source:</strong> <code>src/customer-portal/</code><br>
+        <strong>Stack:</strong> React 18 · TypeScript · Vite · Fluent UI v9 · React Router v6<br>
+        <strong>Host:</strong> Azure Static Web App (Standard SKU) — calls the Function App via direct CORS URL<br>
+        <strong>Deployed as:</strong> <code>azd-service-name: portal</code> in <code>azure.yaml</code>
+      </p>
+      <p style="margin-top:.5rem;font-size:.82rem;color:var(--text)">
+        A simulation tool — not a real bank portal. Allows demo submission of dispute cases with document uploads,
+        driving the end-to-end pipeline so the Analyst Portal receives a populated case to review.
+        API base URL is injected at build time via <code>VITE_API_BASE_URL</code> from the <code>prepackage</code> hook.
+      </p>
+    </div>
+  </div>
+
+  <h3>Why two separate Static Web Apps?</h3>
+  <p>
+    Azure's SWA linked-backend feature is <strong>exclusive per Function App</strong>: a single Function App
+    can be the <code>/api</code> proxy backend for only one SWA at a time. The Analyst Portal claims
+    the linked-backend slot; the Customer Portal reaches the same Function App via an absolute CORS URL,
+    keeping both surfaces independently deployable with no shared hosting contract.
+  </p>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     §3 — Cosmos DB Persistence
+═══════════════════════════════════════════════════════════════ -->
+<section id="cosmos" aria-labelledby="cosmos-heading">
+  <h2><span class="icon">🗄️</span> <span id="cosmos-heading">Azure Cosmos DB — Backend Persistence</span></h2>
+  <p>
+    Cosmos DB (NoSQL API) is the operational store for dispute cases, evidence documents, and
+    processing timelines. It was chosen because:
+  </p>
+  <ul>
+    <li><strong>Flexible schema</strong> — case documents vary by card network (Visa, MC, Amex, Discover) and evidence type; Cosmos' JSON model handles structural variation without schema migrations.</li>
+    <li><strong>Low-latency reads</strong> — the Analyst Portal's case queue needs sub-second response at demo-scale; Cosmos single-region reads are consistently fast.</li>
+    <li><strong>Event-oriented workflow fit</strong> — each Durable Functions orchestration step appends to the case document's <code>timeline</code> array, creating a natural audit trail without a separate event log table.</li>
+    <li><strong>RBAC-first access</strong> — the Function App uses managed identity + Cosmos RBAC (<code>infra/modules/cosmos-rbac.bicep</code>), so no connection string is ever stored in Key Vault or app settings.</li>
+  </ul>
+  <div class="card-grid">
+    <div class="card">
+      <h4>📋 disputes container</h4>
+      <p>One document per case: metadata, card-network info, cardholder claim, status, AI score, HITL decision, and a <code>timeline[]</code> array of workflow events.</p>
+    </div>
+    <div class="card">
+      <h4>📎 evidence container</h4>
+      <p>Evidence artifacts (transaction records, shipping docs, comms) linked to a dispute by case ID. Stored as structured JSON; raw blobs go to Storage.</p>
+    </div>
+    <div class="card">
+      <h4>🔗 Managed Identity Access</h4>
+      <p>No secrets in flight. The Function App's system-assigned managed identity is granted <code>Cosmos DB Built-in Data Contributor</code> via Bicep at provision time.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     §4 — Dispute Submission Flow
+═══════════════════════════════════════════════════════════════ -->
+<section id="flow" aria-labelledby="flow-heading">
+  <h2><span class="icon">🔄</span> <span id="flow-heading">Dispute Submission — End-to-End Flow</span></h2>
+  <p>Trace a dispute from the customer's browser to the analyst's queue:</p>
+
+  <div class="flow" role="list">
+    <div class="step" role="listitem">
+      <div class="step-num">1</div>
+      <h4>Customer Portal</h4>
+      <p>Cardholder selects a disputed transaction, uploads supporting documents, and submits via the Customer Portal SWA (<code>src/customer-portal/</code>). A POST hits the Function App's <code>/api/disputes</code> endpoint.</p>
+    </div>
+    <div class="step" role="listitem">
+      <div class="step-num">2</div>
+      <h4>Function App Intake</h4>
+      <p>The Python Function App (<code>src/api/function_app.py</code>) receives the payload via HTTP trigger, writes an initial case document to Cosmos DB, and publishes an intake event to Event Grid.</p>
+    </div>
+    <div class="step" role="listitem">
+      <div class="step-num">3</div>
+      <h4>Cosmos Persistence</h4>
+      <p>The case document is created in the <code>disputes</code> container with status <code>submitted</code>. Evidence metadata lands in the <code>evidence</code> container; raw blobs go to Azure Storage.</p>
+    </div>
+    <div class="step" role="listitem">
+      <div class="step-num">4</div>
+      <h4>Agentic Pipeline</h4>
+      <p>A Durable Functions orchestration fans out to the AI workflow: Triage scoring → Reason-code classification → Evidence retrieval → Gaps detection → Win-probability scoring → Maker Agent rebuttal draft. See pipeline diagram in <code>docs/phase1-architecture.png</code>.</p>
+    </div>
+    <div class="step" role="listitem">
+      <div class="step-num">5</div>
+      <h4>Foundry Agent</h4>
+      <p>The Maker Agent (Azure AI Foundry, DeepSeek-V3.2) generates a grounded rebuttal draft. A Checker Agent validates groundedness. The AI score and draft are appended to the case <code>timeline[]</code>. <em>Deeper agent detail is covered in the AI segment.</em></p>
+    </div>
+    <div class="step" role="listitem">
+      <div class="step-num">6</div>
+      <h4>HITL Gate</h4>
+      <p>A Durable Functions external-event wait suspends the orchestration. The analyst sees the case in the Disputes Portal queue with score, evidence summary, and draft rebuttal — then approves, denies, or escalates.</p>
+    </div>
+    <div class="step" role="listitem">
+      <div class="step-num">7</div>
+      <h4>Analyst Portal</h4>
+      <p>The React Analyst Portal (<code>src/web/</code>) polls case status from Cosmos via the Function App. The analyst acts on the HITL gate, persisting the decision back to the case document and completing the orchestration.</p>
+    </div>
+  </div>
+
+  <p style="margin-top:1rem;font-size:.85rem;color:var(--text-lt)">
+    <strong>Agent note:</strong> Only agents and deployments confirmed in source/infra are named above.
+    The Evidence Retrieval Agent (#12) and Gaps Detection / Win-Probability agents (#18, #30)
+    are code-complete but not yet deployed to the live app; they are represented in the pipeline
+    diagram with their current status. See <code>docs/phase1-architecture.png</code> for the full annotated state.
+  </p>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     §5 — Infrastructure as Code & AZD
+═══════════════════════════════════════════════════════════════ -->
+<section id="iac" aria-labelledby="iac-heading">
+  <h2><span class="icon">🔧</span> <span id="iac-heading">Infrastructure as Code — <code>azure.yaml</code>, Bicep &amp; AZD</span></h2>
+
+  <h3><code>azure.yaml</code> — Single source of truth</h3>
+  <p>
+    The <a href="https://github.com/yortch/disputes/blob/main/azure.yaml" target="_blank" rel="noopener"><code>azure.yaml</code></a>
+    file ties the three services to their Azure host types and build outputs:
+  </p>
+  <div class="card-grid">
+    <div class="card">
+      <h4><code>api</code> service</h4>
+      <p>Python · Azure Functions host · deploys from <code>src/api/</code></p>
+    </div>
+    <div class="card">
+      <h4><code>web</code> service</h4>
+      <p>JavaScript · Static Web App · Vite dist from <code>src/web/</code></p>
+    </div>
+    <div class="card">
+      <h4><code>portal</code> service</h4>
+      <p>JavaScript · Static Web App · Vite dist from <code>src/customer-portal/</code> · <code>prepackage</code> hook injects <code>VITE_API_BASE_URL</code></p>
+    </div>
+  </div>
+
+  <h3>Bicep — Modular provisioning</h3>
+  <p>
+    All Azure resources are defined in <a href="https://github.com/yortch/disputes/tree/main/infra" target="_blank" rel="noopener"><code>infra/</code></a>
+    as composable Bicep modules:
+  </p>
+  <ul>
+    <li><code>main.bicep</code> — top-level orchestrator; calls all modules with environment-parameterized values</li>
+    <li><code>modules/staticwebapp.bicep</code> — reused for both SWAs; sets <code>azd-service-name</code> tag so AZD matches service to resource</li>
+    <li><code>modules/functions.bicep</code> — Function App + EasyAuth override (disables Azure's async re-enable side effect)</li>
+    <li><code>modules/cosmos.bicep</code> + <code>cosmos-rbac.bicep</code> — Cosmos account and managed-identity RBAC grants</li>
+    <li><code>modules/ai.bicep</code> — Azure AI Services account (AIServices kind, S0 SKU)</li>
+    <li><code>modules/private-endpoints.bicep</code> + <code>network.bicep</code> — VNet and private endpoint plumbing for future phase</li>
+  </ul>
+
+  <h3><code>azd up</code> — Local end-to-end validation</h3>
+  <p>
+    A single <code>azd up</code> provisions infra, builds all three services, and deploys — making it the fastest
+    way to validate the full stack locally or in a fresh environment. The CD pipeline reuses the exact
+    same <code>azure.yaml</code> + Bicep configuration, so there is no environment drift between
+    developer machines and production.
+  </p>
+
+  <div class="portal-box">
+    <p><strong>postprovision hook</strong> — After ARM completes, the hook waits 90 s for Azure's async
+    EasyAuth re-enable side-effect to settle, then re-asserts <code>platform.enabled: false</code> via
+    <code>az rest PUT</code>. This is idempotent and runs on every <code>azd provision</code> / <code>azd up</code>.</p>
+    <p>This pattern is fully documented in the <code>azure.yaml</code> comments and
+    <code>infra/modules/functions.bicep</code>.</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     §6 — CI/CD Pipeline
+═══════════════════════════════════════════════════════════════ -->
+<section id="cicd" aria-labelledby="cicd-heading">
+  <h2><span class="icon">⚙️</span> <span id="cicd-heading">CI/CD Pipeline — GitHub Actions</span></h2>
+
+  <h3>CI (<code>.github/workflows/ci.yml</code>) — runs on every branch push</h3>
+  <div class="pipeline-steps" role="list" aria-label="CI pipeline steps">
+    <div class="ps" role="listitem"><span class="dot"></span> Checkout</div>
+    <div class="ps" role="listitem"><span class="dot"></span> Setup Python 3.11</div>
+    <div class="ps" role="listitem"><span class="dot"></span> Setup Node 20</div>
+    <div class="ps" role="listitem"><span class="dot"></span> npm ci (web + portal)</div>
+    <div class="ps" role="listitem"><span class="dot"></span> Vite build (portal)</div>
+    <div class="ps" role="listitem"><span class="dot"></span> pip install</div>
+    <div class="ps" role="listitem"><span class="dot"></span> flake8 lint</div>
+    <div class="ps" role="listitem"><span class="dot"></span> pytest tests/</div>
+  </div>
+
+  <h3>CD (<code>.github/workflows/cd.yml</code>) — triggered by successful CI on main</h3>
+  <div class="pipeline-steps" role="list" aria-label="CD pipeline steps">
+    <div class="ps" role="listitem"><span class="dot" style="background:var(--blue)"></span> OIDC Login to Azure</div>
+    <div class="ps" role="listitem"><span class="dot" style="background:var(--blue)"></span> AZD Provision</div>
+    <div class="ps" role="listitem"><span class="dot" style="background:var(--blue)"></span> Vite Build (web + portal)</div>
+    <div class="ps" role="listitem"><span class="dot" style="background:var(--blue)"></span> AZD Deploy</div>
+    <div class="ps" role="listitem"><span class="dot" style="background:var(--blue)"></span> Self-hosted runner for Functions</div>
+  </div>
+
+  <div class="pipeline-panel" role="note" aria-label="Pipeline evidence">
+    <h3>📸 Pipeline Evidence</h3>
+    <p>
+      A live completed-run screenshot can be added once supplied. In the meantime, view the latest
+      GitHub Actions runs directly in the repository:
+    </p>
+    <p>
+      👉 <a href="https://github.com/yortch/disputes/actions" target="_blank" rel="noopener">
+        github.com/yortch/disputes/actions
+      </a>
+    </p>
+    <p>
+      CI runs on every branch push; CD runs on successful CI against <code>main</code>,
+      using Azure OIDC (no long-lived secrets) and <code>azd deploy</code> for all three services.
+      A self-hosted runner with VNet access handles the Function App zip deployment to avoid public-internet egress restrictions.
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     §7 — Azure Portal Walkthrough
+═══════════════════════════════════════════════════════════════ -->
+<section id="portal" aria-labelledby="portal-heading">
+  <h2><span class="icon">🌐</span> <span id="portal-heading">Azure Portal Walkthrough — Deployed Resource Group</span></h2>
+
+  <p>
+    Open the
+    <a href="https://portal.azure.com" target="_blank" rel="noopener">
+      <strong>deployed resource group</strong>
+    </a>
+    <!-- Presenter: navigate to your deployed resource group in the Azure Portal -->
+    and walk through the following resources:
+  </p>
+
+  <div class="card-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));">
+    <div class="card">
+      <h4>📱 Static Web App — Analyst Portal</h4>
+      <p>
+        <code>azd-service-name: web</code>. Show the default hostname, the linked-backend wiring to the Function App,
+        and the environment variables tab. Note Standard SKU is required for linked backends.
+      </p>
+    </div>
+    <div class="card">
+      <h4>📱 Static Web App — Customer Portal</h4>
+      <p>
+        <code>azd-service-name: portal</code>. No linked backend. Show <code>VITE_API_BASE_URL</code>
+        in app settings — this is the direct CORS URL to the Function App injected by the <code>prepackage</code> hook.
+      </p>
+    </div>
+    <div class="card">
+      <h4>⚡ Function App</h4>
+      <p>
+        Python 3.11 · Flex Consumption plan. Show the functions list (<code>/api/disputes</code>, <code>/api/cases</code>, etc.),
+        App Insights integration, and the managed identity blade. Auth is set to anonymous —
+        EasyAuth is explicitly disabled to allow the Customer Portal to call directly via CORS.
+      </p>
+    </div>
+    <div class="card">
+      <h4>🗄️ Cosmos DB</h4>
+      <p>
+        Show the Data Explorer with the <code>disputes</code> and <code>evidence</code> containers.
+        Open a sample case document to show the <code>timeline[]</code> array of workflow events.
+        Point to the RBAC blade — no keys used, only managed identity.
+      </p>
+    </div>
+    <div class="card">
+      <h4>🤖 Microsoft Foundry</h4>
+      <p>
+        Show the AI Foundry resource (AIServices account, S0 SKU). Note: the Maker Agent
+        (DeepSeek-V3.2) is deployed but not yet connected to the live app. Deeper agent
+        configuration is covered in the AI segment.
+      </p>
+    </div>
+    <div class="card">
+      <h4>🔒 Private-Link Plumbing</h4>
+      <p>
+        <span class="phase-tag future">Future phase</span>
+        The VNet, private endpoint subnet, and Private DNS zones are provisioned by
+        <code>infra/modules/network.bicep</code> and <code>private-endpoints.bicep</code>.
+        The MVP uses <strong>public endpoints</strong> for deployment convenience. Private isolation
+        is the planned hardening step once the demo baseline is stable.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     §8 — Source Links
+═══════════════════════════════════════════════════════════════ -->
+<section id="sources" aria-labelledby="sources-heading">
+  <h2><span class="icon">🔗</span> <span id="sources-heading">Source &amp; Reference Links</span></h2>
+  <div class="link-grid">
+    <a class="link-card" href="https://github.com/yortch/disputes/blob/main/azure.yaml" target="_blank" rel="noopener">
+      <span class="lc-label">Config</span>
+      <span class="lc-title">azure.yaml</span>
+      <span class="lc-url">github.com/yortch/disputes/blob/main/azure.yaml</span>
+    </a>
+    <a class="link-card" href="https://github.com/yortch/disputes/tree/main/infra" target="_blank" rel="noopener">
+      <span class="lc-label">Infrastructure</span>
+      <span class="lc-title">infra/ — Bicep modules</span>
+      <span class="lc-url">github.com/yortch/disputes/tree/main/infra</span>
+    </a>
+    <a class="link-card" href="https://github.com/yortch/disputes/blob/main/.github/workflows/ci.yml" target="_blank" rel="noopener">
+      <span class="lc-label">CI Pipeline</span>
+      <span class="lc-title">.github/workflows/ci.yml</span>
+      <span class="lc-url">github.com/yortch/disputes/blob/main/.github/workflows/ci.yml</span>
+    </a>
+    <a class="link-card" href="https://github.com/yortch/disputes/blob/main/.github/workflows/cd.yml" target="_blank" rel="noopener">
+      <span class="lc-label">CD Pipeline</span>
+      <span class="lc-title">.github/workflows/cd.yml</span>
+      <span class="lc-url">github.com/yortch/disputes/blob/main/.github/workflows/cd.yml</span>
+    </a>
+    <a class="link-card" href="https://github.com/yortch/disputes/actions" target="_blank" rel="noopener">
+      <span class="lc-label">Live Runs</span>
+      <span class="lc-title">GitHub Actions — All Runs</span>
+      <span class="lc-url">github.com/yortch/disputes/actions</span>
+    </a>
+    <a class="link-card" href="https://portal.azure.com" target="_blank" rel="noopener">
+      <span class="lc-label">Azure Portal</span>
+      <span class="lc-title">Deployed Resource Group</span>
+      <!-- Presenter: navigate to your deployed resource group -->
+      <span class="lc-url">portal.azure.com · Deployed Resource Group</span>
+    </a>
+  </div>
+
+  <h3 style="margin-top:1.5rem">Squad Configuration Files</h3>
+  <div class="link-grid">
+    <a class="link-card" href="https://github.com/yortch/disputes/blob/main/.github/agents/squad.agent.md" target="_blank" rel="noopener">
+      <span class="lc-label">Agent Definition</span>
+      <span class="lc-title">.github/agents/squad.agent.md</span>
+      <span class="lc-url">Squad coordinator agent definition</span>
+    </a>
+    <a class="link-card" href="https://github.com/yortch/disputes/blob/main/.squad/team.md" target="_blank" rel="noopener">
+      <span class="lc-label">Team Roster</span>
+      <span class="lc-title">.squad/team.md</span>
+      <span class="lc-url">Squad team members and roles</span>
+    </a>
+    <a class="link-card" href="https://github.com/yortch/disputes/blob/main/.squad/routing.md" target="_blank" rel="noopener">
+      <span class="lc-label">Work Routing</span>
+      <span class="lc-title">.squad/routing.md</span>
+      <span class="lc-url">Work routing rules and role mapping</span>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Credits
+═══════════════════════════════════════════════════════════════ -->
+<div style="max-width:var(--max-w);margin:0 auto;padding:0 1.5rem;">
+<section class="credits" aria-labelledby="credits-heading">
+  <h2 id="credits-heading">🤝 Built with Squad &amp; GitHub Copilot CLI</h2>
+  <p>
+    This accelerator was architected and built by a team of AI agents — <strong>Squad</strong> —
+    orchestrated by GitHub Copilot CLI. Squad members (Verbal, Keaton, Redfoot, McManus, Hockney, Fenster, Kobayashi)
+    each own a domain and collaborate through structured handoffs, keeping a human in the loop at every decision point.
+  </p>
+  <div class="credit-links">
+    <a href="https://github.com/features/copilot" target="_blank" rel="noopener">GitHub Copilot</a>
+    <a href="https://github.com/github/copilot-cli" target="_blank" rel="noopener">GitHub Copilot CLI</a>
+    <a href="https://bradygaster.github.io/squad/" target="_blank" rel="noopener">Squad</a>
+    <a href="https://github.com/yortch/disputes/blob/main/.github/agents/squad.agent.md" target="_blank" rel="noopener">Squad Agent Definition</a>
+    <a href="https://github.com/yortch/disputes/blob/main/.squad/team.md" target="_blank" rel="noopener">Squad Team Roster</a>
+    <a href="https://github.com/yortch/disputes/blob/main/.squad/routing.md" target="_blank" rel="noopener">Squad Routing Rules</a>
+    <a href="https://github.com/yortch/disputes" target="_blank" rel="noopener">Repository</a>
+  </div>
+</section>
+</div>
+
+<footer role="contentinfo">
+  <p>Payments Dispute Resolution Accelerator · Payments Dispute Resolution · 2026</p>
+  <p>Page generated by Redfoot (Frontend Dev) — a Squad agent powered by GitHub Copilot CLI</p>
+</footer>
+
+</body>
+</html>

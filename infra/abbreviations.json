@@ -1,0 +1,17 @@
+{
+  "functionApp": "func",
+  "storageAccount": "st",
+  "keyVault": "kv",
+  "eventGridTopic": "evgt",
+  "aiServices": "ais",
+  "appServicePlan": "asp",
+  "applicationInsights": "appi",
+  "logAnalyticsWorkspace": "log",
+  "cosmosDbAccount": "cosmos",
+  "resourceGroup": "rg",
+  "staticWebApp": "stapp",
+  "virtualNetwork": "vnet",
+  "userAssignedIdentity": "id",
+  "natGateway": "nat",
+  "publicIPAddress": "pip"
+}

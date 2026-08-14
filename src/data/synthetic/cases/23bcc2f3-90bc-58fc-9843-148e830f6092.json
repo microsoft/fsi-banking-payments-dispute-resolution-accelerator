@@ -1,0 +1,71 @@
+{
+  "caseId": "23bcc2f3-90bc-58fc-9843-148e830f6092",
+  "orchestrationId": "23bcc2f3-90bc-58fc-9843-148e830f6092",
+  "disputeRef": "VCA-2026-0084512",
+  "cardNetwork": "visa",
+  "merchantName": "NightMarket Global",
+  "cardholderName": "Priya Krishnamurthy",
+  "transactionAmount": 534.5,
+  "transactionDate": "2026-06-15",
+  "status": "evidence_gathering",
+  "reasonCode": "10.4",
+  "reasonCodeLabel": "Card Absent Fraud",
+  "reasonCodeChecklist": [
+    {
+      "item": "Original transaction authorization record",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Fraud signal / velocity report from risk engine",
+      "required": true,
+      "satisfied": false
+    },
+    {
+      "item": "IP geolocation log for session at transaction time",
+      "required": true,
+      "satisfied": false
+    },
+    {
+      "item": "Device fingerprint token",
+      "required": false,
+      "satisfied": false
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "a8bbd205-139e-5c0f-b655-af56a7bfe0a8",
+      "type": "transaction",
+      "sourceSystem": "Visa Authorization Network",
+      "retrievedAt": "2026-06-20T11:00:00Z",
+      "contentRef": "blob://disputes-demo/case-05/txn-record.json",
+      "completeness": "complete"
+    }
+  ],
+  "evidenceGaps": [
+    {
+      "missingItem": "Fraud signal velocity report from FraudShield AI",
+      "reason": "FraudShield AI integration timed out during case assembly; retry is queued but has not yet completed.",
+      "impact": "critical"
+    },
+    {
+      "missingItem": "IP geolocation log for session NMG-SESSION-20260615-44812",
+      "reason": "Geo-IP service returned null for this session ID; a re-query has been dispatched but is awaiting response.",
+      "impact": "high"
+    },
+    {
+      "missingItem": "Device fingerprint token",
+      "reason": "Session cookie unavailable; device data purged after NightMarket platform's 90-day retention window.",
+      "impact": "medium"
+    }
+  ],
+  "winProbability": 0.45,
+  "riskLevel": "high",
+  "deadline": {
+    "network": "Visa",
+    "dueDate": "2026-07-14",
+    "daysRemaining": 8
+  },
+  "createdAt": "2026-06-20T10:30:00Z",
+  "updatedAt": "2026-07-01T08:00:00Z"
+}

@@ -1,0 +1,70 @@
+========================================================
+EMAIL CORRESPONDENCE — REFUND NOT RECEIVED
+========================================================
+
+From: alex.cardholder@email.com
+To: billing@cloudsoft-solutions.com
+Date: July 1, 2026
+Subject: Cancellation of Annual License — Requesting Refund
+
+Hi CloudSoft Billing Team,
+
+I was charged $992.18 on June 18, 2026 (card ending 3782)
+for an annual software license renewal for Project Management
+Suite. I cancelled my subscription on June 10, 2026 — before
+the renewal date — via your online portal.
+
+I have attached a screenshot of my cancellation confirmation
+(Cancellation ID: CS-CANCEL-88431).
+
+Please process my refund as soon as possible.
+
+Thank you,
+Alex Cardholder
+
+--------------------------------------------------------
+
+From: billing@cloudsoft-solutions.com
+To: alex.cardholder@email.com
+Date: July 3, 2026
+Subject: RE: Cancellation of Annual License — Refund Approved
+
+Hi Alex,
+
+Thank you for reaching out. We can confirm your cancellation
+was processed on June 10, 2026.
+
+The charge of $992.18 on June 18 was made in error due to a
+billing system delay. We have approved your refund and it
+should appear on your statement within 7-10 business days.
+
+Refund Reference: RF-2026-07-0331
+Amount: $992.18
+
+We apologize for the inconvenience.
+
+Best,
+CloudSoft Billing Team
+
+--------------------------------------------------------
+
+From: alex.cardholder@email.com
+To: billing@cloudsoft-solutions.com
+Date: July 18, 2026
+Subject: RE: Refund Still Not Received — 15 Days Later
+
+Hi,
+
+It has been 15 days since you confirmed my refund (Reference
+RF-2026-07-0331) and the $992.18 credit has NOT appeared on
+my statement.
+
+Please escalate this immediately or provide proof that the
+refund was processed on your end.
+
+Alex Cardholder
+
+--------------------------------------------------------
+
+[NO FURTHER RESPONSE RECEIVED AS OF JULY 22, 2026]
+========================================================

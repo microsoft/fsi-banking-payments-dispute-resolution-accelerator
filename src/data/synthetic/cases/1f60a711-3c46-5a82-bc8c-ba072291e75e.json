@@ -1,0 +1,118 @@
+{
+  "caseId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+  "orchestrationId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+  "disputeRef": "VCA-2026-0063301",
+  "cardNetwork": "visa",
+  "merchantName": "FurniCraft Direct",
+  "cardholderName": "Hannah Sorenson",
+  "transactionAmount": 1845.0,
+  "transactionDate": "2026-03-22",
+  "status": "approved",
+  "reasonCode": "13.3",
+  "reasonCodeLabel": "Merchandise / Services Not as Described or Defective",
+  "reasonCodeChecklist": [
+    {
+      "item": "Original order confirmation matching transaction amount",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Product description at time of sale",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Itemized receipt",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Merchant–cardholder correspondence regarding the dispute",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Shipping and delivery confirmation record",
+      "required": false,
+      "satisfied": true
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "6e45834b-e822-54b3-93ae-3175e8602ee6",
+      "type": "transaction",
+      "sourceSystem": "Visa Authorization Network",
+      "retrievedAt": "2026-04-15T09:00:00Z",
+      "contentRef": "blob://disputes-demo/case-09/txn-record.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "d5dfcf90-d692-57a5-a1a9-40c7d093d9b5",
+      "type": "order",
+      "sourceSystem": "FurniCraft OMS",
+      "retrievedAt": "2026-04-15T09:02:10Z",
+      "contentRef": "blob://disputes-demo/case-09/order-record.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "57844001-cea7-5ea0-8381-950833e1d6d7",
+      "type": "receipt",
+      "sourceSystem": "FurniCraft Shopify",
+      "retrievedAt": "2026-04-15T09:03:45Z",
+      "contentRef": "blob://disputes-demo/case-09/receipt.pdf",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "07fed50d-1624-5e43-9f30-fbabf48b61ae",
+      "type": "communication",
+      "sourceSystem": "Zendesk Support",
+      "retrievedAt": "2026-04-15T09:05:20Z",
+      "contentRef": "blob://disputes-demo/case-09/zendesk-export.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "89167762-fb32-5d31-8305-0ad3d8e07527",
+      "type": "shipping",
+      "sourceSystem": "FedEx Tracking API",
+      "retrievedAt": "2026-04-15T09:07:00Z",
+      "contentRef": "blob://disputes-demo/case-09/fedex-tracking.json",
+      "completeness": "complete"
+    }
+  ],
+  "evidenceGaps": [],
+  "winProbability": 0.93,
+  "riskLevel": "low",
+  "rebuttalDraft": {
+    "text": "Merchant disputes Visa 13.3 chargeback for $1,845.00. The transaction was authorized on 2026-03-22 (see evidence [6e45834b-e822-54b3-93ae-3175e8602ee6]). Order #FC-2026-63301 was fulfilled exactly as described — one Scandinavian oak dining table, model FC-DT-OAK-180, as itemized on the receipt (see evidence [d5dfcf90-d692-57a5-a1a9-40c7d093d9b5] and [57844001-cea7-5ea0-8381-950833e1d6d7]). The cardholder contacted support on 2026-04-02 claiming the wood grain did not match the website photo; our agent provided a photographic comparison confirming the item is within documented natural-variation tolerances (see evidence [07fed50d-1624-5e43-9f30-fbabf48b61ae]). Delivery is confirmed by FedEx with photo proof of doorstep placement and recipient signature (see evidence [89167762-fb32-5d31-8305-0ad3d8e07527]). All evidence is complete and the chargeback has been approved for reversal.",
+    "citations": [
+      {
+        "evidenceId": "6e45834b-e822-54b3-93ae-3175e8602ee6",
+        "excerpt": "Visa Auth: TXN VCA-2026-0063301, $1,845.00, APPROVED, 3DS2 ECI=05, 2026-03-22T16:44:09Z"
+      },
+      {
+        "evidenceId": "d5dfcf90-d692-57a5-a1a9-40c7d093d9b5",
+        "excerpt": "FurniCraft OMS: Order #FC-2026-63301, SKU FC-DT-OAK-180 'Scandinavian Oak Dining Table 180 cm', qty 1, $1,845.00"
+      },
+      {
+        "evidenceId": "57844001-cea7-5ea0-8381-950833e1d6d7",
+        "excerpt": "Shopify receipt: FC-DT-OAK-180 × 1 @ $1,845.00, color=Natural Oak, finish=Matte — matches listing snapshot at time of purchase"
+      },
+      {
+        "evidenceId": "07fed50d-1624-5e43-9f30-fbabf48b61ae",
+        "excerpt": "Zendesk #FC-77211: Agent note 2026-04-03 — photo comparison sent; item confirmed within natural grain variation; cardholder acknowledged"
+      },
+      {
+        "evidenceId": "89167762-fb32-5d31-8305-0ad3d8e07527",
+        "excerpt": "FedEx: TRK# 776241880031, DELIVERED 2026-04-01T14:22Z, PHOTO_POD=YES, recipient signature obtained at door"
+      }
+    ]
+  },
+  "deadline": {
+    "network": "Visa",
+    "dueDate": "2026-07-31",
+    "daysRemaining": 25
+  },
+  "createdAt": "2026-04-15T08:30:00Z",
+  "updatedAt": "2026-07-05T14:30:00Z",
+  "resolvedAt": "2026-07-05T14:30:00Z"
+}

@@ -1,0 +1,62 @@
+flowchart TB
+    subgraph CUST["Customer-Facing (Simulation)"]
+        PORTAL["Customer Portal SWA<br/>#31 - simulation tool,<br/>not a real bank portal"]
+        UPLOAD["Document Upload<br/>#32 - MOCK: filename<br/>keyword heuristics only"]
+    end
+
+    subgraph INTAKE["Intake and Ingestion"]
+        WEBHOOK["Event-Driven Intake<br/>#15 - Webhook + Event Grid"]
+        INGEST["Dispute Ingestion<br/>#63 - Cosmos DB via API"]
+    end
+
+    subgraph AGENTS["Agentic Pipeline"]
+        TRIAGE["Triage Agent (intake scoring)<br/>stub mode live -<br/>no Foundry agent ID set"]
+        REASON["Reason-Code Engine<br/>#16 - in-process static registry"]
+        RETRIEVE["Evidence Retrieval Mock<br/>#64 - ONE network,<br/>intentional Phase 1 mock"]
+        RETRAGENT["Evidence Retrieval AGENT<br/>#12 - NOT FUNCTIONAL:<br/>blank instructions, wrong tool,<br/>index disconnected"]
+        GAPS["Gaps Detection<br/>#18 - code done,<br/>NOT DEPLOYED"]
+        SCORE["Win-Probability Scoring<br/>#30 - code done,<br/>NOT DEPLOYED"]
+        MAKER["Maker Agent<br/>#13 - grounded rebuttal draft,<br/>real Foundry DeepSeek-V3.2,<br/>NOT DEPLOYED to live app"]
+    end
+
+    subgraph HITL["Human-in-the-Loop"]
+        GATE["HITL Approval Gate<br/>#22 - Durable Functions<br/>start-review returns 503<br/>Flex Consumption incompatibility"]
+        DECISION["Analyst Decision<br/>Approve/Deny/Escalate<br/>status persistence works"]
+    end
+
+    subgraph UI["Analyst Portal"]
+        DASH["Dashboard / Queue /<br/>Case Detail / Metrics SWA"]
+        TIMELINE["Processing Timeline +<br/>Time to Score"]
+    end
+
+    subgraph DATA["Data and Reporting"]
+        COSMOS[("Cosmos DB<br/>disputes, timeline, evidence")]
+        FABRIC["Fabric Workspace + Power BI<br/>#62 - real, connected to Cosmos"]
+    end
+
+    PORTAL --> UPLOAD --> WEBHOOK
+    WEBHOOK --> INGEST --> COSMOS
+    INGEST --> TRIAGE
+    TRIAGE --> REASON
+    REASON --> RETRIEVE
+    RETRIEVE -.would feed.-> RETRAGENT
+    RETRIEVE --> GAPS
+    RETRIEVE --> SCORE
+    GAPS --> MAKER
+    SCORE --> MAKER
+    MAKER --> GATE
+    GATE --> DECISION
+    DECISION --> COSMOS
+    COSMOS --> DASH
+    DASH --> TIMELINE
+    COSMOS --> FABRIC
+
+    classDef real fill:#d4edda,stroke:#28a745,color:#155724;
+    classDef mockByDesign fill:#fff3cd,stroke:#ffc107,color:#856404;
+    classDef notDeployed fill:#e2e3ff,stroke:#6f42c1,color:#3d1a78;
+    classDef broken fill:#f8d7da,stroke:#dc3545,color:#721c24;
+
+    class PORTAL,WEBHOOK,INGEST,REASON,DASH,TIMELINE,COSMOS,FABRIC,DECISION real;
+    class UPLOAD,RETRIEVE,TRIAGE mockByDesign;
+    class GAPS,SCORE,MAKER notDeployed;
+    class RETRAGENT,GATE broken;

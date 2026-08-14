@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dispute-case-v1",
+  "title": "DisputeCase",
+  "description": "Authoritative contract for the Payments Dispute Resolution accelerator — all back-end and front-end types mirror this schema.",
+  "type": "object",
+  "required": ["caseId", "status", "reasonCode", "deadline", "createdAt"],
+
+  "$defs": {
+
+    "CaseStatus": {
+      "type": "string",
+      "enum": [
+        "intake",
+        "evidence_gathering",
+        "ai_drafting",
+        "pending_review",
+        "approved",
+        "denied",
+        "escalated",
+        "submitted",
+        "expired"
+      ]
+    },
+
+    "CardNetwork": {
+      "type": "string",
+      "enum": ["visa", "mastercard", "amex", "discover"]
+    },
+
+    "RiskLevel": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+
+    "EvidenceType": {
+      "type": "string",
+      "enum": ["transaction", "shipping", "communication", "receipt", "contract", "fraud_signal", "order"]
+    },
+
+    "CompletenessLevel": {
+      "type": "string",
+      "enum": ["complete", "partial", "missing"]
+    },
+
+    "ImpactLevel": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low"]
+    },
+
+    "ReasonCodeChecklistItem": {
+      "title": "ReasonCodeChecklistItem",
+      "type": "object",
+      "required": ["item", "required", "satisfied"],
+      "properties": {
+        "item":      { "type": "string" },
+        "required":  { "type": "boolean" },
+        "satisfied": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+
+    "Evidence": {
+      "title": "Evidence",
+      "type": "object",
+      "required": ["evidenceId", "type", "sourceSystem", "retrievedAt", "contentRef", "completeness"],
+      "properties": {
+        "evidenceId":   { "type": "string", "format": "uuid" },
+        "type":         { "$ref": "#/$defs/EvidenceType" },
+        "sourceSystem": { "type": "string" },
+        "retrievedAt":  { "type": "string", "format": "date-time" },
+        "contentRef":   { "type": "string", "description": "Blob URI or document ID" },
+        "completeness": { "$ref": "#/$defs/CompletenessLevel" }
+      },
+      "additionalProperties": false
+    },
+
+    "EvidenceGap": {
+      "title": "EvidenceGap",
+      "type": "object",
+      "required": ["missingItem", "reason", "impact"],
+      "properties": {
+        "missingItem": { "type": "string" },
+        "reason":      { "type": "string" },
+        "impact":      { "$ref": "#/$defs/ImpactLevel" }
+      },
+      "additionalProperties": false
+    },
+
+    "Citation": {
+      "title": "Citation",
+      "type": "object",
+      "required": ["evidenceId", "excerpt"],
+      "properties": {
+        "evidenceId": { "type": "string" },
+        "excerpt":    { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "RebuttalDraft": {
+      "title": "RebuttalDraft",
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" },
+        "citations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Citation" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Deadline": {
+      "title": "Deadline",
+      "type": "object",
+      "required": ["network", "dueDate", "daysRemaining"],
+      "properties": {
+        "network":       { "type": "string" },
+        "dueDate":       { "type": "string", "format": "date" },
+        "daysRemaining": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+
+    "CaseSummaryDeadline": {
+      "title": "CaseSummaryDeadline",
+      "description": "Deadline subset for the queue list view — omits network",
+      "type": "object",
+      "required": ["dueDate", "daysRemaining"],
+      "properties": {
+        "dueDate":       { "type": "string", "format": "date" },
+        "daysRemaining": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+
+    "CaseSummary": {
+      "title": "CaseSummary",
+      "description": "Lightweight subset returned by GET /cases for the queue list view",
+      "type": "object",
+      "required": ["caseId", "status", "reasonCode", "deadline", "createdAt"],
+      "properties": {
+        "caseId":            { "type": "string", "format": "uuid" },
+        "status":            { "$ref": "#/$defs/CaseStatus" },
+        "cardNetwork":       { "$ref": "#/$defs/CardNetwork" },
+        "merchantName":      { "type": "string" },
+        "caseDescription":   { "type": "string" },
+        "transactionAmount": { "type": "number" },
+        "reasonCode":        { "type": "string" },
+        "reasonCodeLabel":   { "type": "string" },
+        "winProbability":    { "type": "number", "minimum": 0, "maximum": 1 },
+        "riskLevel":         { "$ref": "#/$defs/RiskLevel" },
+        "deadline":          { "$ref": "#/$defs/CaseSummaryDeadline" },
+        "createdAt":         { "type": "string", "format": "date-time" },
+        "updatedAt":         { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    }
+
+  },
+
+  "properties": {
+
+    "caseId":          { "type": "string", "format": "uuid" },
+    "orchestrationId": { "type": "string", "description": "Durable Functions instance ID — equals caseId by architecture decision" },
+    "disputeRef":      { "type": "string", "description": "Network ARN / reference" },
+    "cardNetwork":     { "$ref": "#/$defs/CardNetwork" },
+    "merchantName":    { "type": "string" },
+    "cardholderName":  { "type": "string" },
+    "caseDescription": { "type": "string", "description": "Customer-submitted narrative or generated intake summary" },
+    "transactionAmount": { "type": "number" },
+    "transactionDate": { "type": "string", "format": "date" },
+
+    "status": { "$ref": "#/$defs/CaseStatus" },
+
+    "reasonCode":      { "type": "string", "description": "e.g. Visa 13.1" },
+    "reasonCodeLabel": { "type": "string" },
+    "reasonCodeChecklist": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ReasonCodeChecklistItem" }
+    },
+
+    "evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Evidence" }
+    },
+
+    "evidenceGaps": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/EvidenceGap" }
+    },
+
+    "winProbability": { "type": "number", "minimum": 0, "maximum": 1 },
+    "riskLevel":      { "$ref": "#/$defs/RiskLevel" },
+
+    "rebuttalDraft": { "$ref": "#/$defs/RebuttalDraft" },
+
+    "deadline": { "$ref": "#/$defs/Deadline" },
+
+    "createdAt":  { "type": "string", "format": "date-time" },
+    "updatedAt":  { "type": "string", "format": "date-time" },
+    "resolvedAt": { "type": "string", "format": "date-time" }
+
+  },
+
+  "additionalProperties": false
+}

@@ -1,0 +1,102 @@
+{
+  "caseId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+  "orchestrationId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+  "disputeRef": "MC-4853-2026-00291",
+  "cardNetwork": "mastercard",
+  "merchantName": "TechWorld Online",
+  "cardholderName": "Sofia Ramirez",
+  "transactionAmount": 1299.0,
+  "transactionDate": "2026-04-28",
+  "status": "pending_review",
+  "reasonCode": "4853",
+  "reasonCodeLabel": "Cardholder Dispute — Defective / Not as Described",
+  "reasonCodeChecklist": [
+    {
+      "item": "Transaction record with itemized purchase detail",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Itemized receipt at point of sale",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Return policy disclosure provided at time of purchase",
+      "required": true,
+      "satisfied": false
+    },
+    {
+      "item": "Merchant–cardholder correspondence regarding the defect claim",
+      "required": false,
+      "satisfied": true
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "d5b6e00b-b9c8-57f3-bbb3-fd350b097ed6",
+      "type": "transaction",
+      "sourceSystem": "Mastercard Authorization Hub",
+      "retrievedAt": "2026-05-20T10:05:33Z",
+      "contentRef": "blob://disputes-demo/case-02/txn-record.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "38a6ebc0-10de-5a74-908b-d8a1bb115cfb",
+      "type": "receipt",
+      "sourceSystem": "Shopify POS",
+      "retrievedAt": "2026-05-20T10:07:12Z",
+      "contentRef": "blob://disputes-demo/case-02/receipt.pdf",
+      "completeness": "partial"
+    },
+    {
+      "evidenceId": "cea0442e-7cd4-5d19-a6d1-7330084a855d",
+      "type": "communication",
+      "sourceSystem": "Zendesk Support",
+      "retrievedAt": "2026-05-20T10:09:55Z",
+      "contentRef": "blob://disputes-demo/case-02/zendesk-export.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "9f8f616f-7618-5bdf-abff-4cda8540a341",
+      "type": "order",
+      "sourceSystem": "TechWorld OMS",
+      "retrievedAt": "2026-05-20T10:11:20Z",
+      "contentRef": "blob://disputes-demo/case-02/order-record.json",
+      "completeness": "complete"
+    }
+  ],
+  "evidenceGaps": [
+    {
+      "missingItem": "Return policy disclosure dated at time of purchase",
+      "reason": "Shopify receipt is partial; the footer containing the return policy URL was not captured. Policy page version history is unavailable for 2026-04-28.",
+      "impact": "high"
+    }
+  ],
+  "winProbability": 0.58,
+  "riskLevel": "medium",
+  "rebuttalDraft": {
+    "text": "Merchant responds to Mastercard 4853 chargeback. The transaction of $1,299.00 on 2026-04-28 was fully authorized (see evidence [d5b6e00b-b9c8-57f3-bbb3-fd350b097ed6]). The order was fulfilled as specified — one unit of SKU TW-LAPTOP-PRO-15 shipped in original OEM packaging (see evidence [9f8f616f-7618-5bdf-abff-4cda8540a341]). The cardholder contacted support on 2026-05-10 claiming the keyboard was defective; our support team offered an exchange within the 30-day return window, which the cardholder declined (see evidence [cea0442e-7cd4-5d19-a6d1-7330084a855d]). The cardholder's refusal of the offered remedy does not constitute grounds for a chargeback.",
+    "citations": [
+      {
+        "evidenceId": "d5b6e00b-b9c8-57f3-bbb3-fd350b097ed6",
+        "excerpt": "MC Auth Hub: TXN ID MC-2026-04-28-883821, $1,299.00, authorized, 3DS authenticated, no decline flags"
+      },
+      {
+        "evidenceId": "9f8f616f-7618-5bdf-abff-4cda8540a341",
+        "excerpt": "TechWorld OMS: Order #TW-291844, SKU TW-LAPTOP-PRO-15, shipped 2026-04-30, FedEx 776241880031"
+      },
+      {
+        "evidenceId": "cea0442e-7cd4-5d19-a6d1-7330084a855d",
+        "excerpt": "Zendesk #TW-88201: 'We offered an exchange unit. Cardholder responded: I just want a refund.' — agent note 2026-05-12"
+      }
+    ]
+  },
+  "deadline": {
+    "network": "Mastercard",
+    "dueDate": "2026-07-21",
+    "daysRemaining": 15
+  },
+  "createdAt": "2026-05-20T09:00:00Z",
+  "updatedAt": "2026-06-28T15:22:00Z"
+}

@@ -1,0 +1,100 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+name: payment-disputes
+metadata:
+  template: payment-disputes@0.0.1
+services:
+  api:
+    project: ./src/api
+    language: py
+    host: function
+  web:
+    project: ./src/web
+    language: js
+    host: staticwebapp
+    dist: dist
+  portal:
+    project: ./src/customer-portal
+    language: js
+    host: staticwebapp
+    dist: dist
+    hooks:
+      # IMPORTANT: azd's `prebuild`/`postbuild` hooks only fire for the standalone
+      # `azd build` command. `azd deploy` (used by cd.yml) and `azd up` invoke
+      # `azd package` internally, which does NOT run the build-lifecycle hooks —
+      # it only runs `prepackage`/`postpackage` (and its own npm build script)
+      # directly. A `prebuild` hook here would silently never execute in CD,
+      # leaving `.env.production.local` unwritten and Vite falling back to the
+      # relative `/api` default. Use `prepackage` so this hook fires for both
+      # `azd package` and `azd deploy`/`azd up`.
+      #
+      # Also note: `cwd` (used previously here) is NOT a valid azd hook
+      # property — the schema field is `dir`, and an unrecognized property
+      # name is silently ignored rather than erroring. But for a SERVICE-scoped
+      # hook, azd already defaults the working directory to that service's own
+      # project root (`./src/customer-portal`), so no override is needed at
+      # all. Setting `dir: ./src/customer-portal` here resolves relative to
+      # the already-service-scoped root and produces a nonexistent nested
+      # path, failing the hook (confirmed locally via `azd package portal`).
+      prepackage:
+        posix:
+          shell: sh
+          run: echo "VITE_API_BASE_URL=${AZURE_FUNCTION_APP_URI}/api" > .env.production.local
+          continueOnError: false
+        windows:
+          shell: pwsh
+          run: |
+            "VITE_API_BASE_URL=$env:AZURE_FUNCTION_APP_URI/api" | Out-File -FilePath .env.production.local -Encoding utf8
+          continueOnError: false
+hooks:
+  preprovision:
+    shell: sh
+    run: echo "Pre-provision hook"
+    continueOnError: true
+  # ---------------------------------------------------------------------------
+  # postprovision: EasyAuth race-condition mitigation (see infra/modules/functions.bicep
+  # authsettingsV2 comment block and commit 03e6918 for full background).
+  #
+  # ROOT CAUSE: Linking a Function App as a Static Web App backend via
+  # `linkedBackends` (infra/modules/staticwebapp.bicep) causes Azure's platform
+  # to ASYNCHRONOUSLY re-enable EasyAuth v2 on the Function App AFTER the ARM
+  # deployment completes. This out-of-band reconciliation fires outside ARM's
+  # control — `dependsOn` ordering in Bicep cannot prevent it. The existing
+  # `authsettingsV2` resource in functions.bicep correctly disables EasyAuth
+  # during the ARM run, but Azure's async job silently re-enables it afterward,
+  # causing the `portal` SWA's cross-origin calls to fail with HTTP 400/401.
+  #
+  # FIX: After ARM provision completes, wait 90 s for Azure's async job to
+  # settle, then re-assert `platform.enabled: false` via az rest PUT. This
+  # ensures our setting wins regardless of when the async re-enable fires.
+  # Idempotent: safe to run on every azd provision / azd up.
+  # ---------------------------------------------------------------------------
+  postprovision:
+    posix:
+      shell: sh
+      run: |
+        echo "[postprovision] Waiting 90s for Azure async EasyAuth re-enable side-effect to settle..."
+        sleep 90
+        SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+        AUTH_URI="https://management.azure.com/subscriptions/${SUBSCRIPTION_ID}/resourceGroups/${AZURE_RESOURCE_GROUP}/providers/Microsoft.Web/sites/${AZURE_FUNCTION_APP_NAME}/config/authsettingsV2?api-version=2023-12-01"
+        echo "[postprovision] Re-asserting EasyAuth disabled on ${AZURE_FUNCTION_APP_NAME}..."
+        az rest --method PUT --uri "$AUTH_URI" \
+          --headers "Content-Type=application/json" \
+          --body '{"properties":{"platform":{"enabled":false},"globalValidation":{"requireAuthentication":false,"unauthenticatedClientAction":"AllowAnonymous"}}}'
+        echo "[postprovision] authsettingsV2 re-asserted: platform.enabled=false, unauthenticatedClientAction=AllowAnonymous"
+      continueOnError: false
+    windows:
+      shell: pwsh
+      run: |
+        Write-Host "[postprovision] Waiting 90s for Azure async EasyAuth re-enable side-effect to settle..."
+        Start-Sleep -Seconds 90
+        $SubscriptionId = az account show --query id -o tsv
+        $AuthUri = "https://management.azure.com/subscriptions/$SubscriptionId/resourceGroups/$env:AZURE_RESOURCE_GROUP/providers/Microsoft.Web/sites/$env:AZURE_FUNCTION_APP_NAME/config/authsettingsV2?api-version=2023-12-01"
+        $TmpFile = [System.IO.Path]::GetTempFileName()
+        @'
+        {"properties":{"platform":{"enabled":false},"globalValidation":{"requireAuthentication":false,"unauthenticatedClientAction":"AllowAnonymous"}}}
+        '@ | Set-Content -Path $TmpFile -Encoding utf8NoBOM
+        Write-Host "[postprovision] Re-asserting EasyAuth disabled on $env:AZURE_FUNCTION_APP_NAME..."
+        az rest --method PUT --uri $AuthUri --body "@$TmpFile" --headers "Content-Type=application/json"
+        Remove-Item $TmpFile -ErrorAction SilentlyContinue
+        Write-Host "[postprovision] authsettingsV2 re-asserted: platform.enabled=false, unauthenticatedClientAction=AllowAnonymous"
+      continueOnError: false

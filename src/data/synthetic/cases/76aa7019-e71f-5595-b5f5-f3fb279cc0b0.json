@@ -1,0 +1,104 @@
+{
+  "caseId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+  "orchestrationId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+  "disputeRef": "MC-4855-2026-07744",
+  "cardNetwork": "mastercard",
+  "merchantName": "AirRoute Connect",
+  "cardholderName": "Carlos Mendez",
+  "transactionAmount": 4100.0,
+  "transactionDate": "2026-06-28",
+  "status": "pending_review",
+  "reasonCode": "4855",
+  "reasonCodeLabel": "Goods or Services Not Provided",
+  "reasonCodeChecklist": [
+    {
+      "item": "Booking or service confirmation tied to transaction",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Proof of service delivery or fulfillment",
+      "required": true,
+      "satisfied": false
+    },
+    {
+      "item": "Customer communication log",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Delivery manifest or service completion record",
+      "required": true,
+      "satisfied": false
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "4fd07adb-d033-5d62-aa5a-ddfda54ed1d7",
+      "type": "transaction",
+      "sourceSystem": "Mastercard Authorization Hub",
+      "retrievedAt": "2026-07-01T10:00:00Z",
+      "contentRef": "blob://disputes-demo/case-10/txn-record.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "224f056e-c2bf-5f3f-b819-4e8d9a8200c4",
+      "type": "order",
+      "sourceSystem": "AirRoute OMS",
+      "retrievedAt": "2026-07-01T10:02:30Z",
+      "contentRef": "blob://disputes-demo/case-10/order-record.json",
+      "completeness": "partial"
+    },
+    {
+      "evidenceId": "22183699-c00b-5618-9fc1-8e3230ecb65e",
+      "type": "communication",
+      "sourceSystem": "AirRoute CRM",
+      "retrievedAt": "2026-07-01T10:04:15Z",
+      "contentRef": "blob://disputes-demo/case-10/crm-comms.json",
+      "completeness": "partial"
+    }
+  ],
+  "evidenceGaps": [
+    {
+      "missingItem": "Proof of flight / service fulfillment (departure manifest)",
+      "reason": "AirRoute OMS returned a partial booking record; the departure manifest confirming the service was rendered has not been attached to the case.",
+      "impact": "critical"
+    },
+    {
+      "missingItem": "Service completion or delivery manifest PDF",
+      "reason": "OMS marks booking #ARC-20260628-7744 as 'FULFILLED' but the manifest PDF is absent from blob storage — likely a pipeline ingestion failure.",
+      "impact": "critical"
+    },
+    {
+      "missingItem": "Customer service escalation log (Zendesk ticket #ARC-28811)",
+      "reason": "CRM note references this Zendesk ticket but it was not ingested into the evidence store during case assembly.",
+      "impact": "medium"
+    }
+  ],
+  "winProbability": 0.39,
+  "riskLevel": "critical",
+  "rebuttalDraft": {
+    "text": "Merchant disputes Mastercard 4855 chargeback for $4,100.00 (booking date 2026-06-28). The transaction was authorized and the booking was confirmed by our OMS (see evidence [4fd07adb-d033-5d62-aa5a-ddfda54ed1d7] and [224f056e-c2bf-5f3f-b819-4e8d9a8200c4]). AirRoute CRM shows customer contact was received and responded to on 2026-06-29 (see evidence [22183699-c00b-5618-9fc1-8e3230ecb65e]). The departure manifest and fulfillment records are being urgently retrieved from our operations system and will be submitted as supplemental evidence. We assert the service was rendered as booked and request the chargeback be reversed pending submission of the complete fulfillment documentation.",
+    "citations": [
+      {
+        "evidenceId": "4fd07adb-d033-5d62-aa5a-ddfda54ed1d7",
+        "excerpt": "MC Auth Hub: TXN MC-2026-06-28-07744, $4,100.00, AUTH CODE 661230, APPROVED"
+      },
+      {
+        "evidenceId": "224f056e-c2bf-5f3f-b819-4e8d9a8200c4",
+        "excerpt": "AirRoute OMS: Booking #ARC-20260628-7744, status=FULFILLED, route=DFW→LHR, service_date=2026-07-02 (partial record — manifest not attached)"
+      },
+      {
+        "evidenceId": "22183699-c00b-5618-9fc1-8e3230ecb65e",
+        "excerpt": "AirRoute CRM: C.Mendez contacted 2026-06-29T10:15Z; agent responded 2026-06-29T11:02Z confirming booking details"
+      }
+    ]
+  },
+  "deadline": {
+    "network": "Mastercard",
+    "dueDate": "2026-07-09",
+    "daysRemaining": 3
+  },
+  "createdAt": "2026-07-01T09:30:00Z",
+  "updatedAt": "2026-07-05T22:00:00Z"
+}

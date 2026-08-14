@@ -1,0 +1,34 @@
+========================================================
+ACCOUNT STATEMENT EXCERPT — DUPLICATE CHARGE
+========================================================
+
+American Express — Card ending in 3782
+Statement Period: July 1 – July 22, 2026
+Cardholder: Alex Cardholder
+
+TRANSACTION HISTORY (excerpt):
+──────────────────────────────────────────────────────────
+Date        Merchant                      Amount    Ref #
+──────────────────────────────────────────────────────────
+07/08/2026  StreamFlix Premium            $29.09    SF-40812
+07/08/2026  StreamFlix Premium            $29.09    SF-40813  ← DUPLICATE
+07/10/2026  Sunrise Restaurant Group      $85.64    SRG-4821
+07/12/2026  FitGear Pro                   $124.50   FG-72019
+07/15/2026  QuickFuel Station             $87.43    QF-30091
+──────────────────────────────────────────────────────────
+
+HIGHLIGHTED ISSUE:
+
+Two identical charges of $29.09 from StreamFlix Premium
+posted on July 8, 2026:
+  - Reference SF-40812 (legitimate — monthly subscription)
+  - Reference SF-40813 (DUPLICATE — same amount, same date)
+
+I only have one StreamFlix subscription (Monthly Plan).
+The second charge of $29.09 (Ref SF-40813) is a duplicate
+and should be reversed.
+
+Total disputed amount: $29.09
+
+— Alex Cardholder, July 22, 2026
+========================================================

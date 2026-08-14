@@ -1,0 +1,94 @@
+{
+  "caseId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+  "orchestrationId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+  "disputeRef": "VCA-2026-0071834",
+  "cardNetwork": "visa",
+  "merchantName": "Apex Electronics",
+  "cardholderName": "Marcus Chen",
+  "transactionAmount": 847.99,
+  "transactionDate": "2026-05-12",
+  "status": "pending_review",
+  "reasonCode": "13.1",
+  "reasonCodeLabel": "Merchandise / Services Not Received",
+  "reasonCodeChecklist": [
+    {
+      "item": "Proof of transaction authorization",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Shipping confirmation with tracking number",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Proof of delivery — signed receipt or carrier confirmation",
+      "required": true,
+      "satisfied": false
+    },
+    {
+      "item": "Customer communication log regarding non-receipt",
+      "required": false,
+      "satisfied": false
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "f9283b9a-9f95-5f79-8b34-1d70d3959f45",
+      "type": "transaction",
+      "sourceSystem": "Visa Authorization System",
+      "retrievedAt": "2026-06-10T08:14:22Z",
+      "contentRef": "blob://disputes-demo/case-01/txn-record.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "28f359ac-d5c4-5038-83f7-7224f62e1f40",
+      "type": "shipping",
+      "sourceSystem": "ShipTrack PRO",
+      "retrievedAt": "2026-06-10T08:16:05Z",
+      "contentRef": "blob://disputes-demo/case-01/shipment-record.pdf",
+      "completeness": "partial"
+    },
+    {
+      "evidenceId": "0d325e75-02f7-576b-b55c-db2e07b95091",
+      "type": "order",
+      "sourceSystem": "Apex Commerce Platform",
+      "retrievedAt": "2026-06-10T08:17:41Z",
+      "contentRef": "blob://disputes-demo/case-01/order-record.json",
+      "completeness": "complete"
+    }
+  ],
+  "evidenceGaps": [
+    {
+      "missingItem": "Signed proof of delivery or final carrier scan confirmation",
+      "reason": "ShipTrack PRO returned a partial record; the signature page and final delivery scan event are unavailable due to carrier data-retention expiry (>60 days).",
+      "impact": "critical"
+    }
+  ],
+  "winProbability": 0.72,
+  "riskLevel": "high",
+  "rebuttalDraft": {
+    "text": "The merchant disputes this chargeback under Visa reason code 13.1. Per the transaction authorization record (see evidence [f9283b9a-9f95-5f79-8b34-1d70d3959f45]), the cardholder's card was authenticated via Verified by Visa on 2026-05-12 at 14:33 UTC. The order was fulfilled and dispatched per our commerce platform (see evidence [0d325e75-02f7-576b-b55c-db2e07b95091]), with a tracking number assigned and confirmed as in-transit by ShipTrack PRO (see evidence [28f359ac-d5c4-5038-83f7-7224f62e1f40]). Although final delivery confirmation is pending due to a carrier data gap, all merchant obligations up to the point of dispatch have been met. We respectfully request the chargeback be reversed.",
+    "citations": [
+      {
+        "evidenceId": "f9283b9a-9f95-5f79-8b34-1d70d3959f45",
+        "excerpt": "Visa Authorization System: AUTH CODE 083741, CVV2=MATCH, 3DS2 authenticated, 2026-05-12T14:33:07Z"
+      },
+      {
+        "evidenceId": "0d325e75-02f7-576b-b55c-db2e07b95091",
+        "excerpt": "Order #APX-2026-88341: 1× APEX-4K-MONITOR-32, fulfilled 2026-05-13, tracking DHL-9281773450 assigned"
+      },
+      {
+        "evidenceId": "28f359ac-d5c4-5038-83f7-7224f62e1f40",
+        "excerpt": "ShipTrack PRO: parcel DHL-9281773450 scanned IN-TRANSIT at Chicago O'Hare hub 2026-05-14T09:22:00Z"
+      }
+    ]
+  },
+  "deadline": {
+    "network": "Visa",
+    "dueDate": "2026-07-08",
+    "daysRemaining": 2
+  },
+  "createdAt": "2026-06-10T08:00:00Z",
+  "updatedAt": "2026-07-01T11:45:00Z"
+}

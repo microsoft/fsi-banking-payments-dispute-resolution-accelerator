@@ -1,0 +1,529 @@
+[
+  {
+    "id": "f9283b9a-9f95-5f79-8b34-1d70d3959f45",
+    "evidenceId": "f9283b9a-9f95-5f79-8b34-1d70d3959f45",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "type": "transaction",
+    "evidenceType": "transaction",
+    "sourceSystem": "Visa Authorization System",
+    "retrievedAt": "2026-06-10T08:14:22Z",
+    "contentRef": "blob://disputes-demo/case-01/txn-record.json",
+    "completeness": "complete",
+    "title": "Visa Authorization System \u2014 Transaction Record",
+    "content": {},
+    "extractedAt": "2026-06-10T08:14:22Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "28f359ac-d5c4-5038-83f7-7224f62e1f40",
+    "evidenceId": "28f359ac-d5c4-5038-83f7-7224f62e1f40",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "type": "shipping",
+    "evidenceType": "shipping",
+    "sourceSystem": "ShipTrack PRO",
+    "retrievedAt": "2026-06-10T08:16:05Z",
+    "contentRef": "blob://disputes-demo/case-01/shipment-record.pdf",
+    "completeness": "partial",
+    "title": "ShipTrack PRO \u2014 Shipping Record",
+    "content": {},
+    "extractedAt": "2026-06-10T08:16:05Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "0d325e75-02f7-576b-b55c-db2e07b95091",
+    "evidenceId": "0d325e75-02f7-576b-b55c-db2e07b95091",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "type": "order",
+    "evidenceType": "order",
+    "sourceSystem": "Apex Commerce Platform",
+    "retrievedAt": "2026-06-10T08:17:41Z",
+    "contentRef": "blob://disputes-demo/case-01/order-record.json",
+    "completeness": "complete",
+    "title": "Apex Commerce Platform \u2014 Order Record",
+    "content": {},
+    "extractedAt": "2026-06-10T08:17:41Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "d5b6e00b-b9c8-57f3-bbb3-fd350b097ed6",
+    "evidenceId": "d5b6e00b-b9c8-57f3-bbb3-fd350b097ed6",
+    "disputeId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "type": "transaction",
+    "evidenceType": "transaction",
+    "sourceSystem": "Mastercard Authorization Hub",
+    "retrievedAt": "2026-05-20T10:05:33Z",
+    "contentRef": "blob://disputes-demo/case-02/txn-record.json",
+    "completeness": "complete",
+    "title": "Mastercard Authorization Hub \u2014 Transaction Record",
+    "content": {},
+    "extractedAt": "2026-05-20T10:05:33Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "38a6ebc0-10de-5a74-908b-d8a1bb115cfb",
+    "evidenceId": "38a6ebc0-10de-5a74-908b-d8a1bb115cfb",
+    "disputeId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "type": "receipt",
+    "evidenceType": "receipt",
+    "sourceSystem": "Shopify POS",
+    "retrievedAt": "2026-05-20T10:07:12Z",
+    "contentRef": "blob://disputes-demo/case-02/receipt.pdf",
+    "completeness": "partial",
+    "title": "Shopify POS \u2014 Receipt Record",
+    "content": {},
+    "extractedAt": "2026-05-20T10:07:12Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "cea0442e-7cd4-5d19-a6d1-7330084a855d",
+    "evidenceId": "cea0442e-7cd4-5d19-a6d1-7330084a855d",
+    "disputeId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "type": "communication",
+    "evidenceType": "communication",
+    "sourceSystem": "Zendesk Support",
+    "retrievedAt": "2026-05-20T10:09:55Z",
+    "contentRef": "blob://disputes-demo/case-02/zendesk-export.json",
+    "completeness": "complete",
+    "title": "Zendesk Support \u2014 Communication Record",
+    "content": {},
+    "extractedAt": "2026-05-20T10:09:55Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "9f8f616f-7618-5bdf-abff-4cda8540a341",
+    "evidenceId": "9f8f616f-7618-5bdf-abff-4cda8540a341",
+    "disputeId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "type": "order",
+    "evidenceType": "order",
+    "sourceSystem": "TechWorld OMS",
+    "retrievedAt": "2026-05-20T10:11:20Z",
+    "contentRef": "blob://disputes-demo/case-02/order-record.json",
+    "completeness": "complete",
+    "title": "TechWorld OMS \u2014 Order Record",
+    "content": {},
+    "extractedAt": "2026-05-20T10:11:20Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "6fd62f9c-f842-5630-9b1b-d3f0791e6339",
+    "evidenceId": "6fd62f9c-f842-5630-9b1b-d3f0791e6339",
+    "disputeId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+    "type": "transaction",
+    "evidenceType": "transaction",
+    "sourceSystem": "Amex Authorization Platform",
+    "retrievedAt": "2026-06-12T07:30:15Z",
+    "contentRef": "blob://disputes-demo/case-03/txn-record.json",
+    "completeness": "complete",
+    "title": "Amex Authorization Platform \u2014 Transaction Record",
+    "content": {},
+    "extractedAt": "2026-06-12T07:30:15Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "f0291d13-0b34-53c3-b3e8-abec9e67d97c",
+    "evidenceId": "f0291d13-0b34-53c3-b3e8-abec9e67d97c",
+    "disputeId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+    "type": "communication",
+    "evidenceType": "communication",
+    "sourceSystem": "StreamNow CRM",
+    "retrievedAt": "2026-06-12T07:33:42Z",
+    "contentRef": "blob://disputes-demo/case-03/crm-export.json",
+    "completeness": "partial",
+    "title": "StreamNow CRM \u2014 Communication Record",
+    "content": {},
+    "extractedAt": "2026-06-12T07:33:42Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "aa4aef54-98c1-5e81-93b2-266f88772ce1",
+    "evidenceId": "aa4aef54-98c1-5e81-93b2-266f88772ce1",
+    "disputeId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "type": "transaction",
+    "evidenceType": "transaction",
+    "sourceSystem": "Discover Authorization System",
+    "retrievedAt": "2026-06-02T09:00:44Z",
+    "contentRef": "blob://disputes-demo/case-04/txn-record.json",
+    "completeness": "complete",
+    "title": "Discover Authorization System \u2014 Transaction Record",
+    "content": {},
+    "extractedAt": "2026-06-02T09:00:44Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "7b4df10f-e43a-5f69-b240-329eb6471878",
+    "evidenceId": "7b4df10f-e43a-5f69-b240-329eb6471878",
+    "disputeId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "type": "fraud_signal",
+    "evidenceType": "fraud_signal",
+    "sourceSystem": "FraudShield AI v3",
+    "retrievedAt": "2026-06-02T09:02:18Z",
+    "contentRef": "blob://disputes-demo/case-04/fraud-signal.json",
+    "completeness": "complete",
+    "title": "FraudShield AI v3 \u2014 Fraud_Signal Record",
+    "content": {},
+    "extractedAt": "2026-06-02T09:02:18Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "e0298857-cd62-5ffe-9e7d-e504ffaa9b5f",
+    "evidenceId": "e0298857-cd62-5ffe-9e7d-e504ffaa9b5f",
+    "disputeId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "type": "communication",
+    "evidenceType": "communication",
+    "sourceSystem": "LuxeTravel CRM",
+    "retrievedAt": "2026-06-02T09:04:01Z",
+    "contentRef": "blob://disputes-demo/case-04/crm-comms.json",
+    "completeness": "complete",
+    "title": "LuxeTravel CRM \u2014 Communication Record",
+    "content": {},
+    "extractedAt": "2026-06-02T09:04:01Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "e904d513-35c1-5a19-8721-89a3b691e324",
+    "evidenceId": "e904d513-35c1-5a19-8721-89a3b691e324",
+    "disputeId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "type": "receipt",
+    "evidenceType": "receipt",
+    "sourceSystem": "LuxeTravel Booking Engine",
+    "retrievedAt": "2026-06-02T09:05:30Z",
+    "contentRef": "blob://disputes-demo/case-04/booking-receipt.pdf",
+    "completeness": "complete",
+    "title": "LuxeTravel Booking Engine \u2014 Receipt Record",
+    "content": {},
+    "extractedAt": "2026-06-02T09:05:30Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "a8bbd205-139e-5c0f-b655-af56a7bfe0a8",
+    "evidenceId": "a8bbd205-139e-5c0f-b655-af56a7bfe0a8",
+    "disputeId": "23bcc2f3-90bc-58fc-9843-148e830f6092",
+    "type": "transaction",
+    "evidenceType": "transaction",
+    "sourceSystem": "Visa Authorization Network",
+    "retrievedAt": "2026-06-20T11:00:00Z",
+    "contentRef": "blob://disputes-demo/case-05/txn-record.json",
+    "completeness": "complete",
+    "title": "Visa Authorization Network \u2014 Transaction Record",
+    "content": {},
+    "extractedAt": "2026-06-20T11:00:00Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "2f31049a-1b70-54e8-a91b-90a85e00c153",
+    "evidenceId": "2f31049a-1b70-54e8-a91b-90a85e00c153",
+    "disputeId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "type": "transaction",
+    "evidenceType": "transaction",
+    "sourceSystem": "Mastercard Authorization Hub",
+    "retrievedAt": "2026-05-18T14:20:00Z",
+    "contentRef": "blob://disputes-demo/case-06/txn-record.json",
+    "completeness": "complete",
+    "title": "Mastercard Authorization Hub \u2014 Transaction Record",
+    "content": {},
+    "extractedAt": "2026-05-18T14:20:00Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "5d62f14f-ff71-58f1-a00f-b967754129a4",
+    "evidenceId": "5d62f14f-ff71-58f1-a00f-b967754129a4",
+    "disputeId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "type": "fraud_signal",
+    "evidenceType": "fraud_signal",
+    "sourceSystem": "RiskMatrix v2",
+    "retrievedAt": "2026-05-18T14:22:30Z",
+    "contentRef": "blob://disputes-demo/case-06/risk-signal.json",
+    "completeness": "partial",
+    "title": "RiskMatrix v2 \u2014 Fraud_Signal Record",
+    "content": {},
+    "extractedAt": "2026-05-18T14:22:30Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "ee76af8a-6274-5054-ae98-7c5883c6fc41",
+    "evidenceId": "ee76af8a-6274-5054-ae98-7c5883c6fc41",
+    "disputeId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "type": "contract",
+    "evidenceType": "contract",
+    "sourceSystem": "GoldTech CRM",
+    "retrievedAt": "2026-05-18T14:24:55Z",
+    "contentRef": "blob://disputes-demo/case-06/contract-partial.pdf",
+    "completeness": "partial",
+    "title": "GoldTech CRM \u2014 Contract Record",
+    "content": {},
+    "extractedAt": "2026-05-18T14:24:55Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "25de446e-8faa-5783-bfa6-519960b38749",
+    "evidenceId": "25de446e-8faa-5783-bfa6-519960b38749",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "type": "transaction",
+    "evidenceType": "transaction",
+    "sourceSystem": "Amex Authorization Platform",
+    "retrievedAt": "2026-05-01T08:10:00Z",
+    "contentRef": "blob://disputes-demo/case-07/txn-record.json",
+    "completeness": "complete",
+    "title": "Amex Authorization Platform \u2014 Transaction Record",
+    "content": {},
+    "extractedAt": "2026-05-01T08:10:00Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "5bde067c-7f9f-5161-8599-4ad1471cb699",
+    "evidenceId": "5bde067c-7f9f-5161-8599-4ad1471cb699",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "type": "fraud_signal",
+    "evidenceType": "fraud_signal",
+    "sourceSystem": "FraudShield AI v3",
+    "retrievedAt": "2026-05-01T08:12:44Z",
+    "contentRef": "blob://disputes-demo/case-07/fraud-signal.json",
+    "completeness": "complete",
+    "title": "FraudShield AI v3 \u2014 Fraud_Signal Record",
+    "content": {},
+    "extractedAt": "2026-05-01T08:12:44Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "36a43a73-f6f0-5e3d-bdaf-a0b1e7b7e3fe",
+    "evidenceId": "36a43a73-f6f0-5e3d-bdaf-a0b1e7b7e3fe",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "type": "communication",
+    "evidenceType": "communication",
+    "sourceSystem": "CryptoVault CRM",
+    "retrievedAt": "2026-05-01T08:14:20Z",
+    "contentRef": "blob://disputes-demo/case-07/crm-comms.json",
+    "completeness": "complete",
+    "title": "CryptoVault CRM \u2014 Communication Record",
+    "content": {},
+    "extractedAt": "2026-05-01T08:14:20Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "6d0ba956-84c0-5900-a341-2910aec43dbd",
+    "evidenceId": "6d0ba956-84c0-5900-a341-2910aec43dbd",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "type": "receipt",
+    "evidenceType": "receipt",
+    "sourceSystem": "CryptoVault Ledger",
+    "retrievedAt": "2026-05-01T08:16:05Z",
+    "contentRef": "blob://disputes-demo/case-07/ledger-receipt.pdf",
+    "completeness": "partial",
+    "title": "CryptoVault Ledger \u2014 Receipt Record",
+    "content": {},
+    "extractedAt": "2026-05-01T08:16:05Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "0d50bdba-9de2-582a-9fc8-8eb364ce2c41",
+    "evidenceId": "0d50bdba-9de2-582a-9fc8-8eb364ce2c41",
+    "disputeId": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+    "type": "transaction",
+    "evidenceType": "transaction",
+    "sourceSystem": "Discover POS Network",
+    "retrievedAt": "2026-06-25T13:15:00Z",
+    "contentRef": "blob://disputes-demo/case-08/txn-record.json",
+    "completeness": "complete",
+    "title": "Discover POS Network \u2014 Transaction Record",
+    "content": {},
+    "extractedAt": "2026-06-25T13:15:00Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "555f6f14-c4c6-5e11-8656-ab1bb537c3e6",
+    "evidenceId": "555f6f14-c4c6-5e11-8656-ab1bb537c3e6",
+    "disputeId": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+    "type": "fraud_signal",
+    "evidenceType": "fraud_signal",
+    "sourceSystem": "FraudShield AI v3",
+    "retrievedAt": "2026-06-25T13:17:22Z",
+    "contentRef": "blob://disputes-demo/case-08/fraud-signal.json",
+    "completeness": "complete",
+    "title": "FraudShield AI v3 \u2014 Fraud_Signal Record",
+    "content": {},
+    "extractedAt": "2026-06-25T13:17:22Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "6e45834b-e822-54b3-93ae-3175e8602ee6",
+    "evidenceId": "6e45834b-e822-54b3-93ae-3175e8602ee6",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "type": "transaction",
+    "evidenceType": "transaction",
+    "sourceSystem": "Visa Authorization Network",
+    "retrievedAt": "2026-04-15T09:00:00Z",
+    "contentRef": "blob://disputes-demo/case-09/txn-record.json",
+    "completeness": "complete",
+    "title": "Visa Authorization Network \u2014 Transaction Record",
+    "content": {},
+    "extractedAt": "2026-04-15T09:00:00Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "d5dfcf90-d692-57a5-a1a9-40c7d093d9b5",
+    "evidenceId": "d5dfcf90-d692-57a5-a1a9-40c7d093d9b5",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "type": "order",
+    "evidenceType": "order",
+    "sourceSystem": "FurniCraft OMS",
+    "retrievedAt": "2026-04-15T09:02:10Z",
+    "contentRef": "blob://disputes-demo/case-09/order-record.json",
+    "completeness": "complete",
+    "title": "FurniCraft OMS \u2014 Order Record",
+    "content": {},
+    "extractedAt": "2026-04-15T09:02:10Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "57844001-cea7-5ea0-8381-950833e1d6d7",
+    "evidenceId": "57844001-cea7-5ea0-8381-950833e1d6d7",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "type": "receipt",
+    "evidenceType": "receipt",
+    "sourceSystem": "FurniCraft Shopify",
+    "retrievedAt": "2026-04-15T09:03:45Z",
+    "contentRef": "blob://disputes-demo/case-09/receipt.pdf",
+    "completeness": "complete",
+    "title": "FurniCraft Shopify \u2014 Receipt Record",
+    "content": {},
+    "extractedAt": "2026-04-15T09:03:45Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "07fed50d-1624-5e43-9f30-fbabf48b61ae",
+    "evidenceId": "07fed50d-1624-5e43-9f30-fbabf48b61ae",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "type": "communication",
+    "evidenceType": "communication",
+    "sourceSystem": "Zendesk Support",
+    "retrievedAt": "2026-04-15T09:05:20Z",
+    "contentRef": "blob://disputes-demo/case-09/zendesk-export.json",
+    "completeness": "complete",
+    "title": "Zendesk Support \u2014 Communication Record",
+    "content": {},
+    "extractedAt": "2026-04-15T09:05:20Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "89167762-fb32-5d31-8305-0ad3d8e07527",
+    "evidenceId": "89167762-fb32-5d31-8305-0ad3d8e07527",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "type": "shipping",
+    "evidenceType": "shipping",
+    "sourceSystem": "FedEx Tracking API",
+    "retrievedAt": "2026-04-15T09:07:00Z",
+    "contentRef": "blob://disputes-demo/case-09/fedex-tracking.json",
+    "completeness": "complete",
+    "title": "FedEx Tracking API \u2014 Shipping Record",
+    "content": {},
+    "extractedAt": "2026-04-15T09:07:00Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "4fd07adb-d033-5d62-aa5a-ddfda54ed1d7",
+    "evidenceId": "4fd07adb-d033-5d62-aa5a-ddfda54ed1d7",
+    "disputeId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "type": "transaction",
+    "evidenceType": "transaction",
+    "sourceSystem": "Mastercard Authorization Hub",
+    "retrievedAt": "2026-07-01T10:00:00Z",
+    "contentRef": "blob://disputes-demo/case-10/txn-record.json",
+    "completeness": "complete",
+    "title": "Mastercard Authorization Hub \u2014 Transaction Record",
+    "content": {},
+    "extractedAt": "2026-07-01T10:00:00Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "224f056e-c2bf-5f3f-b819-4e8d9a8200c4",
+    "evidenceId": "224f056e-c2bf-5f3f-b819-4e8d9a8200c4",
+    "disputeId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "type": "order",
+    "evidenceType": "order",
+    "sourceSystem": "AirRoute OMS",
+    "retrievedAt": "2026-07-01T10:02:30Z",
+    "contentRef": "blob://disputes-demo/case-10/order-record.json",
+    "completeness": "partial",
+    "title": "AirRoute OMS \u2014 Order Record",
+    "content": {},
+    "extractedAt": "2026-07-01T10:02:30Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  },
+  {
+    "id": "22183699-c00b-5618-9fc1-8e3230ecb65e",
+    "evidenceId": "22183699-c00b-5618-9fc1-8e3230ecb65e",
+    "disputeId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "type": "communication",
+    "evidenceType": "communication",
+    "sourceSystem": "AirRoute CRM",
+    "retrievedAt": "2026-07-01T10:04:15Z",
+    "contentRef": "blob://disputes-demo/case-10/crm-comms.json",
+    "completeness": "partial",
+    "title": "AirRoute CRM \u2014 Communication Record",
+    "content": {},
+    "extractedAt": "2026-07-01T10:04:15Z",
+    "metadata": {
+      "source": "jorge_curated"
+    }
+  }
+]

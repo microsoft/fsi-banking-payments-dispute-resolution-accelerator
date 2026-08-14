@@ -1,0 +1,35 @@
+.squad/orchestration-log/
+.squad/log/
+.squad/decisions/inbox/
+.squad/sessions/
+.squad-workstream
+# Squad: ignore runtime state (logs, inbox, sessions)
+# Note: .squad/casting/* is identity and MUST be committed to main, not ignored
+.squad/.scratch/
+.squad/.cache/
+
+# Playwright MCP session artifacts (screenshots, snapshots, console logs)
+.playwright-mcp/
+
+# Azure Developer CLI local state (per-developer, not source)
+.azure/
+
+# Compiled Bicep / ARM build artifacts
+infra/main.json
+
+# Python
+__pycache__/
+*.pyc
+
+# Web build
+node_modules/
+dist/
+
+# Environment files with live configuration (keep *.env.sample as templates)
+.env
+.env.*
+!.env.sample
+!*.env.sample
+
+# Build artifact zips (AZD/deploy outputs)
+*.zip

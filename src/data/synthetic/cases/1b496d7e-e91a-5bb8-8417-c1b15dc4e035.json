@@ -1,0 +1,95 @@
+{
+  "caseId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+  "orchestrationId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+  "disputeRef": "MC-4837-2026-01847",
+  "cardNetwork": "mastercard",
+  "merchantName": "GoldTech Supplies",
+  "cardholderName": "David Thompson",
+  "transactionAmount": 3200.0,
+  "transactionDate": "2026-05-05",
+  "status": "pending_review",
+  "reasonCode": "4837",
+  "reasonCodeLabel": "No Cardholder Authorization",
+  "reasonCodeChecklist": [
+    {
+      "item": "Transaction authorization log with timestamps",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Cardholder-signed authorization form or verified verbal consent record",
+      "required": true,
+      "satisfied": false
+    },
+    {
+      "item": "3DS v2 authentication data proving issuer verification",
+      "required": true,
+      "satisfied": false
+    },
+    {
+      "item": "IP address and device metadata at authorization time",
+      "required": false,
+      "satisfied": true
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "2f31049a-1b70-54e8-a91b-90a85e00c153",
+      "type": "transaction",
+      "sourceSystem": "Mastercard Authorization Hub",
+      "retrievedAt": "2026-05-18T14:20:00Z",
+      "contentRef": "blob://disputes-demo/case-06/txn-record.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "5d62f14f-ff71-58f1-a00f-b967754129a4",
+      "type": "fraud_signal",
+      "sourceSystem": "RiskMatrix v2",
+      "retrievedAt": "2026-05-18T14:22:30Z",
+      "contentRef": "blob://disputes-demo/case-06/risk-signal.json",
+      "completeness": "partial"
+    },
+    {
+      "evidenceId": "ee76af8a-6274-5054-ae98-7c5883c6fc41",
+      "type": "contract",
+      "sourceSystem": "GoldTech CRM",
+      "retrievedAt": "2026-05-18T14:24:55Z",
+      "contentRef": "blob://disputes-demo/case-06/contract-partial.pdf",
+      "completeness": "partial"
+    }
+  ],
+  "evidenceGaps": [
+    {
+      "missingItem": "Cardholder-signed authorization form or verified verbal consent recording",
+      "reason": "GoldTech CRM has a partial contract on file; the authorization signature page is absent from the uploaded document.",
+      "impact": "critical"
+    },
+    {
+      "missingItem": "3DS v2 authentication proof",
+      "reason": "Transaction was processed via a legacy path without 3DS enrollment; liability shift back to merchant cannot be established.",
+      "impact": "critical"
+    }
+  ],
+  "winProbability": 0.22,
+  "riskLevel": "critical",
+  "rebuttalDraft": {
+    "text": "Merchant responds to Mastercard 4837 chargeback for $3,200.00. The transaction was processed through our standard authorization channel and received a positive authorization code from the issuing bank (see evidence [2f31049a-1b70-54e8-a91b-90a85e00c153]). RiskMatrix flagged no elevated fraud velocity at the time of authorization (see evidence [5d62f14f-ff71-58f1-a00f-b967754129a4]). While the full signed authorization form is pending urgent retrieval from archive, the merchant notes that this was a returning customer with prior order history. We are actively working to supply the signature record before the deadline.",
+    "citations": [
+      {
+        "evidenceId": "2f31049a-1b70-54e8-a91b-90a85e00c153",
+        "excerpt": "MC Auth Hub: TXN MC-2026-05-05-01847, $3,200.00, AUTH CODE 509234, APPROVED, no decline flags"
+      },
+      {
+        "evidenceId": "5d62f14f-ff71-58f1-a00f-b967754129a4",
+        "excerpt": "RiskMatrix v2: velocity_score=24 (normal range), no prior chargebacks on this BIN in 90 days"
+      }
+    ]
+  },
+  "deadline": {
+    "network": "Mastercard",
+    "dueDate": "2026-07-08",
+    "daysRemaining": 2
+  },
+  "createdAt": "2026-05-18T13:00:00Z",
+  "updatedAt": "2026-07-04T10:00:00Z"
+}

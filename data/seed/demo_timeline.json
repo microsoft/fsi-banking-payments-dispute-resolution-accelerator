@@ -1,0 +1,642 @@
+[
+  {
+    "id": "a61dccc5-d045-4c75-a8cf-c41a8a1518ad",
+    "eventId": "798b1cdb-c5ad-44d1-b7ca-b7a06effbf61",
+    "disputeId": "demo-sarah-chen-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 Visa 13.1 (Merchandise Not Received)",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-05-23T23:19:04.986977+00:00"
+  },
+  {
+    "id": "9677ded4-2f6c-43e3-9580-ae8d8ae6a1d9",
+    "eventId": "66085141-514c-4125-aa5f-0433a72c9300",
+    "disputeId": "demo-sarah-chen-001",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Evidence gathering initiated \u2014 6 source systems queried",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering",
+      "systemsQueried": 6
+    },
+    "occurredAt": "2026-05-23T23:25:04.986977+00:00"
+  },
+  {
+    "id": "e5d21fd1-eb46-4753-87b6-29254b01f535",
+    "eventId": "6e1f9f0e-1bd4-46cc-aacc-0f66ff162015",
+    "disputeId": "demo-sarah-chen-001",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Transaction record retrieved from payment processor",
+    "data": {
+      "sourceSystem": "payment_processor"
+    },
+    "occurredAt": "2026-05-23T23:28:04.986977+00:00"
+  },
+  {
+    "id": "fa6b4c1b-210f-4b6a-b161-43ba436683a0",
+    "eventId": "c52667ff-d95e-4502-894c-ea866ce4958b",
+    "disputeId": "demo-sarah-chen-001",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "UPS delivery confirmation with signature retrieved",
+    "data": {
+      "sourceSystem": "logistics"
+    },
+    "occurredAt": "2026-05-23T23:31:04.986977+00:00"
+  },
+  {
+    "id": "bf46aa5b-fcfd-438f-8b48-9198461a8dec",
+    "eventId": "135589bf-90bc-4072-a27b-9c978418fb91",
+    "disputeId": "demo-sarah-chen-001",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Order and fulfillment record retrieved",
+    "data": {
+      "sourceSystem": "oms_erp"
+    },
+    "occurredAt": "2026-05-23T23:34:04.986977+00:00"
+  },
+  {
+    "id": "9a324740-801c-4d3f-924f-2618b772ad40",
+    "eventId": "1fcb8783-e2b7-4481-b7cb-5208b20ef7a7",
+    "disputeId": "demo-sarah-chen-001",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Fraud risk assessment completed \u2014 friendly fraud probability 82%",
+    "data": {
+      "sourceSystem": "fraud_engine"
+    },
+    "occurredAt": "2026-05-23T23:37:04.986977+00:00"
+  },
+  {
+    "id": "696a0c90-7308-4e8f-8e27-ce8aab07442f",
+    "eventId": "ceed2703-82f3-4fe1-ad3d-8f2200f0d920",
+    "disputeId": "demo-sarah-chen-001",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "Rebuttal draft generation \u2014 citing delivery proof + fraud signals",
+    "data": {
+      "fromStatus": "evidence_gathering",
+      "toStatus": "ai_drafting"
+    },
+    "occurredAt": "2026-05-23T23:49:04.986977+00:00"
+  },
+  {
+    "id": "be1b8985-dbe5-4dcb-9f51-b16893f52a77",
+    "eventId": "99f9522b-9ee8-47f2-9306-7e8317f13c78",
+    "disputeId": "demo-sarah-chen-001",
+    "eventType": "checker_passed",
+    "actor": "checker_agent",
+    "detail": "Groundedness validation passed \u2014 all claims cite verified evidence",
+    "data": {
+      "attempt": 1,
+      "groundednessScore": 0.96
+    },
+    "occurredAt": "2026-05-23T23:55:04.986977+00:00"
+  },
+  {
+    "id": "682228dd-be73-499e-92c2-ff80eceb2e6f",
+    "eventId": "d4b3a612-1c86-41ce-ac8f-86d8cebcccf6",
+    "disputeId": "demo-sarah-chen-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Case assigned to Ana Rivera for human review",
+    "data": {
+      "fromStatus": "ai_drafting",
+      "toStatus": "pending_review",
+      "assignedAnalyst": "analyst-001"
+    },
+    "occurredAt": "2026-05-24T00:01:04.986977+00:00"
+  },
+  {
+    "id": "9ebd2247-3379-480e-b0a9-477e0c86bbb7",
+    "eventId": "c5727925-c4aa-4f21-af0c-710154e75bce",
+    "disputeId": "demo-sarah-chen-001",
+    "eventType": "status_change",
+    "actor": "analyst-001",
+    "detail": "Dispute approved by Ana Rivera \u2014 strong evidence of friendly fraud",
+    "data": {
+      "fromStatus": "pending_review",
+      "toStatus": "approved"
+    },
+    "occurredAt": "2026-05-24T23:19:04.986977+00:00"
+  },
+  {
+    "id": "90eb2b72-35d6-4ad1-b5d0-faf537cbaee5",
+    "eventId": "ccb93c01-29ae-4702-a0b9-a9a7f4238d6a",
+    "disputeId": "demo-sarah-chen-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Evidence package submitted to Visa network",
+    "data": {
+      "fromStatus": "approved",
+      "toStatus": "submitted"
+    },
+    "occurredAt": "2026-05-25T00:19:04.986977+00:00"
+  },
+  {
+    "id": "bc5e4265-40a8-4b31-a62d-a508d94c150a",
+    "eventId": "08930929-1a10-4f4f-b824-970773778ff1",
+    "disputeId": "demo-sarah-chen-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Case closed \u2014 dispute won. Full credit of $892.50 retained.",
+    "data": {
+      "fromStatus": "submitted",
+      "toStatus": "closed",
+      "outcome": "won",
+      "creditAmount": 892.5
+    },
+    "occurredAt": "2026-06-26T23:19:04.986977+00:00"
+  },
+  {
+    "id": "9712a4fd-4ca0-4bdc-ab18-a06dbe8bc962",
+    "eventId": "a9c2b325-aeab-4512-b3f2-f93358323e70",
+    "disputeId": "demo-urgent-deadline-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 MC 4853, 45-day deadline set",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-05-25T23:19:04.986977+00:00"
+  },
+  {
+    "id": "0d55ce77-234e-4eb9-a0ac-41585dff4687",
+    "eventId": "2eb182e7-e0de-4537-87db-0a65e7da96d4",
+    "disputeId": "demo-urgent-deadline-001",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Evidence gathering initiated",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering"
+    },
+    "occurredAt": "2026-05-25T23:25:04.986977+00:00"
+  },
+  {
+    "id": "908c9909-225c-4318-86f2-cffdbce65160",
+    "eventId": "251afeed-2c72-4728-a29d-46a198abf8eb",
+    "disputeId": "demo-urgent-deadline-001",
+    "eventType": "customer_response_requested",
+    "actor": "evidence_agent",
+    "detail": "Customer response requested — delivery confirmation and product photos needed",
+    "data": {
+      "requestedItems": ["delivery_photo", "product_condition"]
+    },
+    "occurredAt": "2026-05-25T23:45:04.986977+00:00"
+  },
+  {
+    "id": "c37a6b2e-9127-4e3a-b8f5-d1a8f6e0c5b4",
+    "eventId": "f4e2d8a1-7c3b-4509-a6f0-b2c9e7d4a1f8",
+    "disputeId": "demo-urgent-deadline-001",
+    "eventType": "customer_response_received",
+    "actor": "customer",
+    "detail": "Customer provided delivery photos and product condition statement",
+    "data": {
+      "responseItems": ["delivery_photo", "product_condition"],
+      "responseTimeHours": 14.5
+    },
+    "occurredAt": "2026-05-26T14:15:04.986977+00:00"
+  },
+  {
+    "id": "908c9909-225c-4318-86f2-cffdbce65161",
+    "eventId": "251afeed-2c72-4728-a29d-46a198abf8ec",
+    "disputeId": "demo-urgent-deadline-001",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "Rebuttal drafting started",
+    "data": {
+      "fromStatus": "evidence_gathering",
+      "toStatus": "ai_drafting"
+    },
+    "occurredAt": "2026-05-26T23:19:04.986977+00:00"
+  },
+  {
+    "id": "48350e6a-b49f-4edd-9233-c9e5471d319e",
+    "eventId": "433af8e3-21e5-4c80-b183-23fc1602abab",
+    "disputeId": "demo-urgent-deadline-001",
+    "eventType": "checker_passed",
+    "actor": "checker_agent",
+    "detail": "Groundedness validated",
+    "data": {
+      "attempt": 1,
+      "groundednessScore": 0.91
+    },
+    "occurredAt": "2026-05-27T00:19:04.986977+00:00"
+  },
+  {
+    "id": "2dce8280-9464-4f75-a0c8-b8640aa6a627",
+    "eventId": "7219f54c-305b-48e5-b74c-8ee3407a9067",
+    "disputeId": "demo-urgent-deadline-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Assigned to Priya Sharma \u2014 \u26a0\ufe0f URGENT: 2 days until Mastercard deadline",
+    "data": {
+      "fromStatus": "ai_drafting",
+      "toStatus": "pending_review",
+      "assignedAnalyst": "analyst-003"
+    },
+    "occurredAt": "2026-07-06T17:19:04.986977+00:00"
+  },
+  {
+    "id": "803d7405-95f1-4092-8892-1fa557fc61f6",
+    "eventId": "95c089ff-76cc-4795-8570-386c917368a3",
+    "disputeId": "demo-urgent-deadline-001",
+    "eventType": "deadline_warning",
+    "actor": "system",
+    "detail": "\u26a0\ufe0f DEADLINE ALERT: 2 days remaining. Mastercard 4853 deadline is 2026-07-08",
+    "data": {
+      "daysRemaining": 2,
+      "network": "mastercard"
+    },
+    "occurredAt": "2026-07-06T22:19:04.986977+00:00"
+  },
+  {
+    "id": "46785ab8-9663-4a67-9d80-db365452dcae",
+    "eventId": "5404b1fd-ea59-4abc-b651-45f2bdda773c",
+    "disputeId": "demo-escalation-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 Amex F29 (Card Not Present fraud)",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-06-19T23:19:04.986977+00:00"
+  },
+  {
+    "id": "134d4c7f-ad78-4db4-9ebc-d30277678af2",
+    "eventId": "74d8ea7a-a641-488d-8173-8297b39523f5",
+    "disputeId": "demo-escalation-001",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Evidence gathering \u2014 querying 5 source systems",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering"
+    },
+    "occurredAt": "2026-06-19T23:25:04.986977+00:00"
+  },
+  {
+    "id": "c1533b2c-b91d-4a85-8176-8a25f5b482ba",
+    "eventId": "d13fb189-dcde-40cc-a6af-ac7726acd819",
+    "disputeId": "demo-escalation-001",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "Rebuttal drafted citing 3DS authentication",
+    "data": {
+      "fromStatus": "evidence_gathering",
+      "toStatus": "ai_drafting"
+    },
+    "occurredAt": "2026-06-20T23:19:04.986977+00:00"
+  },
+  {
+    "id": "eac8920a-c44d-4b23-8fc8-e5c2454ad4eb",
+    "eventId": "001da0de-9bed-4abd-879c-a91a140fec33",
+    "disputeId": "demo-escalation-001",
+    "eventType": "checker_passed",
+    "actor": "checker_agent",
+    "detail": "Groundedness passed",
+    "data": {
+      "attempt": 1,
+      "groundednessScore": 0.94
+    },
+    "occurredAt": "2026-06-20T23:49:04.986977+00:00"
+  },
+  {
+    "id": "cc0326df-d5df-426b-87cf-0eff79690c42",
+    "eventId": "dc24b45f-7529-4990-ba80-7161a1060460",
+    "disputeId": "demo-escalation-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Assigned to Diana Lopez for review",
+    "data": {
+      "fromStatus": "ai_drafting",
+      "toStatus": "pending_review",
+      "assignedAnalyst": "analyst-005"
+    },
+    "occurredAt": "2026-06-21T23:19:04.986977+00:00"
+  },
+  {
+    "id": "674fcf18-10bc-4ac9-ba23-fa2fb0a29844",
+    "eventId": "1a510dc4-f2b9-4ed1-a2a8-8c2b481fbd29",
+    "disputeId": "demo-escalation-001",
+    "eventType": "sla_warning",
+    "actor": "system",
+    "detail": "\u26a0\ufe0f Review SLA: 48 hours without analyst action",
+    "data": {
+      "hoursElapsed": 48
+    },
+    "occurredAt": "2026-06-23T23:19:04.986977+00:00"
+  },
+  {
+    "id": "73fda813-e8fd-4bcd-94d6-d7c345483214",
+    "eventId": "5074ca0f-78e1-4833-85c5-0433d9681eb4",
+    "disputeId": "demo-escalation-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "\ud83d\udea8 ESCALATED: Review timeout exceeded SLA \u2014 moved to supervisor queue (Tanya Moore)",
+    "data": {
+      "fromStatus": "pending_review",
+      "toStatus": "escalated",
+      "reason": "sla_timeout",
+      "escalatedTo": "supervisor-001"
+    },
+    "occurredAt": "2026-07-06T21:19:04.986977+00:00"
+  },
+  {
+    "id": "7755d9a8-960d-4e97-bda2-6ced1414d5b6",
+    "eventId": "db206658-9bfc-44bd-baad-12a3a3684080",
+    "disputeId": "demo-fraud-ring-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 Discover UA (Card Present Fraud)",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-06-15T23:19:04.986977+00:00"
+  },
+  {
+    "id": "88d49a7c-4788-4f18-873a-53a2fa05e2ab",
+    "eventId": "412e75e5-6494-491d-876b-cc2e59d57a59",
+    "disputeId": "demo-fraud-ring-001",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "High-priority evidence gathering \u2014 fraud signals detected",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering"
+    },
+    "occurredAt": "2026-06-15T23:22:04.986977+00:00"
+  },
+  {
+    "id": "2e8d0db8-710b-4be2-ae4a-5e0922355f23",
+    "eventId": "cc72a6e5-bbfb-4eb2-925b-5742ed77a07c",
+    "disputeId": "demo-fraud-ring-001",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Card testing pattern identified \u2014 3 small transactions preceding",
+    "data": {
+      "sourceSystem": "fraud_engine"
+    },
+    "occurredAt": "2026-06-15T23:25:04.986977+00:00"
+  },
+  {
+    "id": "5a8f239d-9160-4aa5-9a05-fc002dd5d5c1",
+    "eventId": "b45eee99-bdf4-4846-94a5-60e5d9d5d22d",
+    "disputeId": "demo-fraud-ring-001",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Geolocation mismatch confirmed \u2014 Houston vs Denver",
+    "data": {
+      "sourceSystem": "fraud_engine"
+    },
+    "occurredAt": "2026-06-15T23:28:04.986977+00:00"
+  },
+  {
+    "id": "58f389cf-2208-409d-a121-421599975da7",
+    "eventId": "474a3015-2874-42b1-b920-ffb3e480577c",
+    "disputeId": "demo-fraud-ring-001",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "Rebuttal drafted \u2014 strong fraud evidence",
+    "data": {
+      "fromStatus": "evidence_gathering",
+      "toStatus": "ai_drafting"
+    },
+    "occurredAt": "2026-06-16T23:19:04.986977+00:00"
+  },
+  {
+    "id": "03723af6-c06d-4dec-aad8-11c89a4ee13a",
+    "eventId": "fb8b6b24-a057-4e4a-8469-1bcc3280f659",
+    "disputeId": "demo-fraud-ring-001",
+    "eventType": "checker_passed",
+    "actor": "checker_agent",
+    "detail": "Groundedness passed \u2014 all fraud claims verified",
+    "data": {
+      "attempt": 1,
+      "groundednessScore": 0.98
+    },
+    "occurredAt": "2026-06-16T23:49:04.986977+00:00"
+  },
+  {
+    "id": "a50a65f9-d39c-43e0-97e5-b34d7caa6d0f",
+    "eventId": "04ad138d-0f4b-430d-838a-1f9c61b726aa",
+    "disputeId": "demo-fraud-ring-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Assigned to Marcus Chen for review",
+    "data": {
+      "fromStatus": "ai_drafting",
+      "toStatus": "pending_review"
+    },
+    "occurredAt": "2026-06-17T23:19:04.986977+00:00"
+  },
+  {
+    "id": "dcd80f91-d250-404b-966e-b1dd06c9e187",
+    "eventId": "2dcd2183-ef01-4fd4-b20b-9551384acac5",
+    "disputeId": "demo-fraud-ring-001",
+    "eventType": "status_change",
+    "actor": "analyst-002",
+    "detail": "Approved by Marcus Chen \u2014 clear fraud evidence",
+    "data": {
+      "fromStatus": "pending_review",
+      "toStatus": "approved"
+    },
+    "occurredAt": "2026-07-05T23:19:04.986977+00:00"
+  },
+  {
+    "id": "57acfc9c-3d6c-4817-9c38-cd325a3039d8",
+    "eventId": "7fc699e3-1e20-4df1-a93f-05b735ee1a43",
+    "disputeId": "demo-maker-retry-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 Visa 13.3 (Not as Described)",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-06-12T23:19:04.986977+00:00"
+  },
+  {
+    "id": "4f70e721-44c3-48f8-bdaf-f1a2f731700d",
+    "eventId": "adcba19d-6431-4fa0-ae9d-d4fde7b296b5",
+    "disputeId": "demo-maker-retry-001",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Evidence gathering initiated",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering"
+    },
+    "occurredAt": "2026-06-12T23:25:04.986977+00:00"
+  },
+  {
+    "id": "742c0028-ab52-412a-9780-b3dffee2a054",
+    "eventId": "552acd5a-9916-4467-a2df-2a8c7d63a5c5",
+    "disputeId": "demo-maker-retry-001",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "First rebuttal draft generated",
+    "data": {
+      "fromStatus": "evidence_gathering",
+      "toStatus": "ai_drafting"
+    },
+    "occurredAt": "2026-06-13T23:19:04.986977+00:00"
+  },
+  {
+    "id": "1ee4b7aa-2f54-4557-8480-7eee29b117ed",
+    "eventId": "713adb69-953c-41f4-a3c7-76592a2592a4",
+    "disputeId": "demo-maker-retry-001",
+    "eventType": "checker_retry",
+    "actor": "checker_agent",
+    "detail": "\u274c Groundedness FAILED \u2014 draft claimed 'cardholder admitted receiving correct item' but no such statement exists in evidence",
+    "data": {
+      "attempt": 1,
+      "reason": "ungrounded_claim_detected",
+      "flaggedClaim": "cardholder admitted receiving correct item"
+    },
+    "occurredAt": "2026-06-13T23:37:04.986977+00:00"
+  },
+  {
+    "id": "ca2675c1-a229-4c10-b83c-4c0ce980ced3",
+    "eventId": "3fb310a1-58d9-4362-ba84-e9c27a1e286a",
+    "disputeId": "demo-maker-retry-001",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "Revised rebuttal \u2014 removed ungrounded claim, cited only verified facts",
+    "data": {
+      "revision": 2
+    },
+    "occurredAt": "2026-06-13T23:49:04.986977+00:00"
+  },
+  {
+    "id": "1f490f10-89b0-4163-ad14-0c5581695715",
+    "eventId": "578e31a5-a5f6-4262-b57a-66245ffa9e01",
+    "disputeId": "demo-maker-retry-001",
+    "eventType": "checker_passed",
+    "actor": "checker_agent",
+    "detail": "\u2705 Groundedness passed on attempt 2 \u2014 all claims cite evidence",
+    "data": {
+      "attempt": 2,
+      "groundednessScore": 0.92
+    },
+    "occurredAt": "2026-06-14T00:01:04.986977+00:00"
+  },
+  {
+    "id": "f975e603-d5c1-4ff4-adfd-cc08322e105d",
+    "eventId": "e21cbe75-9d77-40f8-bea7-e8404c9a9346",
+    "disputeId": "demo-maker-retry-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Assigned to Jason Park for review",
+    "data": {
+      "fromStatus": "ai_drafting",
+      "toStatus": "pending_review"
+    },
+    "occurredAt": "2026-06-14T23:19:04.986977+00:00"
+  },
+  {
+    "id": "f67d0304-afba-42d6-9821-ab1a9c19e3ec",
+    "eventId": "983112d4-f75e-4f64-abda-c168e2cc1877",
+    "disputeId": "demo-maker-retry-001",
+    "eventType": "status_change",
+    "actor": "analyst-004",
+    "detail": "Approved by Jason Park",
+    "data": {
+      "fromStatus": "pending_review",
+      "toStatus": "approved"
+    },
+    "occurredAt": "2026-07-03T23:19:04.986977+00:00"
+  },
+  {
+    "id": "a1e907ec-c81a-4146-91ee-3d9d494821da",
+    "eventId": "828d24f6-e423-434c-b1d6-7c50fe99513e",
+    "disputeId": "demo-maker-retry-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Evidence package submitted to Visa",
+    "data": {
+      "fromStatus": "approved",
+      "toStatus": "submitted"
+    },
+    "occurredAt": "2026-07-04T23:19:04.986977+00:00"
+  },
+  {
+    "id": "ffbbfb7b-4f42-42ec-851e-ecfe0039dfc4",
+    "eventId": "bc35e3b8-340b-4e71-b378-86713967c44e",
+    "disputeId": "demo-reg-e-001",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "\ud83d\udea8 DEBIT DISPUTE \u2014 Reg E 10-business-day clock started",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake",
+      "regE": true,
+      "deadlineDays": 10
+    },
+    "occurredAt": "2026-07-01T23:19:04.986977+00:00"
+  },
+  {
+    "id": "8ae14008-695d-44d4-8fe8-6a1f16a9fbc5",
+    "eventId": "2c08cffd-5441-4868-b4d9-9e79c1448adb",
+    "disputeId": "demo-reg-e-001",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Priority evidence gathering \u2014 Reg E deadline applies",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering",
+      "priority": "high"
+    },
+    "occurredAt": "2026-07-01T23:22:04.986977+00:00"
+  },
+  {
+    "id": "d220bed0-c65d-4c33-933f-5bddd50a5a7f",
+    "eventId": "fa86ae8e-8e43-476c-90fb-52190c9cefb1",
+    "disputeId": "demo-reg-e-001",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Transaction record retrieved \u2014 no 3DS authentication",
+    "data": {
+      "sourceSystem": "payment_processor"
+    },
+    "occurredAt": "2026-07-01T23:25:04.986977+00:00"
+  },
+  {
+    "id": "ef740e6a-1c72-43c7-8506-d21f4640a4ab",
+    "eventId": "91f56ee7-b8ad-4297-b735-4db05d78f453",
+    "disputeId": "demo-reg-e-001",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: IP geolocation data not available from merchant",
+    "data": {
+      "missingEvidence": "ip_geolocation",
+      "impact": "weakens_fraud_defense"
+    },
+    "occurredAt": "2026-07-01T23:28:04.986977+00:00"
+  },
+  {
+    "id": "83e22add-18a2-4331-b206-6a19645d6de9",
+    "eventId": "43ead663-bf3c-416c-9aa8-d6978308d192",
+    "disputeId": "demo-reg-e-001",
+    "eventType": "deadline_warning",
+    "actor": "system",
+    "detail": "\u26a0\ufe0f REG E ALERT: 4 business days remaining. Provisional credit deadline approaching.",
+    "data": {
+      "daysRemaining": 4,
+      "regulation": "Reg E",
+      "consequence": "Must issue provisional credit if not resolved"
+    },
+    "occurredAt": "2026-07-06T20:19:04.986977+00:00"
+  }
+]

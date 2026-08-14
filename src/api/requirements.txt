@@ -1,0 +1,9 @@
+azure-functions
+azure-functions-durable
+azure-ai-documentintelligence
+azure-search-documents
+openai
+azure-cosmos
+azure-identity
+azure-storage-blob
+azure-ai-projects>=2.3.0

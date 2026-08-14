@@ -1,0 +1,67 @@
+[
+  {
+    "eventId": "tl-apex-001",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "case_created",
+    "timestamp": "2026-06-10T08:00:00Z",
+    "actor": "system",
+    "description": "Dispute case created — intake from Visa network file."
+  },
+  {
+    "eventId": "tl-apex-002a",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "score_generated",
+    "timestamp": "2026-06-10T08:00:18Z",
+    "actor": "triage_agent",
+    "description": "Triage agent scored the dispute at intake — win probability 58%, category review (source=stub)."
+  },
+  {
+    "eventId": "tl-apex-002",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "evidence_retrieved",
+    "timestamp": "2026-06-10T08:14:22Z",
+    "actor": "system",
+    "description": "Retrieved transaction authorization record from Visa Authorization System."
+  },
+  {
+    "eventId": "tl-apex-003",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "evidence_retrieved",
+    "timestamp": "2026-06-10T08:16:05Z",
+    "actor": "system",
+    "description": "Retrieved shipment record from ShipTrack PRO."
+  },
+  {
+    "eventId": "tl-apex-004",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "evidence_gap_detected",
+    "timestamp": "2026-06-10T08:17:41Z",
+    "actor": "system",
+    "description": "Gap detected: signed proof of delivery unavailable — carrier data-retention expiry."
+  },
+  {
+    "eventId": "tl-apex-005",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "ai_draft_generated",
+    "timestamp": "2026-06-10T08:31:00Z",
+    "actor": "system",
+    "description": "Maker agent drafted a grounded rebuttal citing 3 verified evidence items — full AI assembly completed in 31 minutes."
+  },
+  {
+    "eventId": "tl-apex-006",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "status_changed",
+    "timestamp": "2026-06-10T08:32:00Z",
+    "actor": "system",
+    "description": "Status changed: ai_drafting → pending_review",
+    "metadata": { "from": "ai_drafting", "to": "pending_review" }
+  },
+  {
+    "eventId": "tl-apex-007",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "analyst_assigned",
+    "timestamp": "2026-06-10T08:35:00Z",
+    "actor": "system",
+    "description": "Case routed to analyst queue for review — awaiting analyst capacity."
+  }
+]

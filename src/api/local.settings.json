@@ -1,0 +1,15 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+
+    "CASE_STORE": "synthetic",
+
+    "COSMOS_ENDPOINT": "",
+    "COSMOS_DATABASE_NAME": "disputes-db"
+  },
+  "Host": {
+    "CORS": "*"
+  }
+}

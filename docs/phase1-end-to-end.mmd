@@ -1,0 +1,62 @@
+sequenceDiagram
+    autonumber
+    actor Cust as 👤 Customer
+    participant CPortal as Customer Portal<br/>(stapp-portal SWA)
+    participant EG as Event Grid<br/>(evgt system topic)
+    participant Blob as Blob Storage<br/>(stqqvftbiyd7fmk / ingest)
+    participant Func as Function App<br/>(func-qqvftbiyd7fmk-app)
+    participant Foundry as AI Foundry<br/>(rgdev-foundry / DeepSeek)
+    participant Cosmos as Cosmos DB<br/>(disputes / timeline / evidence)
+    participant DF as Durable Functions<br/>(orchestrator)
+    actor Analyst as 🧑‍⚖️ Analyst
+    participant APortal as Analyst Portal<br/>(stapp SWA)
+    participant Fabric as Fabric + Power BI
+
+    Cust->>CPortal: File dispute
+    CPortal->>Func: POST /api/disputes (create_dispute)
+    Func->>Cosmos: create_dispute (intake status)
+    Func->>Cosmos: create_timeline_event (ingested)
+
+    Note over Func,Foundry: Triage at intake
+    Func->>Foundry: score_dispute (triage_agent_client)
+    Foundry-->>Func: winProbability + category
+    Func->>Cosmos: upsert (score) + score_generated event
+
+    Note over Func,DF: Async pipeline
+    Func->>DF: start_dispute_orchestration
+    DF->>Func: assemble_case (activity)
+
+    par Evidence + Analysis
+        Func->>Func: retrieve_evidence_for_dispute (mock)
+        Func->>Func: detect_gaps (gaps_service)
+        Func->>Func: score_case (scoring_service)
+        Func->>Foundry: draft_rebuttal (maker_agent_client)
+        Foundry-->>Func: grounded rebuttal + citations
+    end
+    Func->>Cosmos: upsert (evidenceGaps, winProbability, rebuttalDraft)
+
+    Note over Blob,Func: Alt path: network file drop
+    Blob->>EG: BlobCreated event
+    EG->>Func: pl_ingest_raw_event trigger
+    Func->>Cosmos: create_dispute (from network file)
+
+    Analyst->>APortal: Open case detail
+    APortal->>Func: GET /api/cases/{id}
+    Func->>Cosmos: read dispute
+    Cosmos-->>APortal: full case + timeline
+
+    opt Analyst re-runs pipeline
+        Analyst->>APortal: Click Re-run AI Pipeline
+        APortal->>Func: POST /disputes/{id}/reprocess
+        Func->>Foundry: draft_rebuttal (fresh)
+        Func->>Cosmos: upsert refreshed values
+    end
+
+    Analyst->>APortal: Approve / Deny / Escalate
+    APortal->>Func: POST /api/cases/{id}/approve
+    Func->>Cosmos: update_case_status (approved)
+    Func->>DF: raise analyst_decision event
+    DF->>Func: submit_to_network (activity, stub)
+
+    Cosmos-->>Fabric: mirrored data
+    Fabric-->>Analyst: ops dashboards, deadline reports

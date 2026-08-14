@@ -1,0 +1,64 @@
+/* ── Global styles — modern banking portal feel ── */
+
+:root {
+  --app-font: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--app-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* Smooth transition for theme switching */
+.fui-FluentProvider {
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* Subtle hover effects on table rows */
+tr[data-testid="case-row"]:hover {
+  background-color: rgba(0, 120, 212, 0.04) !important;
+  transition: background-color var(--transition-fast);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 128, 128, 0.5);
+}
+
+/* Badge polish */
+.fui-Badge {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Tab indicator animation */
+.fui-Tab::after {
+  transition: all var(--transition-fast) !important;
+}

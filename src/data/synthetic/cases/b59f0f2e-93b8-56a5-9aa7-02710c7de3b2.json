@@ -1,0 +1,87 @@
+{
+  "caseId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+  "orchestrationId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+  "disputeRef": "AMEX-C28-2026-88421",
+  "cardNetwork": "amex",
+  "merchantName": "StreamNow Premium",
+  "cardholderName": "Elena Vasquez",
+  "transactionAmount": 179.88,
+  "transactionDate": "2026-06-01",
+  "status": "pending_review",
+  "reasonCode": "C28",
+  "reasonCodeLabel": "Cancelled Recurring Transaction",
+  "reasonCodeChecklist": [
+    {
+      "item": "Proof of original recurring billing agreement",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Record confirming no cancellation request was received before rebill",
+      "required": true,
+      "satisfied": false
+    },
+    {
+      "item": "Updated cancellation policy acknowledgment post-request",
+      "required": true,
+      "satisfied": false
+    },
+    {
+      "item": "Advance renewal reminder sent to cardholder's registered email",
+      "required": false,
+      "satisfied": false
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "6fd62f9c-f842-5630-9b1b-d3f0791e6339",
+      "type": "transaction",
+      "sourceSystem": "Amex Authorization Platform",
+      "retrievedAt": "2026-06-12T07:30:15Z",
+      "contentRef": "blob://disputes-demo/case-03/txn-record.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "f0291d13-0b34-53c3-b3e8-abec9e67d97c",
+      "type": "communication",
+      "sourceSystem": "StreamNow CRM",
+      "retrievedAt": "2026-06-12T07:33:42Z",
+      "contentRef": "blob://disputes-demo/case-03/crm-export.json",
+      "completeness": "partial"
+    }
+  ],
+  "evidenceGaps": [
+    {
+      "missingItem": "Cancellation confirmation email or support ticket from before the 2026-06-01 rebill",
+      "reason": "Cardholder claims cancellation via web portal on 2026-05-28; StreamNow CRM contains no cancellation event for this account prior to the rebill date.",
+      "impact": "critical"
+    },
+    {
+      "missingItem": "Updated cancellation policy acknowledgment (version in effect since 2026-02-15)",
+      "reason": "CRM record shows terms version 2025-11-01; it is unclear whether the cardholder viewed or accepted the updated policy before the dispute arose.",
+      "impact": "high"
+    }
+  ],
+  "winProbability": 0.31,
+  "riskLevel": "critical",
+  "rebuttalDraft": {
+    "text": "Merchant disputes Amex C28 chargeback for $179.88 recurring charge on 2026-06-01. The cardholder agreed to annual auto-renewal terms at sign-up, confirmed by our authorization record (see evidence [6fd62f9c-f842-5630-9b1b-d3f0791e6339]). Our CRM shows no cancellation request on record before the 2026-06-01 billing date (see evidence [f0291d13-0b34-53c3-b3e8-abec9e67d97c]). A 30-day advance renewal reminder was sent to the cardholder's registered email on 2026-05-02. We request the chargeback be reversed; as a goodwill gesture we are prepared to issue a pro-rated refund for unused service days upon confirmation.",
+    "citations": [
+      {
+        "evidenceId": "6fd62f9c-f842-5630-9b1b-d3f0791e6339",
+        "excerpt": "Amex Auth: CHARGE $179.88 (annual renewal), AUTH CODE AMX-20260601-7741, recurring_indicator=Y"
+      },
+      {
+        "evidenceId": "f0291d13-0b34-53c3-b3e8-abec9e67d97c",
+        "excerpt": "StreamNow CRM: Account EVasquez@email.com — no cancellation event logged; last login 2026-05-29; renewal email sent 2026-05-02 (delivered, not bounced)"
+      }
+    ]
+  },
+  "deadline": {
+    "network": "Amex",
+    "dueDate": "2026-07-09",
+    "daysRemaining": 3
+  },
+  "createdAt": "2026-06-12T07:00:00Z",
+  "updatedAt": "2026-07-03T09:10:00Z"
+}

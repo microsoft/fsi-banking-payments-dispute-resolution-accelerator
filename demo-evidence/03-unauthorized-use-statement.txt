@@ -1,0 +1,38 @@
+========================================================
+STATEMENT OF UNAUTHORIZED USE
+========================================================
+
+Date: July 22, 2026
+Cardholder: Alex Cardholder
+Card: American Express ending in 3782
+
+DECLARATION:
+
+I, Alex Cardholder, declare that the following transaction
+was NOT made by me and was NOT authorized by me:
+
+  Merchant:    QuickFuel Station
+  Date:        July 15, 2026
+  Amount:      $87.43
+  Description: Pay-at-pump transaction
+
+I was in possession of my card at all times. I did not visit
+any QuickFuel Station on or around July 15, 2026. I do not
+recognize this merchant or location.
+
+SUPPORTING FACTS:
+- I was traveling out of state (Chicago, IL) from July 13-17
+  and have hotel receipts confirming my location.
+- The QuickFuel Station charge appears to originate from a
+  location in Tampa, FL — where I have never been.
+- I have since updated my card security settings and enabled
+  transaction alerts.
+
+I am requesting this charge be reversed immediately as
+fraudulent activity on my account.
+
+Signed electronically,
+Alex Cardholder
+July 22, 2026
+
+========================================================

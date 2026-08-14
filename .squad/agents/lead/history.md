@@ -1,0 +1,1 @@
+📌 Team update (2026-07-08T19:56:32Z): Backend deadline computation now owned by API. SLA rules implemented: Visa 30d, Mastercard 45d, Amex 20d, Discover 30d. No client-side fallback needed. Confirm rules are complete. — Keaton

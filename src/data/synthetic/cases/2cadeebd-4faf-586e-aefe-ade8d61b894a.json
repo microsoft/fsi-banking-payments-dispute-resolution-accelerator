@@ -1,0 +1,82 @@
+{
+  "caseId": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+  "orchestrationId": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+  "disputeRef": "DFS-UA01-2026-89901",
+  "cardNetwork": "discover",
+  "merchantName": "GearOutlet Pro",
+  "cardholderName": "Anthony Nguyen",
+  "transactionAmount": 762.44,
+  "transactionDate": "2026-06-20",
+  "status": "pending_review",
+  "reasonCode": "UA01",
+  "reasonCodeLabel": "Fraudulent Transaction — Card Present / EMV Counterfeit",
+  "reasonCodeChecklist": [
+    {
+      "item": "EMV chip transaction log from POS terminal",
+      "required": true,
+      "satisfied": false
+    },
+    {
+      "item": "Transaction authorization record",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Fraud velocity report from risk engine",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Cardholder notification / dispute acknowledgment on file",
+      "required": false,
+      "satisfied": true
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "0d50bdba-9de2-582a-9fc8-8eb364ce2c41",
+      "type": "transaction",
+      "sourceSystem": "Discover POS Network",
+      "retrievedAt": "2026-06-25T13:15:00Z",
+      "contentRef": "blob://disputes-demo/case-08/txn-record.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "555f6f14-c4c6-5e11-8656-ab1bb537c3e6",
+      "type": "fraud_signal",
+      "sourceSystem": "FraudShield AI v3",
+      "retrievedAt": "2026-06-25T13:17:22Z",
+      "contentRef": "blob://disputes-demo/case-08/fraud-signal.json",
+      "completeness": "complete"
+    }
+  ],
+  "evidenceGaps": [
+    {
+      "missingItem": "EMV chip transaction log from POS terminal (model GOP-8812)",
+      "reason": "POS firmware v3.1.4 predates the chip-and-pin upgrade; raw EMV tag data was not captured in the legacy transaction format at this store location.",
+      "impact": "high"
+    }
+  ],
+  "winProbability": 0.61,
+  "riskLevel": "medium",
+  "rebuttalDraft": {
+    "text": "Merchant disputes Discover UA01 chargeback for $762.44. The transaction was processed card-present with chip-read attempted on our POS terminal (see evidence [0d50bdba-9de2-582a-9fc8-8eb364ce2c41]). FraudShield AI scored this transaction at 29/100 with no velocity flags, and the card BIN had no prior chargebacks in 90 days (see evidence [555f6f14-c4c6-5e11-8656-ab1bb537c3e6]). While the raw EMV tag data is unavailable due to a legacy firmware limitation, terminal telemetry confirms a chip-read event occurred prior to fallback-swipe. The merchant fulfilled all due-diligence requirements available under the terminal's capabilities and requests reversal.",
+    "citations": [
+      {
+        "evidenceId": "0d50bdba-9de2-582a-9fc8-8eb364ce2c41",
+        "excerpt": "Discover POS: TXN DFS-2026-06-20-89901, $762.44, CHIP_READ_ATTEMPTED=Y, FALLBACK_SWIPE=Y, AUTH CODE 774821"
+      },
+      {
+        "evidenceId": "555f6f14-c4c6-5e11-8656-ab1bb537c3e6",
+        "excerpt": "FraudShield AI: risk_score=29, velocity_flag=FALSE, bin_chargeback_rate_90d=0.1%, no prior fraud at this location"
+      }
+    ]
+  },
+  "deadline": {
+    "network": "Discover",
+    "dueDate": "2026-07-07",
+    "daysRemaining": 1
+  },
+  "createdAt": "2026-06-25T12:00:00Z",
+  "updatedAt": "2026-07-05T18:30:00Z"
+}

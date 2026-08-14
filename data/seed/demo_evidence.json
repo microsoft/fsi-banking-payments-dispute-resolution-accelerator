@@ -1,0 +1,520 @@
+[
+  {
+    "id": "56c5adfb-6468-4662-96bd-c73d6a23e4ad",
+    "evidenceId": "05793710-b249-44c4-b823-1f8fbd201ae4",
+    "disputeId": "demo-sarah-chen-001",
+    "evidenceType": "transaction",
+    "sourceSystem": "payment_processor",
+    "title": "Transaction Record \u2014 TechGadgets Inc",
+    "content": {
+      "transactionId": "TXN-784521",
+      "amount": 892.5,
+      "currency": "USD",
+      "merchantName": "TechGadgets Inc",
+      "authorizationCode": "847291",
+      "cardPresent": false,
+      "entryMode": "ecommerce",
+      "avsResponse": "Y",
+      "cvvResponse": "M",
+      "processedAt": "2026-05-22T23:19:04.986977+00:00"
+    },
+    "extractedAt": "2026-05-23T23:19:04.986977+00:00"
+  },
+  {
+    "id": "68568dcb-fb21-462b-a6ab-cb1d8a8162d2",
+    "evidenceId": "f877b902-2ce8-4930-8fe4-dad174ffea8b",
+    "disputeId": "demo-sarah-chen-001",
+    "evidenceType": "shipping",
+    "sourceSystem": "logistics",
+    "title": "Shipping Record \u2014 UPS (Delivered with Signature)",
+    "content": {
+      "trackingNumber": "1Z999AA10123456784",
+      "carrier": "UPS",
+      "status": "delivered",
+      "signedBy": "S. Chen",
+      "deliveryDate": "2026-05-25T23:19:04.986977+00:00",
+      "deliveryAddress": {
+        "city": "San Francisco",
+        "state": "CA"
+      },
+      "gpsCoordinates": "37.7749,-122.4194"
+    },
+    "extractedAt": "2026-05-23T23:19:04.986977+00:00"
+  },
+  {
+    "id": "1222e4dc-b27b-42bf-972d-4fb13bf00559",
+    "evidenceId": "5f43b8a3-f45c-42f8-921a-ee5a1fb23bc6",
+    "disputeId": "demo-sarah-chen-001",
+    "evidenceType": "order",
+    "sourceSystem": "oms_erp",
+    "title": "Order Record \u2014 ORD-445521",
+    "content": {
+      "orderId": "ORD-445521",
+      "orderDate": "2026-05-22T23:19:04.986977+00:00",
+      "orderStatus": "delivered",
+      "items": [
+        {
+          "sku": "TG-LAPTOP-PRO",
+          "description": "TechGadgets Pro Laptop 15\"",
+          "quantity": 1,
+          "unitPrice": 892.5
+        }
+      ],
+      "shippingAddress": {
+        "city": "San Francisco",
+        "state": "CA"
+      }
+    },
+    "extractedAt": "2026-05-23T23:19:04.986977+00:00"
+  },
+  {
+    "id": "b5e503cb-e6ba-43ef-8a2d-e978f9c64b22",
+    "evidenceId": "8a4d5137-7f45-4d42-97df-35549e7c34d1",
+    "disputeId": "demo-sarah-chen-001",
+    "evidenceType": "fraud_signal",
+    "sourceSystem": "fraud_engine",
+    "title": "Fraud Risk Assessment \u2014 Friendly Fraud Indicator",
+    "content": {
+      "riskScore": 72,
+      "riskLevel": "medium",
+      "signals": [
+        "friendly_fraud_indicator",
+        "account_age_established",
+        "prior_successful_deliveries"
+      ],
+      "previousChargebacks": 2,
+      "accountAge": "36 months",
+      "friendlyFraudProbability": 0.82
+    },
+    "extractedAt": "2026-05-23T23:19:04.986977+00:00"
+  },
+  {
+    "id": "85db334e-ae8c-4554-92fa-9f8c41137954",
+    "evidenceId": "b8aab79b-a21c-43aa-b5f8-74b8f944f09c",
+    "disputeId": "demo-sarah-chen-001",
+    "evidenceType": "communication",
+    "sourceSystem": "crm",
+    "title": "Customer Communication \u2014 No contact from cardholder",
+    "content": {
+      "communicationType": "support_ticket",
+      "subject": "No support contact on file",
+      "date": "2026-05-23T23:19:04.986977+00:00",
+      "summary": "No inbound contact from Sarah Chen regarding this order. No return request, no shipping inquiry. Product activation detected 2 hours post-delivery."
+    },
+    "extractedAt": "2026-05-23T23:19:04.986977+00:00"
+  },
+  {
+    "id": "c0189264-e18d-46cd-89a2-fdb77bf18e04",
+    "evidenceId": "9070031f-e5e1-485e-b6eb-2f4880059417",
+    "disputeId": "demo-sarah-chen-001",
+    "evidenceType": "receipt",
+    "sourceSystem": "document_intelligence",
+    "title": "Receipt \u2014 TechGadgets Inc Invoice",
+    "content": {
+      "documentType": "invoice",
+      "merchantName": "TechGadgets Inc",
+      "amount": 892.5,
+      "extractionConfidence": 0.97
+    },
+    "blobUrl": "https://storage.blob.core.windows.net/evidence/demo-sarah-chen-001/invoice.pdf",
+    "extractedAt": "2026-05-23T23:19:04.986977+00:00"
+  },
+  {
+    "id": "cb295230-172d-482c-8945-f156acafa43e",
+    "evidenceId": "a418ee0e-2420-4a95-8781-0e8b008c8ad1",
+    "disputeId": "demo-urgent-deadline-001",
+    "evidenceType": "transaction",
+    "sourceSystem": "payment_processor",
+    "title": "Transaction Record \u2014 HomeReno Solutions",
+    "content": {
+      "transactionId": "TXN-991203",
+      "amount": 1247.99,
+      "entryMode": "ecommerce",
+      "avsResponse": "Y",
+      "cvvResponse": "M"
+    },
+    "extractedAt": "2026-05-25T23:19:04.986977+00:00"
+  },
+  {
+    "id": "f7132b70-cc05-4aa5-8591-68ea6fb47f43",
+    "evidenceId": "f3dd1797-e8a8-45b3-80b0-e5427b3ca3cb",
+    "disputeId": "demo-urgent-deadline-001",
+    "evidenceType": "shipping",
+    "sourceSystem": "logistics",
+    "title": "Shipping Record \u2014 FedEx (Delivered)",
+    "content": {
+      "trackingNumber": "FX-794512380",
+      "carrier": "FedEx",
+      "status": "delivered",
+      "signedBy": "J. Kim",
+      "deliveryDate": "2026-05-29T23:19:04.986977+00:00"
+    },
+    "extractedAt": "2026-05-25T23:19:04.986977+00:00"
+  },
+  {
+    "id": "7dbb9907-45a3-40bd-87b0-0d5c21c513ea",
+    "evidenceId": "88b89d82-724c-41b8-97e8-d739be7cc33b",
+    "disputeId": "demo-urgent-deadline-001",
+    "evidenceType": "order",
+    "sourceSystem": "oms_erp",
+    "title": "Order Record \u2014 ORD-882201",
+    "content": {
+      "orderId": "ORD-882201",
+      "items": [
+        {
+          "description": "Premium Hardwood Flooring Kit (200 sq ft)",
+          "quantity": 1,
+          "unitPrice": 1247.99
+        }
+      ],
+      "orderStatus": "delivered"
+    },
+    "extractedAt": "2026-05-25T23:19:04.986977+00:00"
+  },
+  {
+    "id": "3affd8a7-c24f-468b-9862-feefacd65108",
+    "evidenceId": "4aa9084d-d07f-4f16-9d1a-5f157ab89391",
+    "disputeId": "demo-urgent-deadline-001",
+    "evidenceType": "communication",
+    "sourceSystem": "crm",
+    "title": "Customer Communication \u2014 No return request",
+    "content": {
+      "communicationType": "support_ticket",
+      "summary": "No return request filed within 30-day window. No contact from cardholder prior to dispute.",
+      "resolution": "no_response"
+    },
+    "extractedAt": "2026-05-25T23:19:04.986977+00:00"
+  },
+  {
+    "id": "94b76707-b081-434e-85ed-80fbc03d2525",
+    "evidenceId": "524506ea-ab60-4bb0-8b21-1a33bd0621ef",
+    "disputeId": "demo-urgent-deadline-001",
+    "evidenceType": "receipt",
+    "sourceSystem": "document_intelligence",
+    "title": "Product Listing \u2014 Dimensions and Materials Stated",
+    "content": {
+      "documentType": "product_listing",
+      "extractionConfidence": 0.94,
+      "fields_extracted": 12
+    },
+    "blobUrl": "https://storage.blob.core.windows.net/evidence/demo-urgent-deadline-001/listing.pdf",
+    "extractedAt": "2026-05-25T23:19:04.986977+00:00"
+  },
+  {
+    "id": "996505c7-9b11-497f-968d-654dc41534f0",
+    "evidenceId": "3cf07a7b-d6db-45e1-af1f-3ddf4375cdcb",
+    "disputeId": "demo-escalation-001",
+    "evidenceType": "transaction",
+    "sourceSystem": "payment_processor",
+    "title": "Transaction Record \u2014 LuxWatch Boutique",
+    "content": {
+      "transactionId": "TXN-553892",
+      "amount": 3450.0,
+      "entryMode": "ecommerce",
+      "avsResponse": "Y",
+      "cvvResponse": "M",
+      "threeDSecure": true
+    },
+    "extractedAt": "2026-06-19T23:19:04.986977+00:00"
+  },
+  {
+    "id": "c349fa8c-2ee3-4c34-a400-95ddccd03375",
+    "evidenceId": "a2b093df-8633-417c-a583-d1ee3079eebe",
+    "disputeId": "demo-escalation-001",
+    "evidenceType": "fraud_signal",
+    "sourceSystem": "fraud_engine",
+    "title": "Fraud Assessment \u2014 Low Risk Despite High Amount",
+    "content": {
+      "riskScore": 28,
+      "riskLevel": "low",
+      "signals": [
+        "3ds_authenticated",
+        "known_device",
+        "consistent_geo"
+      ],
+      "friendlyFraudProbability": 0.68
+    },
+    "extractedAt": "2026-06-19T23:19:04.986977+00:00"
+  },
+  {
+    "id": "0fbd1463-1059-459b-9f19-b5f60c62590c",
+    "evidenceId": "fde7bf45-6def-47cd-80b8-ab4136267ef9",
+    "disputeId": "demo-escalation-001",
+    "evidenceType": "shipping",
+    "sourceSystem": "logistics",
+    "title": "Shipping Record \u2014 Delivered to Billing Address",
+    "content": {
+      "trackingNumber": "DHL-9981234567",
+      "carrier": "DHL",
+      "status": "delivered",
+      "signedBy": "P. Johnson",
+      "deliveryDate": "2026-06-21T23:19:04.986977+00:00"
+    },
+    "extractedAt": "2026-06-19T23:19:04.986977+00:00"
+  },
+  {
+    "id": "e199cfc0-219e-423b-b796-0910ca13995e",
+    "evidenceId": "c9d76077-0370-43fc-bd92-2fda87978e7d",
+    "disputeId": "demo-escalation-001",
+    "evidenceType": "receipt",
+    "sourceSystem": "document_intelligence",
+    "title": "3D Secure Authentication Log",
+    "content": {
+      "documentType": "authentication_log",
+      "merchantName": "LuxWatch Boutique",
+      "amount": 3450.0,
+      "extractionConfidence": 0.99
+    },
+    "extractedAt": "2026-06-19T23:19:04.986977+00:00"
+  },
+  {
+    "id": "cd59a48e-e404-4bff-99c4-fc8149e40616",
+    "evidenceId": "53c3ca37-2a66-41c4-9f5e-5e6985b551b0",
+    "disputeId": "demo-escalation-001",
+    "evidenceType": "communication",
+    "sourceSystem": "crm",
+    "title": "Prior Purchase History \u2014 14 Successful Transactions",
+    "content": {
+      "communicationType": "account_history",
+      "summary": "Cardholder has 14 successful purchases from this merchant over 8 months. No prior disputes. VIP customer tier."
+    },
+    "extractedAt": "2026-06-19T23:19:04.986977+00:00"
+  },
+  {
+    "id": "45828fde-bf45-48d4-859d-dc040485e0a1",
+    "evidenceId": "e14b4ca6-2cbd-4438-af93-8d6a9407cca6",
+    "disputeId": "demo-fraud-ring-001",
+    "evidenceType": "transaction",
+    "sourceSystem": "payment_processor",
+    "title": "Transaction Record \u2014 Cloned Card Detected",
+    "content": {
+      "transactionId": "TXN-112987",
+      "amount": 4589.99,
+      "entryMode": "chip",
+      "avsResponse": "N",
+      "cvvResponse": "N",
+      "emvFallback": true
+    },
+    "extractedAt": "2026-06-15T23:19:04.986977+00:00"
+  },
+  {
+    "id": "002f8295-d854-4e57-ac3a-bd379d6bf122",
+    "evidenceId": "172a3134-fd67-4df2-ae00-1ef8b583a3df",
+    "disputeId": "demo-fraud-ring-001",
+    "evidenceType": "fraud_signal",
+    "sourceSystem": "fraud_engine",
+    "title": "Fraud Assessment \u2014 Card Testing Pattern Detected",
+    "content": {
+      "riskScore": 94,
+      "riskLevel": "high",
+      "signals": [
+        "card_testing_pattern",
+        "geo_mismatch",
+        "velocity_spike",
+        "emv_fallback_suspicious",
+        "amount_unusual"
+      ],
+      "previousChargebacks": 0,
+      "friendlyFraudProbability": 0.05,
+      "relatedTransactions": [
+        "TXN-112984 ($1.00)",
+        "TXN-112985 ($2.50)",
+        "TXN-112986 ($5.00)"
+      ]
+    },
+    "extractedAt": "2026-06-15T23:19:04.986977+00:00"
+  },
+  {
+    "id": "88c27b7a-4ebc-4599-b574-c4e81c619f7c",
+    "evidenceId": "c479214a-681e-4370-ae53-718c928a1aa6",
+    "disputeId": "demo-fraud-ring-001",
+    "evidenceType": "receipt",
+    "sourceSystem": "document_intelligence",
+    "title": "Surveillance Footage Timestamp Log",
+    "content": {
+      "documentType": "surveillance_log",
+      "merchantName": "TechGadgets Inc",
+      "extractionConfidence": 0.92
+    },
+    "blobUrl": "https://storage.blob.core.windows.net/evidence/demo-fraud-ring-001/surveillance.mp4",
+    "extractedAt": "2026-06-15T23:19:04.986977+00:00"
+  },
+  {
+    "id": "7f80daf0-f094-4464-8731-06c91fc8d604",
+    "evidenceId": "78320aea-c1b5-4460-b940-0f05ca235320",
+    "disputeId": "demo-fraud-ring-001",
+    "evidenceType": "communication",
+    "sourceSystem": "crm",
+    "title": "Cardholder Confirmation \u2014 Was in Houston TX",
+    "content": {
+      "communicationType": "phone_call",
+      "subject": "Fraud report \u2014 cardholder confirms location mismatch",
+      "summary": "Robert Martinez called in immediately after receiving transaction alert. Confirmed he was in Houston, TX at time of purchase. Card was still in his possession."
+    },
+    "extractedAt": "2026-06-15T23:19:04.986977+00:00"
+  },
+  {
+    "id": "adee64a6-80fb-4df7-b888-a9dec1815aa8",
+    "evidenceId": "f4787cc6-5eb8-4ecb-a885-b1f77af49642",
+    "disputeId": "demo-fraud-ring-001",
+    "evidenceType": "fraud_signal",
+    "sourceSystem": "fraud_engine",
+    "title": "Geolocation Mismatch \u2014 Mobile Device vs Transaction",
+    "content": {
+      "riskScore": 98,
+      "signals": [
+        "mobile_geo_houston_tx",
+        "transaction_geo_denver_co",
+        "simultaneous_location_impossible"
+      ]
+    },
+    "extractedAt": "2026-06-15T23:19:04.986977+00:00"
+  },
+  {
+    "id": "6ce32676-3a91-4bdf-95bd-e0fbefe19a38",
+    "evidenceId": "184f9d2f-9538-40f3-bfa2-77ac1d1d1104",
+    "disputeId": "demo-fraud-ring-001",
+    "evidenceType": "transaction",
+    "sourceSystem": "payment_processor",
+    "title": "Card Testing Transactions (3 prior small amounts)",
+    "content": {
+      "relatedTransactions": [
+        {
+          "transactionId": "TXN-112984",
+          "amount": 1.0,
+          "time": "2026-06-14T21:19:04.986977+00:00"
+        },
+        {
+          "transactionId": "TXN-112985",
+          "amount": 2.5,
+          "time": "2026-06-14T21:49:04.986977+00:00"
+        },
+        {
+          "transactionId": "TXN-112986",
+          "amount": 5.0,
+          "time": "2026-06-14T22:19:04.986977+00:00"
+        }
+      ]
+    },
+    "extractedAt": "2026-06-15T23:19:04.986977+00:00"
+  },
+  {
+    "id": "9ff6f993-d8ec-4c1a-bdc4-1126f4decb09",
+    "evidenceId": "9e5230aa-a4af-4635-ada4-f80bb4f52855",
+    "disputeId": "demo-maker-retry-001",
+    "evidenceType": "transaction",
+    "sourceSystem": "payment_processor",
+    "title": "Transaction Record \u2014 Urban Threads Apparel",
+    "content": {
+      "transactionId": "TXN-667823",
+      "amount": 349.99,
+      "entryMode": "ecommerce",
+      "avsResponse": "Y",
+      "cvvResponse": "M"
+    },
+    "extractedAt": "2026-06-12T23:19:04.986977+00:00"
+  },
+  {
+    "id": "43b3ec62-0a46-48dc-9817-1dc07369f882",
+    "evidenceId": "87b2bc1d-5fcd-4003-885d-3f27b81172b4",
+    "disputeId": "demo-maker-retry-001",
+    "evidenceType": "order",
+    "sourceSystem": "oms_erp",
+    "title": "Order Record \u2014 Designer Jacket",
+    "content": {
+      "orderId": "ORD-554433",
+      "items": [
+        {
+          "description": "Wool Blend Designer Jacket \u2014 Charcoal Grey, Size M",
+          "quantity": 1,
+          "unitPrice": 349.99
+        }
+      ],
+      "orderStatus": "delivered"
+    },
+    "extractedAt": "2026-06-12T23:19:04.986977+00:00"
+  },
+  {
+    "id": "4d7f8315-bb3d-4ee2-b052-41ed0605f4ef",
+    "evidenceId": "26d5ba05-652e-43c9-b3c8-4f2d4a6f86a3",
+    "disputeId": "demo-maker-retry-001",
+    "evidenceType": "shipping",
+    "sourceSystem": "logistics",
+    "title": "Shipping Record \u2014 Delivered",
+    "content": {
+      "trackingNumber": "USPS-9400111899223100543210",
+      "carrier": "USPS",
+      "status": "delivered",
+      "deliveryDate": "2026-06-14T23:19:04.986977+00:00"
+    },
+    "extractedAt": "2026-06-12T23:19:04.986977+00:00"
+  },
+  {
+    "id": "d4fbafbc-aac0-495c-965d-af24dc1c0ea3",
+    "evidenceId": "d42c0700-d7ce-4ec4-951b-041c26f35139",
+    "disputeId": "demo-maker-retry-001",
+    "evidenceType": "communication",
+    "sourceSystem": "crm",
+    "title": "Customer Service Chat \u2014 Exchange Offered & Declined",
+    "content": {
+      "communicationType": "chat",
+      "subject": "Product quality complaint",
+      "summary": "Cardholder chatted on Day 12 post-delivery. Complained about fabric feel. Agent offered free exchange. Cardholder declined, stated 'I just want my money back.' No return initiated.",
+      "resolution": "declined_exchange"
+    },
+    "extractedAt": "2026-06-12T23:19:04.986977+00:00"
+  },
+  {
+    "id": "a7f290fb-0a75-4fd5-9187-5e105b6bfe6b",
+    "evidenceId": "ef6b532f-96ee-4a47-bbcf-0ab9814b6604",
+    "disputeId": "demo-maker-retry-001",
+    "evidenceType": "receipt",
+    "sourceSystem": "document_intelligence",
+    "title": "Product Listing & Return Policy (30-day window)",
+    "content": {
+      "documentType": "terms_of_service",
+      "extractionConfidence": 0.96,
+      "fields_extracted": 15
+    },
+    "blobUrl": "https://storage.blob.core.windows.net/evidence/demo-maker-retry-001/listing_and_policy.pdf",
+    "extractedAt": "2026-06-12T23:19:04.986977+00:00"
+  },
+  {
+    "id": "f8489be6-108f-4254-bfc7-06a3387467b0",
+    "evidenceId": "0aace6a6-b1f5-4dbf-8839-f705b9ff984c",
+    "disputeId": "demo-reg-e-001",
+    "evidenceType": "transaction",
+    "sourceSystem": "payment_processor",
+    "title": "Transaction Record \u2014 GameZone Digital (Debit)",
+    "content": {
+      "transactionId": "TXN-887654",
+      "amount": 782.0,
+      "entryMode": "ecommerce",
+      "cardType": "debit",
+      "avsResponse": "N",
+      "cvvResponse": "N",
+      "threeDSecure": false
+    },
+    "extractedAt": "2026-07-01T23:19:04.986977+00:00"
+  },
+  {
+    "id": "57d04c39-3675-49b4-82f7-52a0f34a4bad",
+    "evidenceId": "f1891eaf-417f-459a-a91f-4819164a4cca",
+    "disputeId": "demo-reg-e-001",
+    "evidenceType": "fraud_signal",
+    "sourceSystem": "fraud_engine",
+    "title": "Fraud Assessment \u2014 No 3DS, Failed AVS/CVV",
+    "content": {
+      "riskScore": 67,
+      "riskLevel": "medium",
+      "signals": [
+        "no_3ds_authentication",
+        "avs_mismatch",
+        "cvv_mismatch",
+        "unusual_amount"
+      ],
+      "friendlyFraudProbability": 0.15
+    },
+    "extractedAt": "2026-07-01T23:19:04.986977+00:00"
+  }
+]

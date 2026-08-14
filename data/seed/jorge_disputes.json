@@ -1,0 +1,829 @@
+[
+  {
+    "id": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "caseId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "orchestrationId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "disputeRef": "VCA-2026-0071834",
+    "networkCode": "visa",
+    "cardNetwork": "visa",
+    "reasonCode": "13.1",
+    "reasonCodeLabel": "Merchandise / Services Not Received",
+    "reasonDescription": "Merchandise / Services Not Received",
+    "reasonCategory": "consumer_dispute",
+    "reasonCodeChecklist": [
+      {
+        "item": "Proof of transaction authorization",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Shipping confirmation with tracking number",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Proof of delivery \u2014 signed receipt or carrier confirmation",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Customer communication log regarding non-receipt",
+        "required": false,
+        "satisfied": false
+      }
+    ],
+    "status": "pending_review",
+    "cardholderName": "Marcus Chen",
+    "merchantName": "Apex Electronics",
+    "transactionAmount": 847.99,
+    "transactionCurrency": "USD",
+    "transactionDate": "2026-05-12",
+    "deadline": {
+      "network": "Visa",
+      "dueDate": "2026-07-08",
+      "daysRemaining": 2
+    },
+    "deadlineUtc": "2026-07-08",
+    "daysUntilDeadline": 2,
+    "winProbability": 0.72,
+    "riskLevel": "high",
+    "riskScore": 75,
+    "evidenceCollected": 3,
+    "evidenceGaps": [
+      {
+        "missingItem": "Signed proof of delivery or final carrier scan confirmation",
+        "reason": "ShipTrack PRO returned a partial record; the signature page and final delivery scan event are unavailable due to carrier data-retention expiry (>60 days).",
+        "impact": "critical"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "The merchant disputes this chargeback under Visa reason code 13.1. Per the transaction authorization record (see evidence [f9283b9a-9f95-5f79-8b34-1d70d3959f45]), the cardholder's card was authenticated via Verified by Visa on 2026-05-12 at 14:33 UTC. The order was fulfilled and dispatched per our commerce platform (see evidence [0d325e75-02f7-576b-b55c-db2e07b95091]), with a tracking number assigned and confirmed as in-transit by ShipTrack PRO (see evidence [28f359ac-d5c4-5038-83f7-7224f62e1f40]). Although final delivery confirmation is pending due to a carrier data gap, all merchant obligations up to the point of dispatch have been met. We respectfully request the chargeback be reversed.",
+      "citations": [
+        {
+          "evidenceId": "f9283b9a-9f95-5f79-8b34-1d70d3959f45",
+          "excerpt": "Visa Authorization System: AUTH CODE 083741, CVV2=MATCH, 3DS2 authenticated, 2026-05-12T14:33:07Z"
+        },
+        {
+          "evidenceId": "0d325e75-02f7-576b-b55c-db2e07b95091",
+          "excerpt": "Order #APX-2026-88341: 1\u00d7 APEX-4K-MONITOR-32, fulfilled 2026-05-13, tracking DHL-9281773450 assigned"
+        },
+        {
+          "evidenceId": "28f359ac-d5c4-5038-83f7-7224f62e1f40",
+          "excerpt": "ShipTrack PRO: parcel DHL-9281773450 scanned IN-TRANSIT at Chicago O'Hare hub 2026-05-14T09:22:00Z"
+        }
+      ]
+    },
+    "metadata": {
+      "source": "jorge_curated",
+      "version": "1.0"
+    },
+    "createdAt": "2026-06-10T08:00:00Z",
+    "updatedAt": "2026-07-01T11:45:00Z"
+  },
+  {
+    "id": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "disputeId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "caseId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "orchestrationId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "disputeRef": "MC-4853-2026-00291",
+    "networkCode": "mastercard",
+    "cardNetwork": "mastercard",
+    "reasonCode": "4853",
+    "reasonCodeLabel": "Cardholder Dispute \u2014 Defective / Not as Described",
+    "reasonDescription": "Cardholder Dispute \u2014 Defective / Not as Described",
+    "reasonCategory": "consumer_dispute",
+    "reasonCodeChecklist": [
+      {
+        "item": "Transaction record with itemized purchase detail",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Itemized receipt at point of sale",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Return policy disclosure provided at time of purchase",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Merchant\u2013cardholder correspondence regarding the defect claim",
+        "required": false,
+        "satisfied": true
+      }
+    ],
+    "status": "pending_review",
+    "cardholderName": "Sofia Ramirez",
+    "merchantName": "TechWorld Online",
+    "transactionAmount": 1299.0,
+    "transactionCurrency": "USD",
+    "transactionDate": "2026-04-28",
+    "deadline": {
+      "network": "Mastercard",
+      "dueDate": "2026-07-21",
+      "daysRemaining": 15
+    },
+    "deadlineUtc": "2026-07-21",
+    "daysUntilDeadline": 15,
+    "winProbability": 0.58,
+    "riskLevel": "medium",
+    "riskScore": 50,
+    "evidenceCollected": 4,
+    "evidenceGaps": [
+      {
+        "missingItem": "Return policy disclosure dated at time of purchase",
+        "reason": "Shopify receipt is partial; the footer containing the return policy URL was not captured. Policy page version history is unavailable for 2026-04-28.",
+        "impact": "high"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "Merchant responds to Mastercard 4853 chargeback. The transaction of $1,299.00 on 2026-04-28 was fully authorized (see evidence [d5b6e00b-b9c8-57f3-bbb3-fd350b097ed6]). The order was fulfilled as specified \u2014 one unit of SKU TW-LAPTOP-PRO-15 shipped in original OEM packaging (see evidence [9f8f616f-7618-5bdf-abff-4cda8540a341]). The cardholder contacted support on 2026-05-10 claiming the keyboard was defective; our support team offered an exchange within the 30-day return window, which the cardholder declined (see evidence [cea0442e-7cd4-5d19-a6d1-7330084a855d]). The cardholder's refusal of the offered remedy does not constitute grounds for a chargeback.",
+      "citations": [
+        {
+          "evidenceId": "d5b6e00b-b9c8-57f3-bbb3-fd350b097ed6",
+          "excerpt": "MC Auth Hub: TXN ID MC-2026-04-28-883821, $1,299.00, authorized, 3DS authenticated, no decline flags"
+        },
+        {
+          "evidenceId": "9f8f616f-7618-5bdf-abff-4cda8540a341",
+          "excerpt": "TechWorld OMS: Order #TW-291844, SKU TW-LAPTOP-PRO-15, shipped 2026-04-30, FedEx 776241880031"
+        },
+        {
+          "evidenceId": "cea0442e-7cd4-5d19-a6d1-7330084a855d",
+          "excerpt": "Zendesk #TW-88201: 'We offered an exchange unit. Cardholder responded: I just want a refund.' \u2014 agent note 2026-05-12"
+        }
+      ]
+    },
+    "metadata": {
+      "source": "jorge_curated",
+      "version": "1.0"
+    },
+    "createdAt": "2026-05-20T09:00:00Z",
+    "updatedAt": "2026-06-28T15:22:00Z"
+  },
+  {
+    "id": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+    "disputeId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+    "caseId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+    "orchestrationId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+    "disputeRef": "AMEX-C28-2026-88421",
+    "networkCode": "amex",
+    "cardNetwork": "amex",
+    "reasonCode": "C28",
+    "reasonCodeLabel": "Cancelled Recurring Transaction",
+    "reasonDescription": "Cancelled Recurring Transaction",
+    "reasonCategory": "consumer_dispute",
+    "reasonCodeChecklist": [
+      {
+        "item": "Proof of original recurring billing agreement",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Record confirming no cancellation request was received before rebill",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Updated cancellation policy acknowledgment post-request",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Advance renewal reminder sent to cardholder's registered email",
+        "required": false,
+        "satisfied": false
+      }
+    ],
+    "status": "pending_review",
+    "cardholderName": "Elena Vasquez",
+    "merchantName": "StreamNow Premium",
+    "transactionAmount": 179.88,
+    "transactionCurrency": "USD",
+    "transactionDate": "2026-06-01",
+    "deadline": {
+      "network": "Amex",
+      "dueDate": "2026-07-09",
+      "daysRemaining": 3
+    },
+    "deadlineUtc": "2026-07-09",
+    "daysUntilDeadline": 3,
+    "winProbability": 0.31,
+    "riskLevel": "critical",
+    "riskScore": 90,
+    "evidenceCollected": 2,
+    "evidenceGaps": [
+      {
+        "missingItem": "Cancellation confirmation email or support ticket from before the 2026-06-01 rebill",
+        "reason": "Cardholder claims cancellation via web portal on 2026-05-28; StreamNow CRM contains no cancellation event for this account prior to the rebill date.",
+        "impact": "critical"
+      },
+      {
+        "missingItem": "Updated cancellation policy acknowledgment (version in effect since 2026-02-15)",
+        "reason": "CRM record shows terms version 2025-11-01; it is unclear whether the cardholder viewed or accepted the updated policy before the dispute arose.",
+        "impact": "high"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "Merchant disputes Amex C28 chargeback for $179.88 recurring charge on 2026-06-01. The cardholder agreed to annual auto-renewal terms at sign-up, confirmed by our authorization record (see evidence [6fd62f9c-f842-5630-9b1b-d3f0791e6339]). Our CRM shows no cancellation request on record before the 2026-06-01 billing date (see evidence [f0291d13-0b34-53c3-b3e8-abec9e67d97c]). A 30-day advance renewal reminder was sent to the cardholder's registered email on 2026-05-02. We request the chargeback be reversed; as a goodwill gesture we are prepared to issue a pro-rated refund for unused service days upon confirmation.",
+      "citations": [
+        {
+          "evidenceId": "6fd62f9c-f842-5630-9b1b-d3f0791e6339",
+          "excerpt": "Amex Auth: CHARGE $179.88 (annual renewal), AUTH CODE AMX-20260601-7741, recurring_indicator=Y"
+        },
+        {
+          "evidenceId": "f0291d13-0b34-53c3-b3e8-abec9e67d97c",
+          "excerpt": "StreamNow CRM: Account EVasquez@email.com \u2014 no cancellation event logged; last login 2026-05-29; renewal email sent 2026-05-02 (delivered, not bounced)"
+        }
+      ]
+    },
+    "metadata": {
+      "source": "jorge_curated",
+      "version": "1.0"
+    },
+    "createdAt": "2026-06-12T07:00:00Z",
+    "updatedAt": "2026-07-03T09:10:00Z"
+  },
+  {
+    "id": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "disputeId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "caseId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "orchestrationId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "disputeRef": "DFS-UA02-2026-44102",
+    "networkCode": "discover",
+    "cardNetwork": "discover",
+    "reasonCode": "UA02",
+    "reasonCodeLabel": "Fraudulent Transaction \u2014 Card Not Present",
+    "reasonDescription": "Fraudulent Transaction \u2014 Card Not Present",
+    "reasonCategory": "fraud",
+    "reasonCodeChecklist": [
+      {
+        "item": "Transaction authorization record with CVV2 and AVS match",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "3D Secure v2 authentication proof",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Customer identity verification log",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "IP address and device fingerprint report",
+        "required": false,
+        "satisfied": true
+      }
+    ],
+    "status": "pending_review",
+    "cardholderName": "James O'Brien",
+    "merchantName": "LuxeTravel Bookings",
+    "transactionAmount": 2340.0,
+    "transactionCurrency": "USD",
+    "transactionDate": "2026-05-20",
+    "deadline": {
+      "network": "Discover",
+      "dueDate": "2026-07-31",
+      "daysRemaining": 25
+    },
+    "deadlineUtc": "2026-07-31",
+    "daysUntilDeadline": 25,
+    "winProbability": 0.88,
+    "riskLevel": "low",
+    "riskScore": 25,
+    "evidenceCollected": 4,
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "Merchant disputes Discover UA02 chargeback. The $2,340.00 transaction on 2026-05-20 passed all fraud controls: CVV2 matched, AVS returned a full match, and 3D Secure v2.2 authentication was completed by the cardholder's issuing bank (see evidence [aa4aef54-98c1-5e81-93b2-266f88772ce1]). FraudShield AI scored this transaction 12/100 (low risk) at authorization time, with the device fingerprint matching the cardholder's registered browser profile (see evidence [7b4df10f-e43a-5f69-b240-329eb6471878]). The booking confirmation was sent to the cardholder's verified email address and the cardholder subsequently interacted with the booking portal on 2026-05-21 (see evidence [e0298857-cd62-5ffe-9e7d-e504ffaa9b5f]). The full booking receipt is attached for reference (see evidence [e904d513-35c1-5a19-8721-89a3b691e324]). Merchant requests reversal.",
+      "citations": [
+        {
+          "evidenceId": "aa4aef54-98c1-5e81-93b2-266f88772ce1",
+          "excerpt": "Discover Auth: TXN DFS-2026-05-20-44102, $2,340.00, CVV2=MATCH, AVS=FULL, 3DS2 ECI=05 (fully authenticated)"
+        },
+        {
+          "evidenceId": "7b4df10f-e43a-5f69-b240-329eb6471878",
+          "excerpt": "FraudShield AI: risk_score=12, device_match=TRUE, ip_geo=US-IL (matches billing state), velocity_flag=FALSE"
+        },
+        {
+          "evidenceId": "e0298857-cd62-5ffe-9e7d-e504ffaa9b5f",
+          "excerpt": "LuxeTravel CRM: Booking BKG-LT-7821 confirmed by email 2026-05-20T19:45Z; portal login by JOBrien@email.com on 2026-05-21T08:12Z"
+        },
+        {
+          "evidenceId": "e904d513-35c1-5a19-8721-89a3b691e324",
+          "excerpt": "LuxeTravel receipt: Round-trip ORD\u2192MIA, depart 2026-06-14, return 2026-06-21, total $2,340.00, ref LT-7821"
+        }
+      ]
+    },
+    "metadata": {
+      "source": "jorge_curated",
+      "version": "1.0"
+    },
+    "createdAt": "2026-06-02T08:30:00Z",
+    "updatedAt": "2026-06-28T16:00:00Z"
+  },
+  {
+    "id": "23bcc2f3-90bc-58fc-9843-148e830f6092",
+    "disputeId": "23bcc2f3-90bc-58fc-9843-148e830f6092",
+    "caseId": "23bcc2f3-90bc-58fc-9843-148e830f6092",
+    "orchestrationId": "23bcc2f3-90bc-58fc-9843-148e830f6092",
+    "disputeRef": "VCA-2026-0084512",
+    "networkCode": "visa",
+    "cardNetwork": "visa",
+    "reasonCode": "10.4",
+    "reasonCodeLabel": "Card Absent Fraud",
+    "reasonDescription": "Card Absent Fraud",
+    "reasonCategory": "fraud",
+    "reasonCodeChecklist": [
+      {
+        "item": "Original transaction authorization record",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Fraud signal / velocity report from risk engine",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "IP geolocation log for session at transaction time",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Device fingerprint token",
+        "required": false,
+        "satisfied": false
+      }
+    ],
+    "status": "evidence_gathering",
+    "cardholderName": "Priya Krishnamurthy",
+    "merchantName": "NightMarket Global",
+    "transactionAmount": 534.5,
+    "transactionCurrency": "USD",
+    "transactionDate": "2026-06-15",
+    "deadline": {
+      "network": "Visa",
+      "dueDate": "2026-07-14",
+      "daysRemaining": 8
+    },
+    "deadlineUtc": "2026-07-14",
+    "daysUntilDeadline": 8,
+    "winProbability": 0.45,
+    "riskLevel": "high",
+    "riskScore": 75,
+    "evidenceCollected": 1,
+    "evidenceGaps": [
+      {
+        "missingItem": "Fraud signal velocity report from FraudShield AI",
+        "reason": "FraudShield AI integration timed out during case assembly; retry is queued but has not yet completed.",
+        "impact": "critical"
+      },
+      {
+        "missingItem": "IP geolocation log for session NMG-SESSION-20260615-44812",
+        "reason": "Geo-IP service returned null for this session ID; a re-query has been dispatched but is awaiting response.",
+        "impact": "high"
+      },
+      {
+        "missingItem": "Device fingerprint token",
+        "reason": "Session cookie unavailable; device data purged after NightMarket platform's 90-day retention window.",
+        "impact": "medium"
+      }
+    ],
+    "rebuttalDraft": null,
+    "metadata": {
+      "source": "jorge_curated",
+      "version": "1.0"
+    },
+    "createdAt": "2026-06-20T10:30:00Z",
+    "updatedAt": "2026-07-01T08:00:00Z"
+  },
+  {
+    "id": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "disputeId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "caseId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "orchestrationId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "disputeRef": "MC-4837-2026-01847",
+    "networkCode": "mastercard",
+    "cardNetwork": "mastercard",
+    "reasonCode": "4837",
+    "reasonCodeLabel": "No Cardholder Authorization",
+    "reasonDescription": "No Cardholder Authorization",
+    "reasonCategory": "consumer_dispute",
+    "reasonCodeChecklist": [
+      {
+        "item": "Transaction authorization log with timestamps",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Cardholder-signed authorization form or verified verbal consent record",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "3DS v2 authentication data proving issuer verification",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "IP address and device metadata at authorization time",
+        "required": false,
+        "satisfied": true
+      }
+    ],
+    "status": "pending_review",
+    "cardholderName": "David Thompson",
+    "merchantName": "GoldTech Supplies",
+    "transactionAmount": 3200.0,
+    "transactionCurrency": "USD",
+    "transactionDate": "2026-05-05",
+    "deadline": {
+      "network": "Mastercard",
+      "dueDate": "2026-07-08",
+      "daysRemaining": 2
+    },
+    "deadlineUtc": "2026-07-08",
+    "daysUntilDeadline": 2,
+    "winProbability": 0.22,
+    "riskLevel": "critical",
+    "riskScore": 90,
+    "evidenceCollected": 3,
+    "evidenceGaps": [
+      {
+        "missingItem": "Cardholder-signed authorization form or verified verbal consent recording",
+        "reason": "GoldTech CRM has a partial contract on file; the authorization signature page is absent from the uploaded document.",
+        "impact": "critical"
+      },
+      {
+        "missingItem": "3DS v2 authentication proof",
+        "reason": "Transaction was processed via a legacy path without 3DS enrollment; liability shift back to merchant cannot be established.",
+        "impact": "critical"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "Merchant responds to Mastercard 4837 chargeback for $3,200.00. The transaction was processed through our standard authorization channel and received a positive authorization code from the issuing bank (see evidence [2f31049a-1b70-54e8-a91b-90a85e00c153]). RiskMatrix flagged no elevated fraud velocity at the time of authorization (see evidence [5d62f14f-ff71-58f1-a00f-b967754129a4]). While the full signed authorization form is pending urgent retrieval from archive, the merchant notes that this was a returning customer with prior order history. We are actively working to supply the signature record before the deadline.",
+      "citations": [
+        {
+          "evidenceId": "2f31049a-1b70-54e8-a91b-90a85e00c153",
+          "excerpt": "MC Auth Hub: TXN MC-2026-05-05-01847, $3,200.00, AUTH CODE 509234, APPROVED, no decline flags"
+        },
+        {
+          "evidenceId": "5d62f14f-ff71-58f1-a00f-b967754129a4",
+          "excerpt": "RiskMatrix v2: velocity_score=24 (normal range), no prior chargebacks on this BIN in 90 days"
+        }
+      ]
+    },
+    "metadata": {
+      "source": "jorge_curated",
+      "version": "1.0"
+    },
+    "createdAt": "2026-05-18T13:00:00Z",
+    "updatedAt": "2026-07-04T10:00:00Z"
+  },
+  {
+    "id": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "caseId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "orchestrationId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "disputeRef": "AMEX-FR2-2026-00733",
+    "networkCode": "amex",
+    "cardNetwork": "amex",
+    "reasonCode": "FR2",
+    "reasonCodeLabel": "Fraud \u2014 Full Recourse / Issuer Liability",
+    "reasonDescription": "Fraud \u2014 Full Recourse / Issuer Liability",
+    "reasonCategory": "consumer_dispute",
+    "reasonCodeChecklist": [
+      {
+        "item": "Transaction record with Amex SafeKey / EMV data",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Fraud chargeback notification date within Amex SLA window",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "PCI-DSS compliance certificate (current calendar year)",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Merchant response to cardholder contact",
+        "required": false,
+        "satisfied": true
+      }
+    ],
+    "status": "escalated",
+    "cardholderName": "Rebecca Williams",
+    "merchantName": "CryptoVault Exchange",
+    "transactionAmount": 8500.0,
+    "transactionCurrency": "USD",
+    "transactionDate": "2026-04-10",
+    "deadline": {
+      "network": "Amex",
+      "dueDate": "2026-07-12",
+      "daysRemaining": 6
+    },
+    "deadlineUtc": "2026-07-12",
+    "daysUntilDeadline": 6,
+    "winProbability": 0.48,
+    "riskLevel": "high",
+    "riskScore": 75,
+    "evidenceCollected": 4,
+    "evidenceGaps": [
+      {
+        "missingItem": "PCI-DSS compliance certificate for calendar year 2026",
+        "reason": "Certificate renewal was due 2026-06-30; the compliance team did not upload the renewed certificate before the case SLA elapsed. Matter escalated to VP of Compliance.",
+        "impact": "high"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "Merchant disputes Amex FR2 chargeback of $8,500.00 dated 2026-04-10. The transaction was fully authenticated via Amex SafeKey and EMV data is on record (see evidence [25de446e-8faa-5783-bfa6-519960b38749]). FraudShield AI reported a low-risk score of 18/100 at authorization time with no velocity anomalies (see evidence [5bde067c-7f9f-5161-8599-4ad1471cb699]). Our CRM confirms the cardholder contacted support on 2026-04-11 and our team responded within 4 hours (see evidence [36a43a73-f6f0-5e3d-bdaf-a0b1e7b7e3fe]). PCI-DSS certification renewal is in progress; the renewed certificate will be submitted as supplemental evidence prior to the response deadline.",
+      "citations": [
+        {
+          "evidenceId": "25de446e-8faa-5783-bfa6-519960b38749",
+          "excerpt": "Amex Auth: CHARGE $8,500.00, EMV_CHIP=YES, AMEX_SAFEKEY=PASS, AUTH CODE AMX-20260410-0733"
+        },
+        {
+          "evidenceId": "5bde067c-7f9f-5161-8599-4ad1471cb699",
+          "excerpt": "FraudShield AI: risk_score=18, transaction_type=digital_asset_purchase, no prior chargebacks on BIN in 180 days"
+        },
+        {
+          "evidenceId": "36a43a73-f6f0-5e3d-bdaf-a0b1e7b7e3fe",
+          "excerpt": "CryptoVault CRM: Ticket #CVX-4491 opened 2026-04-11 by R.Williams; agent responded 2026-04-11T14:22Z \u2014 transaction confirmed as cardholder-initiated"
+        }
+      ]
+    },
+    "metadata": {
+      "source": "jorge_curated",
+      "version": "1.0"
+    },
+    "createdAt": "2026-05-01T07:30:00Z",
+    "updatedAt": "2026-07-05T09:00:00Z"
+  },
+  {
+    "id": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+    "disputeId": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+    "caseId": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+    "orchestrationId": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+    "disputeRef": "DFS-UA01-2026-89901",
+    "networkCode": "discover",
+    "cardNetwork": "discover",
+    "reasonCode": "UA01",
+    "reasonCodeLabel": "Fraudulent Transaction \u2014 Card Present / EMV Counterfeit",
+    "reasonDescription": "Fraudulent Transaction \u2014 Card Present / EMV Counterfeit",
+    "reasonCategory": "fraud",
+    "reasonCodeChecklist": [
+      {
+        "item": "EMV chip transaction log from POS terminal",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Transaction authorization record",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Fraud velocity report from risk engine",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Cardholder notification / dispute acknowledgment on file",
+        "required": false,
+        "satisfied": true
+      }
+    ],
+    "status": "pending_review",
+    "cardholderName": "Anthony Nguyen",
+    "merchantName": "GearOutlet Pro",
+    "transactionAmount": 762.44,
+    "transactionCurrency": "USD",
+    "transactionDate": "2026-06-20",
+    "deadline": {
+      "network": "Discover",
+      "dueDate": "2026-07-07",
+      "daysRemaining": 1
+    },
+    "deadlineUtc": "2026-07-07",
+    "daysUntilDeadline": 1,
+    "winProbability": 0.61,
+    "riskLevel": "medium",
+    "riskScore": 50,
+    "evidenceCollected": 2,
+    "evidenceGaps": [
+      {
+        "missingItem": "EMV chip transaction log from POS terminal (model GOP-8812)",
+        "reason": "POS firmware v3.1.4 predates the chip-and-pin upgrade; raw EMV tag data was not captured in the legacy transaction format at this store location.",
+        "impact": "high"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "Merchant disputes Discover UA01 chargeback for $762.44. The transaction was processed card-present with chip-read attempted on our POS terminal (see evidence [0d50bdba-9de2-582a-9fc8-8eb364ce2c41]). FraudShield AI scored this transaction at 29/100 with no velocity flags, and the card BIN had no prior chargebacks in 90 days (see evidence [555f6f14-c4c6-5e11-8656-ab1bb537c3e6]). While the raw EMV tag data is unavailable due to a legacy firmware limitation, terminal telemetry confirms a chip-read event occurred prior to fallback-swipe. The merchant fulfilled all due-diligence requirements available under the terminal's capabilities and requests reversal.",
+      "citations": [
+        {
+          "evidenceId": "0d50bdba-9de2-582a-9fc8-8eb364ce2c41",
+          "excerpt": "Discover POS: TXN DFS-2026-06-20-89901, $762.44, CHIP_READ_ATTEMPTED=Y, FALLBACK_SWIPE=Y, AUTH CODE 774821"
+        },
+        {
+          "evidenceId": "555f6f14-c4c6-5e11-8656-ab1bb537c3e6",
+          "excerpt": "FraudShield AI: risk_score=29, velocity_flag=FALSE, bin_chargeback_rate_90d=0.1%, no prior fraud at this location"
+        }
+      ]
+    },
+    "metadata": {
+      "source": "jorge_curated",
+      "version": "1.0"
+    },
+    "createdAt": "2026-06-25T12:00:00Z",
+    "updatedAt": "2026-07-05T18:30:00Z"
+  },
+  {
+    "id": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "caseId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "orchestrationId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "disputeRef": "VCA-2026-0063301",
+    "networkCode": "visa",
+    "cardNetwork": "visa",
+    "reasonCode": "13.3",
+    "reasonCodeLabel": "Merchandise / Services Not as Described or Defective",
+    "reasonDescription": "Merchandise / Services Not as Described or Defective",
+    "reasonCategory": "consumer_dispute",
+    "reasonCodeChecklist": [
+      {
+        "item": "Original order confirmation matching transaction amount",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Product description at time of sale",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Itemized receipt",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Merchant\u2013cardholder correspondence regarding the dispute",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Shipping and delivery confirmation record",
+        "required": false,
+        "satisfied": true
+      }
+    ],
+    "status": "approved",
+    "cardholderName": "Hannah Sorenson",
+    "merchantName": "FurniCraft Direct",
+    "transactionAmount": 1845.0,
+    "transactionCurrency": "USD",
+    "transactionDate": "2026-03-22",
+    "deadline": {
+      "network": "Visa",
+      "dueDate": "2026-07-31",
+      "daysRemaining": 25
+    },
+    "deadlineUtc": "2026-07-31",
+    "daysUntilDeadline": 25,
+    "winProbability": 0.93,
+    "riskLevel": "low",
+    "riskScore": 25,
+    "evidenceCollected": 5,
+    "evidenceGaps": [],
+    "rebuttalDraft": {
+      "text": "Merchant disputes Visa 13.3 chargeback for $1,845.00. The transaction was authorized on 2026-03-22 (see evidence [6e45834b-e822-54b3-93ae-3175e8602ee6]). Order #FC-2026-63301 was fulfilled exactly as described \u2014 one Scandinavian oak dining table, model FC-DT-OAK-180, as itemized on the receipt (see evidence [d5dfcf90-d692-57a5-a1a9-40c7d093d9b5] and [57844001-cea7-5ea0-8381-950833e1d6d7]). The cardholder contacted support on 2026-04-02 claiming the wood grain did not match the website photo; our agent provided a photographic comparison confirming the item is within documented natural-variation tolerances (see evidence [07fed50d-1624-5e43-9f30-fbabf48b61ae]). Delivery is confirmed by FedEx with photo proof of doorstep placement and recipient signature (see evidence [89167762-fb32-5d31-8305-0ad3d8e07527]). All evidence is complete and the chargeback has been approved for reversal.",
+      "citations": [
+        {
+          "evidenceId": "6e45834b-e822-54b3-93ae-3175e8602ee6",
+          "excerpt": "Visa Auth: TXN VCA-2026-0063301, $1,845.00, APPROVED, 3DS2 ECI=05, 2026-03-22T16:44:09Z"
+        },
+        {
+          "evidenceId": "d5dfcf90-d692-57a5-a1a9-40c7d093d9b5",
+          "excerpt": "FurniCraft OMS: Order #FC-2026-63301, SKU FC-DT-OAK-180 'Scandinavian Oak Dining Table 180 cm', qty 1, $1,845.00"
+        },
+        {
+          "evidenceId": "57844001-cea7-5ea0-8381-950833e1d6d7",
+          "excerpt": "Shopify receipt: FC-DT-OAK-180 \u00d7 1 @ $1,845.00, color=Natural Oak, finish=Matte \u2014 matches listing snapshot at time of purchase"
+        },
+        {
+          "evidenceId": "07fed50d-1624-5e43-9f30-fbabf48b61ae",
+          "excerpt": "Zendesk #FC-77211: Agent note 2026-04-03 \u2014 photo comparison sent; item confirmed within natural grain variation; cardholder acknowledged"
+        },
+        {
+          "evidenceId": "89167762-fb32-5d31-8305-0ad3d8e07527",
+          "excerpt": "FedEx: TRK# 776241880031, DELIVERED 2026-04-01T14:22Z, PHOTO_POD=YES, recipient signature obtained at door"
+        }
+      ]
+    },
+    "metadata": {
+      "source": "jorge_curated",
+      "version": "1.0"
+    },
+    "createdAt": "2026-04-15T08:30:00Z",
+    "updatedAt": "2026-07-05T14:30:00Z"
+  },
+  {
+    "id": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "disputeId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "caseId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "orchestrationId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "disputeRef": "MC-4855-2026-07744",
+    "networkCode": "mastercard",
+    "cardNetwork": "mastercard",
+    "reasonCode": "4855",
+    "reasonCodeLabel": "Goods or Services Not Provided",
+    "reasonDescription": "Goods or Services Not Provided",
+    "reasonCategory": "consumer_dispute",
+    "reasonCodeChecklist": [
+      {
+        "item": "Booking or service confirmation tied to transaction",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Proof of service delivery or fulfillment",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "Customer communication log",
+        "required": true,
+        "satisfied": true
+      },
+      {
+        "item": "Delivery manifest or service completion record",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "status": "pending_review",
+    "cardholderName": "Carlos Mendez",
+    "merchantName": "AirRoute Connect",
+    "transactionAmount": 4100.0,
+    "transactionCurrency": "USD",
+    "transactionDate": "2026-06-28",
+    "deadline": {
+      "network": "Mastercard",
+      "dueDate": "2026-07-09",
+      "daysRemaining": 3
+    },
+    "deadlineUtc": "2026-07-09",
+    "daysUntilDeadline": 3,
+    "winProbability": 0.39,
+    "riskLevel": "critical",
+    "riskScore": 90,
+    "evidenceCollected": 3,
+    "evidenceGaps": [
+      {
+        "missingItem": "Proof of flight / service fulfillment (departure manifest)",
+        "reason": "AirRoute OMS returned a partial booking record; the departure manifest confirming the service was rendered has not been attached to the case.",
+        "impact": "critical"
+      },
+      {
+        "missingItem": "Service completion or delivery manifest PDF",
+        "reason": "OMS marks booking #ARC-20260628-7744 as 'FULFILLED' but the manifest PDF is absent from blob storage \u2014 likely a pipeline ingestion failure.",
+        "impact": "critical"
+      },
+      {
+        "missingItem": "Customer service escalation log (Zendesk ticket #ARC-28811)",
+        "reason": "CRM note references this Zendesk ticket but it was not ingested into the evidence store during case assembly.",
+        "impact": "medium"
+      }
+    ],
+    "rebuttalDraft": {
+      "text": "Merchant disputes Mastercard 4855 chargeback for $4,100.00 (booking date 2026-06-28). The transaction was authorized and the booking was confirmed by our OMS (see evidence [4fd07adb-d033-5d62-aa5a-ddfda54ed1d7] and [224f056e-c2bf-5f3f-b819-4e8d9a8200c4]). AirRoute CRM shows customer contact was received and responded to on 2026-06-29 (see evidence [22183699-c00b-5618-9fc1-8e3230ecb65e]). The departure manifest and fulfillment records are being urgently retrieved from our operations system and will be submitted as supplemental evidence. We assert the service was rendered as booked and request the chargeback be reversed pending submission of the complete fulfillment documentation.",
+      "citations": [
+        {
+          "evidenceId": "4fd07adb-d033-5d62-aa5a-ddfda54ed1d7",
+          "excerpt": "MC Auth Hub: TXN MC-2026-06-28-07744, $4,100.00, AUTH CODE 661230, APPROVED"
+        },
+        {
+          "evidenceId": "224f056e-c2bf-5f3f-b819-4e8d9a8200c4",
+          "excerpt": "AirRoute OMS: Booking #ARC-20260628-7744, status=FULFILLED, route=DFW\u2192LHR, service_date=2026-07-02 (partial record \u2014 manifest not attached)"
+        },
+        {
+          "evidenceId": "22183699-c00b-5618-9fc1-8e3230ecb65e",
+          "excerpt": "AirRoute CRM: C.Mendez contacted 2026-06-29T10:15Z; agent responded 2026-06-29T11:02Z confirming booking details"
+        }
+      ]
+    },
+    "metadata": {
+      "source": "jorge_curated",
+      "version": "1.0"
+    },
+    "createdAt": "2026-07-01T09:30:00Z",
+    "updatedAt": "2026-07-05T22:00:00Z"
+  }
+]

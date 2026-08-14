@@ -1,0 +1,1107 @@
+[
+  {
+    "id": "311b871a-3ecc-4f5e-9c9d-93bc28faab4b",
+    "eventId": "5efa6d0d-591e-4260-bc06-ba38bfea3e40",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 Visa 13.1",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-06-10T08:00:00Z"
+  },
+  {
+    "id": "19c8eeec-872c-4562-829b-e95a73c98760",
+    "eventId": "7a855256-f640-47c6-83cd-4993b5ecbf96",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Evidence gathering initiated",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering"
+    },
+    "occurredAt": "2026-06-10T08:05:00Z"
+  },
+  {
+    "id": "420e2852-51ca-467a-a4b7-27e58e9b300e",
+    "eventId": "48dc1c58-9a50-46bc-b9cd-5dd398ff80a5",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved transaction from Visa Authorization System",
+    "data": {
+      "sourceSystem": "Visa Authorization System",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-06-10T08:14:22Z"
+  },
+  {
+    "id": "9a5e8212-1a60-4c55-a4d4-ffc329f84ef9",
+    "eventId": "78ab796a-acdf-41ce-abee-dcf5641ea2d4",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved shipping from ShipTrack PRO",
+    "data": {
+      "sourceSystem": "ShipTrack PRO",
+      "completeness": "partial"
+    },
+    "occurredAt": "2026-06-10T08:16:05Z"
+  },
+  {
+    "id": "d93c7678-4248-4853-9328-5b439db1af55",
+    "eventId": "3125d9bb-93e2-4367-bfed-df7ab890adcb",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved order from Apex Commerce Platform",
+    "data": {
+      "sourceSystem": "Apex Commerce Platform",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-06-10T08:17:41Z"
+  },
+  {
+    "id": "6e83641f-dc5a-4245-8cf9-03445014db66",
+    "eventId": "038b469c-0ea4-4862-9f3e-1bf242c3af2b",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: Signed proof of delivery or final carrier scan confirmation",
+    "data": {
+      "missingItem": "Signed proof of delivery or final carrier scan confirmation",
+      "impact": "critical"
+    },
+    "occurredAt": "2026-06-10T08:15:00Z"
+  },
+  {
+    "id": "10b6935f-380b-4bd7-90c7-a412bc11c484",
+    "eventId": "474b0937-72d3-48c0-a9d0-b1eeb66a93a1",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "Rebuttal draft generated",
+    "data": {
+      "fromStatus": "evidence_gathering",
+      "toStatus": "ai_drafting"
+    },
+    "occurredAt": "2026-06-10T10:00:00Z"
+  },
+  {
+    "id": "f9ae7dc5-1e0e-4b3b-ac16-a173b44b9c7c",
+    "eventId": "2d477c68-c9bd-4166-b5ff-ea7e5d154a9d",
+    "disputeId": "bd3f6fe3-ad20-5e96-b926-da3b87c18834",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Assigned for analyst review",
+    "data": {
+      "fromStatus": "ai_drafting",
+      "toStatus": "pending_review"
+    },
+    "occurredAt": "2026-06-10T11:00:00Z"
+  },
+  {
+    "id": "bc990b67-23bb-4575-9bcc-feb7fa3c3e13",
+    "eventId": "076154ec-1a87-4476-84e3-fb30a88f59bc",
+    "disputeId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 Mastercard 4853",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-05-20T09:00:00Z"
+  },
+  {
+    "id": "2a10af39-568c-4c74-b79c-6b15ca5e8ce2",
+    "eventId": "70eaed7b-91ae-4967-8178-e25ea2502325",
+    "disputeId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Evidence gathering initiated",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering"
+    },
+    "occurredAt": "2026-05-20T09:05:00Z"
+  },
+  {
+    "id": "dec9ce7c-1564-49ae-9efa-6fc1826c7f68",
+    "eventId": "3f8ee544-a41f-42c8-be39-90b13b2c66e5",
+    "disputeId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved transaction from Mastercard Authorization Hub",
+    "data": {
+      "sourceSystem": "Mastercard Authorization Hub",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-05-20T10:05:33Z"
+  },
+  {
+    "id": "03659a43-3ea3-41b6-975f-ce851c931b0d",
+    "eventId": "e6da6498-4d9c-41e4-a39f-bcd77e54fd50",
+    "disputeId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved receipt from Shopify POS",
+    "data": {
+      "sourceSystem": "Shopify POS",
+      "completeness": "partial"
+    },
+    "occurredAt": "2026-05-20T10:07:12Z"
+  },
+  {
+    "id": "c796d475-b4f7-4ecc-83b7-82f6cd551bdc",
+    "eventId": "49c07346-18e7-4397-b9b3-6a2dd7d0a9a3",
+    "disputeId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved communication from Zendesk Support",
+    "data": {
+      "sourceSystem": "Zendesk Support",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-05-20T10:09:55Z"
+  },
+  {
+    "id": "a1c5867c-9398-453a-9235-3161f5404655",
+    "eventId": "08873ea8-211f-442e-b704-91a8e49d641a",
+    "disputeId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved order from TechWorld OMS",
+    "data": {
+      "sourceSystem": "TechWorld OMS",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-05-20T10:11:20Z"
+  },
+  {
+    "id": "88c42155-f9e2-4d98-858e-4f510db198c0",
+    "eventId": "637acdcb-6bff-4769-8adb-fff468c6a564",
+    "disputeId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: Return policy disclosure dated at time of purchase",
+    "data": {
+      "missingItem": "Return policy disclosure dated at time of purchase",
+      "impact": "high"
+    },
+    "occurredAt": "2026-05-20T09:15:00Z"
+  },
+  {
+    "id": "0dff86d1-a626-4b9e-9971-8e8e91e8a697",
+    "eventId": "9f8dfdef-0cc6-472b-b686-620d11f8db3a",
+    "disputeId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "Rebuttal draft generated",
+    "data": {
+      "fromStatus": "evidence_gathering",
+      "toStatus": "ai_drafting"
+    },
+    "occurredAt": "2026-05-20T11:00:00Z"
+  },
+  {
+    "id": "de9a3449-8dbe-4033-94e5-4c28e4722fce",
+    "eventId": "923580d4-8249-4ab3-94b2-c5cd84d12fee",
+    "disputeId": "d10550c8-f345-5c76-8109-8e00c2391bed",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Assigned for analyst review",
+    "data": {
+      "fromStatus": "ai_drafting",
+      "toStatus": "pending_review"
+    },
+    "occurredAt": "2026-05-20T12:00:00Z"
+  },
+  {
+    "id": "8ddfd3fb-5ead-4544-9546-ab98d97d3303",
+    "eventId": "d71deef7-bb52-480b-b102-690206fae83f",
+    "disputeId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 Amex C28",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-06-12T07:00:00Z"
+  },
+  {
+    "id": "5092144f-50fd-41d0-9a0c-eb73a840bba7",
+    "eventId": "4068ad70-2f2b-48a2-9ec1-6c6b688f6b49",
+    "disputeId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Evidence gathering initiated",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering"
+    },
+    "occurredAt": "2026-06-12T07:05:00Z"
+  },
+  {
+    "id": "01249165-2496-4c93-a829-07946b17e48e",
+    "eventId": "44b2772a-2570-4ea9-add7-4943e098bfc9",
+    "disputeId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved transaction from Amex Authorization Platform",
+    "data": {
+      "sourceSystem": "Amex Authorization Platform",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-06-12T07:30:15Z"
+  },
+  {
+    "id": "ac269618-a430-4d34-898d-10e41ca0c60f",
+    "eventId": "91a69098-1a1e-428f-ae89-79c4e8d0a82d",
+    "disputeId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved communication from StreamNow CRM",
+    "data": {
+      "sourceSystem": "StreamNow CRM",
+      "completeness": "partial"
+    },
+    "occurredAt": "2026-06-12T07:33:42Z"
+  },
+  {
+    "id": "e0e139ee-9bda-4650-8b21-40a0793d1606",
+    "eventId": "98c67ca6-16fc-468f-8971-366ed0c0753a",
+    "disputeId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: Cancellation confirmation email or support ticket from before the 2026-06-01 rebill",
+    "data": {
+      "missingItem": "Cancellation confirmation email or support ticket from before the 2026-06-01 rebill",
+      "impact": "critical"
+    },
+    "occurredAt": "2026-06-12T07:15:00Z"
+  },
+  {
+    "id": "06d3daae-6e17-4c22-878f-8d0b3826337a",
+    "eventId": "e1c3f459-8ad9-474d-9de1-9004dfd095dc",
+    "disputeId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: Updated cancellation policy acknowledgment (version in effect since 2026-02-15)",
+    "data": {
+      "missingItem": "Updated cancellation policy acknowledgment (version in effect since 2026-02-15)",
+      "impact": "high"
+    },
+    "occurredAt": "2026-06-12T07:15:00Z"
+  },
+  {
+    "id": "def06385-5521-4890-8257-4e9b4ffc9eb7",
+    "eventId": "d79cf39e-9249-4100-8312-98eda09f863a",
+    "disputeId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "Rebuttal draft generated",
+    "data": {
+      "fromStatus": "evidence_gathering",
+      "toStatus": "ai_drafting"
+    },
+    "occurredAt": "2026-06-12T09:00:00Z"
+  },
+  {
+    "id": "212ffaa9-a812-439b-b2fa-2da315c0ef2d",
+    "eventId": "c3e7715f-2c69-4618-956f-1cdd86c62b92",
+    "disputeId": "b59f0f2e-93b8-56a5-9aa7-02710c7de3b2",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Assigned for analyst review",
+    "data": {
+      "fromStatus": "ai_drafting",
+      "toStatus": "pending_review"
+    },
+    "occurredAt": "2026-06-12T10:00:00Z"
+  },
+  {
+    "id": "8f732a53-0a46-4b28-9175-2b5bb9ddf685",
+    "eventId": "69a88508-ed85-40e5-873b-8fc06b119830",
+    "disputeId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 Discover UA02",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-06-02T08:30:00Z"
+  },
+  {
+    "id": "3f1d88a8-74d7-4434-a96d-c8da56527bcf",
+    "eventId": "1dfb58d7-edad-4671-b1e5-c64683ba2d85",
+    "disputeId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Evidence gathering initiated",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering"
+    },
+    "occurredAt": "2026-06-02T08:35:00Z"
+  },
+  {
+    "id": "040d8b55-687e-4b07-be4d-4f419e3f9778",
+    "eventId": "ea16a309-b29f-4bd2-826b-cf8b457ea9cb",
+    "disputeId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved transaction from Discover Authorization System",
+    "data": {
+      "sourceSystem": "Discover Authorization System",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-06-02T09:00:44Z"
+  },
+  {
+    "id": "2cd51436-74e7-450d-a4f3-f64c07dff494",
+    "eventId": "35680751-8086-467e-89d3-b1f5a846ce9a",
+    "disputeId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved fraud_signal from FraudShield AI v3",
+    "data": {
+      "sourceSystem": "FraudShield AI v3",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-06-02T09:02:18Z"
+  },
+  {
+    "id": "fb423dd1-ea13-49ba-afa1-8625a61dac69",
+    "eventId": "13588b86-8be1-4cbf-a34e-242782873fcb",
+    "disputeId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved communication from LuxeTravel CRM",
+    "data": {
+      "sourceSystem": "LuxeTravel CRM",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-06-02T09:04:01Z"
+  },
+  {
+    "id": "7f591cf5-effc-4dd6-8645-bd2ce2224d6b",
+    "eventId": "ba1e93a1-9ca4-4a0b-a3ec-76c26747cc57",
+    "disputeId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved receipt from LuxeTravel Booking Engine",
+    "data": {
+      "sourceSystem": "LuxeTravel Booking Engine",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-06-02T09:05:30Z"
+  },
+  {
+    "id": "66f2c46f-c747-41af-ba52-e1aec095b657",
+    "eventId": "d662dce6-0765-44a2-8c01-1400eb328956",
+    "disputeId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "Rebuttal draft generated",
+    "data": {
+      "fromStatus": "evidence_gathering",
+      "toStatus": "ai_drafting"
+    },
+    "occurredAt": "2026-06-02T10:30:00Z"
+  },
+  {
+    "id": "94eb8a39-1ea1-4006-8d27-aa30fe07bf01",
+    "eventId": "96fd9bff-aa21-4861-a406-9c910199b225",
+    "disputeId": "77293238-7e17-5fd3-93b6-e8ec55151a54",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Assigned for analyst review",
+    "data": {
+      "fromStatus": "ai_drafting",
+      "toStatus": "pending_review"
+    },
+    "occurredAt": "2026-06-02T11:30:00Z"
+  },
+  {
+    "id": "fd702eda-35ff-4d7d-b477-e913017ad8fa",
+    "eventId": "2edd02ab-251b-480e-8263-07e69a5ffa63",
+    "disputeId": "23bcc2f3-90bc-58fc-9843-148e830f6092",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 Visa 10.4",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-06-20T10:30:00Z"
+  },
+  {
+    "id": "7d4e4bee-bf7e-4c7b-8635-87af910af3e0",
+    "eventId": "49cef5b9-24b0-464e-ba4d-5c56ae019366",
+    "disputeId": "23bcc2f3-90bc-58fc-9843-148e830f6092",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Evidence gathering initiated",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering"
+    },
+    "occurredAt": "2026-06-20T10:35:00Z"
+  },
+  {
+    "id": "012917b6-4389-45e0-bfdf-274761b3d3c3",
+    "eventId": "8642a79b-e43c-47e9-ba89-2564c9ce75b8",
+    "disputeId": "23bcc2f3-90bc-58fc-9843-148e830f6092",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved transaction from Visa Authorization Network",
+    "data": {
+      "sourceSystem": "Visa Authorization Network",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-06-20T11:00:00Z"
+  },
+  {
+    "id": "a55a0278-5abc-42a0-a086-2f3e9352f8cf",
+    "eventId": "0cdb88d3-75db-41f9-9330-fb2d51bfdbb1",
+    "disputeId": "23bcc2f3-90bc-58fc-9843-148e830f6092",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: Fraud signal velocity report from FraudShield AI",
+    "data": {
+      "missingItem": "Fraud signal velocity report from FraudShield AI",
+      "impact": "critical"
+    },
+    "occurredAt": "2026-06-20T10:45:00Z"
+  },
+  {
+    "id": "40e5eca7-35f7-4ffa-aad6-63205e81e9fb",
+    "eventId": "275461d0-7c76-4dd0-a1b4-faf76b68f1cf",
+    "disputeId": "23bcc2f3-90bc-58fc-9843-148e830f6092",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: IP geolocation log for session NMG-SESSION-20260615-44812",
+    "data": {
+      "missingItem": "IP geolocation log for session NMG-SESSION-20260615-44812",
+      "impact": "high"
+    },
+    "occurredAt": "2026-06-20T10:45:00Z"
+  },
+  {
+    "id": "599e352b-fa60-4616-a686-f930f631ddb7",
+    "eventId": "c923808a-d816-4fb8-9548-6e21e24303cb",
+    "disputeId": "23bcc2f3-90bc-58fc-9843-148e830f6092",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: Device fingerprint token",
+    "data": {
+      "missingItem": "Device fingerprint token",
+      "impact": "medium"
+    },
+    "occurredAt": "2026-06-20T10:45:00Z"
+  },
+  {
+    "id": "6027f6e5-86aa-4dc7-bf63-c5775e340b75",
+    "eventId": "c2aefccf-7b11-4a12-9a74-e63bb2a78f03",
+    "disputeId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 Mastercard 4837",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-05-18T13:00:00Z"
+  },
+  {
+    "id": "3b6125c8-02e6-4572-82b3-ff55efd3df8f",
+    "eventId": "34512606-fd3d-4ea1-b852-a9a47db8c4f7",
+    "disputeId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Evidence gathering initiated",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering"
+    },
+    "occurredAt": "2026-05-18T13:05:00Z"
+  },
+  {
+    "id": "20258b5b-5a80-4c6d-8235-7885b91ff89e",
+    "eventId": "86e14cd1-ec0b-428b-804b-13be5ff2e2c7",
+    "disputeId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved transaction from Mastercard Authorization Hub",
+    "data": {
+      "sourceSystem": "Mastercard Authorization Hub",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-05-18T14:20:00Z"
+  },
+  {
+    "id": "38975eda-6811-45c3-a230-cd9321f55aea",
+    "eventId": "0f0b1da0-db11-4f0c-ae67-28b36d68bbd9",
+    "disputeId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved fraud_signal from RiskMatrix v2",
+    "data": {
+      "sourceSystem": "RiskMatrix v2",
+      "completeness": "partial"
+    },
+    "occurredAt": "2026-05-18T14:22:30Z"
+  },
+  {
+    "id": "d82b6a2f-ff4d-4541-866b-18c7d27ba987",
+    "eventId": "d44be753-5620-49ac-99b3-21db31437e74",
+    "disputeId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved contract from GoldTech CRM",
+    "data": {
+      "sourceSystem": "GoldTech CRM",
+      "completeness": "partial"
+    },
+    "occurredAt": "2026-05-18T14:24:55Z"
+  },
+  {
+    "id": "0190bded-3724-46e3-8b2a-59a730770bd0",
+    "eventId": "3428943c-7cb5-4182-800c-f87176678c52",
+    "disputeId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: Cardholder-signed authorization form or verified verbal consent recording",
+    "data": {
+      "missingItem": "Cardholder-signed authorization form or verified verbal consent recording",
+      "impact": "critical"
+    },
+    "occurredAt": "2026-05-18T13:15:00Z"
+  },
+  {
+    "id": "5be31631-9de7-49bf-9c1a-faa0a7a31fb4",
+    "eventId": "30993132-311d-4353-add3-5c35fec2912c",
+    "disputeId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: 3DS v2 authentication proof",
+    "data": {
+      "missingItem": "3DS v2 authentication proof",
+      "impact": "critical"
+    },
+    "occurredAt": "2026-05-18T13:15:00Z"
+  },
+  {
+    "id": "60ba5514-0f7f-4b60-81ea-6b7beab70929",
+    "eventId": "93176658-07ad-435a-846b-f8b1cf7d2529",
+    "disputeId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "Rebuttal draft generated",
+    "data": {
+      "fromStatus": "evidence_gathering",
+      "toStatus": "ai_drafting"
+    },
+    "occurredAt": "2026-05-18T15:00:00Z"
+  },
+  {
+    "id": "9f1ef79c-3c2b-4761-955b-609d233f8f74",
+    "eventId": "22f4f633-4ba3-4fca-8c6d-dc5c6950f537",
+    "disputeId": "1b496d7e-e91a-5bb8-8417-c1b15dc4e035",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Assigned for analyst review",
+    "data": {
+      "fromStatus": "ai_drafting",
+      "toStatus": "pending_review"
+    },
+    "occurredAt": "2026-05-18T16:00:00Z"
+  },
+  {
+    "id": "2593ec65-ae16-4fa5-b2d5-5e7fe4f54a03",
+    "eventId": "0e667945-6c7b-4b75-968c-af94c492ecfa",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 Amex FR2",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-05-01T07:30:00Z"
+  },
+  {
+    "id": "24091b8e-9b35-472d-a00d-e5afbc50bd0b",
+    "eventId": "431f020c-53f9-44ba-a4f8-ea5a7b4654a8",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Evidence gathering initiated",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering"
+    },
+    "occurredAt": "2026-05-01T07:35:00Z"
+  },
+  {
+    "id": "a3e151dc-9ab4-423b-86da-32e60cd26ebb",
+    "eventId": "1289a140-d539-4824-b332-201c6809ccfd",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved transaction from Amex Authorization Platform",
+    "data": {
+      "sourceSystem": "Amex Authorization Platform",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-05-01T08:10:00Z"
+  },
+  {
+    "id": "16b32935-a15c-4603-b98c-412b31e7074e",
+    "eventId": "0be45186-a653-47ac-a67a-b876e2c74ffa",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved fraud_signal from FraudShield AI v3",
+    "data": {
+      "sourceSystem": "FraudShield AI v3",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-05-01T08:12:44Z"
+  },
+  {
+    "id": "df2463a8-bca7-4110-bb7f-f2233ffcd126",
+    "eventId": "8e40a827-a55f-47ef-97fc-d296482caf62",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved communication from CryptoVault CRM",
+    "data": {
+      "sourceSystem": "CryptoVault CRM",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-05-01T08:14:20Z"
+  },
+  {
+    "id": "2a624833-52ca-4c05-b7f8-c9c8af9bcc3c",
+    "eventId": "63fe5eae-9d83-4791-8fe5-aedbf9d64f1e",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved receipt from CryptoVault Ledger",
+    "data": {
+      "sourceSystem": "CryptoVault Ledger",
+      "completeness": "partial"
+    },
+    "occurredAt": "2026-05-01T08:16:05Z"
+  },
+  {
+    "id": "678b1ca4-f2de-4a97-9501-d81f00d29d4f",
+    "eventId": "c4dd9695-8d07-459b-9dd8-2f72ce88468d",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: PCI-DSS compliance certificate for calendar year 2026",
+    "data": {
+      "missingItem": "PCI-DSS compliance certificate for calendar year 2026",
+      "impact": "high"
+    },
+    "occurredAt": "2026-05-01T07:45:00Z"
+  },
+  {
+    "id": "ca2927e0-4ba2-458e-901c-887207c65b2e",
+    "eventId": "1b4bd432-2c6f-4664-a59c-8cc4b8585e4b",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "Rebuttal draft generated",
+    "data": {
+      "fromStatus": "evidence_gathering",
+      "toStatus": "ai_drafting"
+    },
+    "occurredAt": "2026-05-01T09:30:00Z"
+  },
+  {
+    "id": "fe96d980-395b-4cfd-905f-086f5ee8577e",
+    "eventId": "f6b11e47-f125-48b7-aec6-571a82d507b1",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Assigned for analyst review",
+    "data": {
+      "fromStatus": "ai_drafting",
+      "toStatus": "pending_review"
+    },
+    "occurredAt": "2026-05-01T10:30:00Z"
+  },
+  {
+    "id": "3ca9b5f9-4b0f-4a00-9c76-72958919bc27",
+    "eventId": "eba7614b-f243-4097-9fc4-0576bfc5e46b",
+    "disputeId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Escalated to supervisor",
+    "data": {
+      "fromStatus": "pending_review",
+      "toStatus": "escalated"
+    },
+    "occurredAt": "2026-07-05T09:00:00Z"
+  },
+  {
+    "id": "f8eb8550-2415-4a98-b3e7-e82fba841382",
+    "eventId": "723d9f91-e178-4d05-8368-fe47a3ee3240",
+    "disputeId": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 Discover UA01",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-06-25T12:00:00Z"
+  },
+  {
+    "id": "b1193f24-1348-4d69-a26c-f4f728fbe3ec",
+    "eventId": "98adc869-8fc6-47bb-a651-ba374e8f47e3",
+    "disputeId": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Evidence gathering initiated",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering"
+    },
+    "occurredAt": "2026-06-25T12:05:00Z"
+  },
+  {
+    "id": "4863a0a7-4e6f-4064-bb84-139eecd11989",
+    "eventId": "779b421f-8201-4d51-a0d9-b2c862532218",
+    "disputeId": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved transaction from Discover POS Network",
+    "data": {
+      "sourceSystem": "Discover POS Network",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-06-25T13:15:00Z"
+  },
+  {
+    "id": "9a06afdc-97e4-402b-b38d-08ed3cc8f2e3",
+    "eventId": "a3943572-2f27-4613-8d5a-29b82b3a96d8",
+    "disputeId": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved fraud_signal from FraudShield AI v3",
+    "data": {
+      "sourceSystem": "FraudShield AI v3",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-06-25T13:17:22Z"
+  },
+  {
+    "id": "0ff9bf7a-1c44-4e1f-af73-88c00c21edf8",
+    "eventId": "50ba93d9-cd37-4b21-98a6-dd5f40bf6dec",
+    "disputeId": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: EMV chip transaction log from POS terminal (model GOP-8812)",
+    "data": {
+      "missingItem": "EMV chip transaction log from POS terminal (model GOP-8812)",
+      "impact": "high"
+    },
+    "occurredAt": "2026-06-25T12:15:00Z"
+  },
+  {
+    "id": "a9b3efa7-fd98-4c13-85fd-c1128b8c72e5",
+    "eventId": "a94fc268-de56-419c-b4d2-274e722467d7",
+    "disputeId": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "Rebuttal draft generated",
+    "data": {
+      "fromStatus": "evidence_gathering",
+      "toStatus": "ai_drafting"
+    },
+    "occurredAt": "2026-06-25T14:00:00Z"
+  },
+  {
+    "id": "e2291260-5af2-4979-b42c-6e8564366cd4",
+    "eventId": "eeae0ff2-3906-4e23-882d-b836561bc0c5",
+    "disputeId": "2cadeebd-4faf-586e-aefe-ade8d61b894a",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Assigned for analyst review",
+    "data": {
+      "fromStatus": "ai_drafting",
+      "toStatus": "pending_review"
+    },
+    "occurredAt": "2026-06-25T15:00:00Z"
+  },
+  {
+    "id": "94b12e89-ae1e-4ac5-981c-2c588399dbd2",
+    "eventId": "f31dfdcc-7996-4dfe-aa61-bf81794a9ba4",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 Visa 13.3",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-04-15T08:30:00Z"
+  },
+  {
+    "id": "68fe8e28-ed45-4901-a1a9-6c200ca26d60",
+    "eventId": "aa151be9-3fd3-44cf-9bda-32582ddec15a",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Evidence gathering initiated",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering"
+    },
+    "occurredAt": "2026-04-15T08:35:00Z"
+  },
+  {
+    "id": "abb86aac-7030-48aa-aee2-f60acd46c97e",
+    "eventId": "323cfd46-f1bf-4044-b22b-8c54ed4d54f2",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved transaction from Visa Authorization Network",
+    "data": {
+      "sourceSystem": "Visa Authorization Network",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-04-15T09:00:00Z"
+  },
+  {
+    "id": "695c64b2-7ae6-4213-ab57-eb5e0e5c1dc6",
+    "eventId": "6c5850d1-a9be-4e5a-bb3c-c1d4032be1de",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved order from FurniCraft OMS",
+    "data": {
+      "sourceSystem": "FurniCraft OMS",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-04-15T09:02:10Z"
+  },
+  {
+    "id": "198ba64a-8b59-4e9e-89d7-d097bc17f7a3",
+    "eventId": "946d27bf-d201-4d97-b47f-1ebee2b78bdd",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved receipt from FurniCraft Shopify",
+    "data": {
+      "sourceSystem": "FurniCraft Shopify",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-04-15T09:03:45Z"
+  },
+  {
+    "id": "a5b22f29-f58c-4e04-94d7-cb391716936f",
+    "eventId": "f3f82a92-16f3-4026-8102-9b15db9cb2ef",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved communication from Zendesk Support",
+    "data": {
+      "sourceSystem": "Zendesk Support",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-04-15T09:05:20Z"
+  },
+  {
+    "id": "e15718df-4c24-4415-8e21-6c2af2425d25",
+    "eventId": "99fae51d-8b5d-4054-8272-9a8c341adbf5",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved shipping from FedEx Tracking API",
+    "data": {
+      "sourceSystem": "FedEx Tracking API",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-04-15T09:07:00Z"
+  },
+  {
+    "id": "9f09e78e-eafe-402d-bf5a-f8fd7755675d",
+    "eventId": "b90414cb-5d16-4fae-ac24-348d6fafe30b",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "Rebuttal draft generated",
+    "data": {
+      "fromStatus": "evidence_gathering",
+      "toStatus": "ai_drafting"
+    },
+    "occurredAt": "2026-04-15T10:30:00Z"
+  },
+  {
+    "id": "4ff002a3-628a-4bea-bce7-53263e036fc1",
+    "eventId": "e3233893-b0a2-414c-b98c-d25fb1d3010a",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Assigned for analyst review",
+    "data": {
+      "fromStatus": "ai_drafting",
+      "toStatus": "pending_review"
+    },
+    "occurredAt": "2026-04-15T11:30:00Z"
+  },
+  {
+    "id": "0ad4b424-f8ec-4a62-9fa0-5a0d3208be17",
+    "eventId": "0bdea0fd-fcb7-4a65-b2f3-b10b4821876a",
+    "disputeId": "1f60a711-3c46-5a82-bc8c-ba072291e75e",
+    "eventType": "status_change",
+    "actor": "analyst",
+    "detail": "Approved by analyst",
+    "data": {
+      "fromStatus": "pending_review",
+      "toStatus": "approved"
+    },
+    "occurredAt": "2026-07-05T14:30:00Z"
+  },
+  {
+    "id": "df360410-33f0-4702-8d50-77b89a00c9b9",
+    "eventId": "7d419c14-965f-4192-be67-08f4c6151d40",
+    "disputeId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Dispute created \u2014 Mastercard 4855",
+    "data": {
+      "fromStatus": null,
+      "toStatus": "intake"
+    },
+    "occurredAt": "2026-07-01T09:30:00Z"
+  },
+  {
+    "id": "4a6a5a0a-774b-48fd-ba68-ff8a2a9dc5ba",
+    "eventId": "c767aff2-cdf7-4ee6-9bc2-17cc8d473349",
+    "disputeId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "eventType": "status_change",
+    "actor": "orchestrator_agent",
+    "detail": "Evidence gathering initiated",
+    "data": {
+      "fromStatus": "intake",
+      "toStatus": "evidence_gathering"
+    },
+    "occurredAt": "2026-07-01T09:35:00Z"
+  },
+  {
+    "id": "85fb555c-4c7a-4e59-9fff-d6f4d22d9e7c",
+    "eventId": "f6c0a4da-4544-4e04-9f51-e33feb3f5ea3",
+    "disputeId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved transaction from Mastercard Authorization Hub",
+    "data": {
+      "sourceSystem": "Mastercard Authorization Hub",
+      "completeness": "complete"
+    },
+    "occurredAt": "2026-07-01T10:00:00Z"
+  },
+  {
+    "id": "bc9bf64f-9cef-49bb-8861-a34adb38dd86",
+    "eventId": "95dbb45d-957f-404f-a4b4-1057105e354b",
+    "disputeId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved order from AirRoute OMS",
+    "data": {
+      "sourceSystem": "AirRoute OMS",
+      "completeness": "partial"
+    },
+    "occurredAt": "2026-07-01T10:02:30Z"
+  },
+  {
+    "id": "e79fef9d-aa20-4d82-9f6d-a627f91f25b9",
+    "eventId": "1f073a7d-50f7-4443-acf0-d3e16f3510fe",
+    "disputeId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "eventType": "evidence_retrieved",
+    "actor": "evidence_agent",
+    "detail": "Retrieved communication from AirRoute CRM",
+    "data": {
+      "sourceSystem": "AirRoute CRM",
+      "completeness": "partial"
+    },
+    "occurredAt": "2026-07-01T10:04:15Z"
+  },
+  {
+    "id": "a27a87c9-66e2-4d75-b70f-e9ea8b8cb6d6",
+    "eventId": "f962936e-2a5f-4370-8658-618c6e22ffe8",
+    "disputeId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: Proof of flight / service fulfillment (departure manifest)",
+    "data": {
+      "missingItem": "Proof of flight / service fulfillment (departure manifest)",
+      "impact": "critical"
+    },
+    "occurredAt": "2026-07-01T09:45:00Z"
+  },
+  {
+    "id": "bf1848c1-ee74-45f5-8636-afdcaf118e3e",
+    "eventId": "4885aa5d-ba1f-4946-a4cf-96cac3d57175",
+    "disputeId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: Service completion or delivery manifest PDF",
+    "data": {
+      "missingItem": "Service completion or delivery manifest PDF",
+      "impact": "critical"
+    },
+    "occurredAt": "2026-07-01T09:45:00Z"
+  },
+  {
+    "id": "14b0825f-b8fa-4c27-a8a2-3608d153ed3f",
+    "eventId": "c597a909-5555-4ace-8c40-a13ca3e30cb8",
+    "disputeId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "eventType": "evidence_gap",
+    "actor": "evidence_agent",
+    "detail": "\u26a0\ufe0f EVIDENCE GAP: Customer service escalation log (Zendesk ticket #ARC-28811)",
+    "data": {
+      "missingItem": "Customer service escalation log (Zendesk ticket #ARC-28811)",
+      "impact": "medium"
+    },
+    "occurredAt": "2026-07-01T09:45:00Z"
+  },
+  {
+    "id": "42cdaac3-5146-4e09-ac38-a8bdb6589714",
+    "eventId": "5356b062-ad2c-4ee0-9c45-8cc936379667",
+    "disputeId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "eventType": "status_change",
+    "actor": "maker_agent",
+    "detail": "Rebuttal draft generated",
+    "data": {
+      "fromStatus": "evidence_gathering",
+      "toStatus": "ai_drafting"
+    },
+    "occurredAt": "2026-07-01T11:30:00Z"
+  },
+  {
+    "id": "adecb0e8-eb4c-4886-9369-023bfb403fe2",
+    "eventId": "70c43a84-aead-4527-8d68-cb7a5df2348d",
+    "disputeId": "76aa7019-e71f-5595-b5f5-f3fb279cc0b0",
+    "eventType": "status_change",
+    "actor": "system",
+    "detail": "Assigned for analyst review",
+    "data": {
+      "fromStatus": "ai_drafting",
+      "toStatus": "pending_review"
+    },
+    "occurredAt": "2026-07-01T12:30:00Z"
+  }
+]

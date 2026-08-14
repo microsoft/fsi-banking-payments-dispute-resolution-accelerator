@@ -1,0 +1,157 @@
+name: CD
+
+on:
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+  AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+  AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+  AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
+  AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
+  AZURE_RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP }}
+  AZURE_FUNCTION_APP_NAME: ${{ vars.AZURE_FUNCTION_APP_NAME }}
+  # Deployer is the CI OIDC identity (a service principal), not a user — drives RBAC principalType
+  AZURE_PRINCIPAL_TYPE: 'ServicePrincipal'
+
+jobs:
+  # -------------------------------------------------------------------------
+  # Provision infra, deploy the two Static Web Apps (public control-plane APIs
+  # — unaffected by private storage/Cosmos), and build the Functions zip.
+  # Runs on the GitHub-hosted runner; no VNet access needed for any of this.
+  # -------------------------------------------------------------------------
+  provision-and-build:
+    name: Provision & Build
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - name: Install AZD
+        uses: azure/setup-azd@v2
+
+      - name: Login to Azure (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: AZD Auth
+        run: azd auth login --client-id $AZURE_CLIENT_ID --federated-credential-provider github --tenant-id $AZURE_TENANT_ID
+
+      - name: AZD Provision
+        run: azd provision --no-prompt
+
+      - name: Setup Node.js (for Vite SPA build)
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+
+      - name: AZD Deploy (web)
+        run: azd deploy web --no-prompt
+
+      - name: AZD Deploy (portal)
+        run: azd deploy portal --no-prompt
+
+      # Cosmos DB and the Storage Account carry a `SecurityControl: 'Ignore'`
+      # tag (see infra/main.bicep, infra/modules/cosmos.bicep,
+      # infra/modules/storage.bicep, confirmed working in PR #80), which keeps
+      # organizational Azure Policy governance from forcing publicNetworkAccess: Disabled on them.
+      # With public network access enabled, the GitHub-hosted runner below can
+      # reach both directly (still over TLS with RBAC/Entra auth enforced) —
+      # no VNet-joined runner is needed to build or deploy this package.
+      - name: Build Functions zip package
+        working-directory: src/api
+        run: |
+          mkdir -p data
+          cp -R ../data/synthetic data/
+          zip -r ../../functions-package.zip . \
+            -x "*.pyc" \
+            -x "__pycache__/*" \
+            -x "*/__pycache__/*" \
+            -x ".pytest_cache/*" \
+            -x "tests/*" \
+            -x "local.settings.json"
+
+      - name: Upload Functions package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: functions-package
+          path: functions-package.zip
+          retention-days: 1
+
+  # -------------------------------------------------------------------------
+  # Deploy the Functions package + seed Cosmos DB.
+  # Root-cause note (2026-07-09): earlier deploy attempts used
+  # `az functionapp deploy --type zip` (Kudu/SCM OneDeploy), which returned
+  # 415 Unsupported Media Type for this app. The real cause was not networking
+  # — it is an Azure CLI limitation: Flex Consumption (FC1) uses a
+  # blobContainer-based deployment storage model that the legacy Kudu zip-push
+  # endpoint does not support. Fix: use Azure/functions-action@v1 with
+  # remote-build: true, which targets the correct FC1 SCM API path.
+  # Auth is handled by the azure/login@v2 OIDC step already in this job.
+  # -------------------------------------------------------------------------
+  deploy-api:
+    name: Deploy API
+    needs: provision-and-build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - name: Download Functions package artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: functions-package
+
+      - name: Login to Azure (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy Functions package
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ env.AZURE_FUNCTION_APP_NAME }}
+          package: 'functions-package.zip'
+          remote-build: true
+
+      - name: Install API dependencies (for seed step)
+        working-directory: src/api
+        run: pip3 install -r requirements.txt
+
+      # Cosmos DB carries the same `SecurityControl: 'Ignore'` tag as Storage
+      # (PR #80), so publicNetworkAccess stays Enabled and this GitHub-hosted
+      # runner can reach it directly (TLS + RBAC/Entra auth still enforced).
+      # Endpoint is resolved via ARM (control-plane) rather than
+      # `azd env get-values`, since this fresh checkout has no local `.azure/`
+      # environment state (that directory is gitignored and only exists in the
+      # provision-and-build job's ephemeral workspace).
+      - name: Seed Cosmos DB
+        working-directory: src/api
+        run: |
+          COSMOS_ACCOUNT_NAME=$(az cosmosdb list --resource-group "$AZURE_RESOURCE_GROUP" --query "[0].name" -o tsv)
+          export COSMOS_ENDPOINT=$(az cosmosdb show --resource-group "$AZURE_RESOURCE_GROUP" --name "$COSMOS_ACCOUNT_NAME" --query documentEndpoint -o tsv)
+          export COSMOS_DATABASE_NAME=disputes-db
+          PYTHONPATH=. python3 scripts/seed_cosmos.py

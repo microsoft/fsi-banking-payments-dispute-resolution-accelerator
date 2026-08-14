@@ -1,0 +1,38 @@
+{
+  "generatedAt": "2026-07-06T23:18:57.260837+00:00",
+  "counts": {
+    "disputes": 250,
+    "evidence": 1007,
+    "timeline": 2692
+  },
+  "networks": {
+    "visa": 101,
+    "mastercard": 80,
+    "amex": 40,
+    "discover": 29
+  },
+  "statuses": {
+    "intake": 7,
+    "evidence_gathering": 20,
+    "ai_drafting": 13,
+    "pending_review": 27,
+    "approved": 60,
+    "submitted": 52,
+    "denied": 25,
+    "escalated": 15,
+    "expired": 11,
+    "closed": 20
+  },
+  "categories": {
+    "authorization": 14,
+    "consumer_dispute": 95,
+    "fraud": 99,
+    "processing_error": 42
+  },
+  "amounts": {
+    "min": 16.79,
+    "max": 4786.74,
+    "avg": 725.88,
+    "total": 181469.34
+  }
+}

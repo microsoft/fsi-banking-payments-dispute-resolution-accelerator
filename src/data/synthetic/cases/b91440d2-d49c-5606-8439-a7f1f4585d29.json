@@ -1,0 +1,102 @@
+{
+  "caseId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+  "orchestrationId": "b91440d2-d49c-5606-8439-a7f1f4585d29",
+  "disputeRef": "AMEX-FR2-2026-00733",
+  "cardNetwork": "amex",
+  "merchantName": "CryptoVault Exchange",
+  "cardholderName": "Rebecca Williams",
+  "transactionAmount": 8500.0,
+  "transactionDate": "2026-04-10",
+  "status": "escalated",
+  "reasonCode": "FR2",
+  "reasonCodeLabel": "Fraud — Full Recourse / Issuer Liability",
+  "reasonCodeChecklist": [
+    {
+      "item": "Transaction record with Amex SafeKey / EMV data",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "Fraud chargeback notification date within Amex SLA window",
+      "required": true,
+      "satisfied": true
+    },
+    {
+      "item": "PCI-DSS compliance certificate (current calendar year)",
+      "required": true,
+      "satisfied": false
+    },
+    {
+      "item": "Merchant response to cardholder contact",
+      "required": false,
+      "satisfied": true
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "25de446e-8faa-5783-bfa6-519960b38749",
+      "type": "transaction",
+      "sourceSystem": "Amex Authorization Platform",
+      "retrievedAt": "2026-05-01T08:10:00Z",
+      "contentRef": "blob://disputes-demo/case-07/txn-record.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "5bde067c-7f9f-5161-8599-4ad1471cb699",
+      "type": "fraud_signal",
+      "sourceSystem": "FraudShield AI v3",
+      "retrievedAt": "2026-05-01T08:12:44Z",
+      "contentRef": "blob://disputes-demo/case-07/fraud-signal.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "36a43a73-f6f0-5e3d-bdaf-a0b1e7b7e3fe",
+      "type": "communication",
+      "sourceSystem": "CryptoVault CRM",
+      "retrievedAt": "2026-05-01T08:14:20Z",
+      "contentRef": "blob://disputes-demo/case-07/crm-comms.json",
+      "completeness": "complete"
+    },
+    {
+      "evidenceId": "6d0ba956-84c0-5900-a341-2910aec43dbd",
+      "type": "receipt",
+      "sourceSystem": "CryptoVault Ledger",
+      "retrievedAt": "2026-05-01T08:16:05Z",
+      "contentRef": "blob://disputes-demo/case-07/ledger-receipt.pdf",
+      "completeness": "partial"
+    }
+  ],
+  "evidenceGaps": [
+    {
+      "missingItem": "PCI-DSS compliance certificate for calendar year 2026",
+      "reason": "Certificate renewal was due 2026-06-30; the compliance team did not upload the renewed certificate before the case SLA elapsed. Matter escalated to VP of Compliance.",
+      "impact": "high"
+    }
+  ],
+  "winProbability": 0.48,
+  "riskLevel": "high",
+  "rebuttalDraft": {
+    "text": "Merchant disputes Amex FR2 chargeback of $8,500.00 dated 2026-04-10. The transaction was fully authenticated via Amex SafeKey and EMV data is on record (see evidence [25de446e-8faa-5783-bfa6-519960b38749]). FraudShield AI reported a low-risk score of 18/100 at authorization time with no velocity anomalies (see evidence [5bde067c-7f9f-5161-8599-4ad1471cb699]). Our CRM confirms the cardholder contacted support on 2026-04-11 and our team responded within 4 hours (see evidence [36a43a73-f6f0-5e3d-bdaf-a0b1e7b7e3fe]). PCI-DSS certification renewal is in progress; the renewed certificate will be submitted as supplemental evidence prior to the response deadline.",
+    "citations": [
+      {
+        "evidenceId": "25de446e-8faa-5783-bfa6-519960b38749",
+        "excerpt": "Amex Auth: CHARGE $8,500.00, EMV_CHIP=YES, AMEX_SAFEKEY=PASS, AUTH CODE AMX-20260410-0733"
+      },
+      {
+        "evidenceId": "5bde067c-7f9f-5161-8599-4ad1471cb699",
+        "excerpt": "FraudShield AI: risk_score=18, transaction_type=digital_asset_purchase, no prior chargebacks on BIN in 180 days"
+      },
+      {
+        "evidenceId": "36a43a73-f6f0-5e3d-bdaf-a0b1e7b7e3fe",
+        "excerpt": "CryptoVault CRM: Ticket #CVX-4491 opened 2026-04-11 by R.Williams; agent responded 2026-04-11T14:22Z — transaction confirmed as cardholder-initiated"
+      }
+    ]
+  },
+  "deadline": {
+    "network": "Amex",
+    "dueDate": "2026-07-12",
+    "daysRemaining": 6
+  },
+  "createdAt": "2026-05-01T07:30:00Z",
+  "updatedAt": "2026-07-05T09:00:00Z"
+}

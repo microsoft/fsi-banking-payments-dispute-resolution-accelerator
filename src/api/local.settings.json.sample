@@ -1,0 +1,29 @@
+{
+  "_comment": "Copy this file to local.settings.json and fill in the values for your environment.",
+  "_comment_case_store": "CASE_STORE controls the data backend. 'synthetic' (default) serves the 10 fixture cases from src/data/synthetic/ with NO Cosmos connection — no COSMOS_ENDPOINT required. Set to 'cosmos' to read/write live Cosmos DB.",
+
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+
+    "CASE_STORE": "synthetic",
+
+    "COSMOS_ENDPOINT": "",
+    "COSMOS_DATABASE_NAME": "disputes-db",
+
+    "_comment_gaps": "Issue #18 — completeness/gaps alert threshold: flag a case when more than N required evidence items are missing.",
+    "EVIDENCE_GAP_ALERT_THRESHOLD": "2",
+
+    "_comment_foundry": "Azure AI Foundry agent wiring. Leave FOUNDRY_* unset to run the triage and maker agents in deterministic stub mode (no Azure calls). FOUNDRY_MAKER_AGENT_ID is the NextGen agent NAME (e.g. 'maker-agent'). FOUNDRY_MAKER_MODEL is the model deployment used for drafting via Chat Completions (default DeepSeek-V3.2).",
+    "FOUNDRY_PROJECT_ENDPOINT": "",
+    "FOUNDRY_TRIAGE_AGENT_ID": "",
+    "FOUNDRY_MAKER_AGENT_ID": "",
+    "FOUNDRY_MAKER_MODEL": ""
+  },
+  "Host": {
+    "CORS": "*",
+    "CORSCredentials": false
+  }
+}
