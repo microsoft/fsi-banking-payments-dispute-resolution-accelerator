@@ -17,7 +17,6 @@ env:
   AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
   AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
   AZURE_RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP }}
-  AZURE_FUNCTION_APP_NAME: ${{ vars.AZURE_FUNCTION_APP_NAME }}
   # Deployer is the CI OIDC identity (a service principal), not a user — drives RBAC principalType
   AZURE_PRINCIPAL_TYPE: 'ServicePrincipal'
 
@@ -130,10 +129,28 @@ jobs:
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
+      # Resolve the Function App name dynamically so the workflow stays correct
+      # after any re-provision (azd provision generates a new resource-token-based
+      # name each time). This project provisions exactly ONE Function App per
+      # resource group (infra/modules/functions.bicep is instantiated once in
+      # infra/main.bicep); if that ever changes, this query must be narrowed with
+      # --query "[?tags.\"azd-service-name\"=='api'].name | [0]".
+      - name: Resolve Function App name
+        id: resolve-func
+        run: |
+          FUNC_APP_NAME=$(az functionapp list \
+            --resource-group "$AZURE_RESOURCE_GROUP" \
+            --query "[0].name" -o tsv)
+          if [[ -z "$FUNC_APP_NAME" ]]; then
+            echo "ERROR: No Function App found in resource group $AZURE_RESOURCE_GROUP" >&2
+            exit 1
+          fi
+          echo "name=$FUNC_APP_NAME" >> "$GITHUB_OUTPUT"
+
       - name: Deploy Functions package
         uses: Azure/functions-action@v1
         with:
-          app-name: ${{ env.AZURE_FUNCTION_APP_NAME }}
+          app-name: ${{ steps.resolve-func.outputs.name }}
           package: 'functions-package.zip'
           remote-build: true
 
