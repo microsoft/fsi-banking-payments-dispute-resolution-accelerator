@@ -402,3 +402,41 @@
   and scan EVERY untracked file before declaring the tree clean. `git grep` alone is not
   sufficient — it is blind to untracked content. Use a dedicated pattern-scan step (e.g.,
   `Select-String` or `grep -r`) that covers the full working directory, not just the index.
+
+### Repo Migration: CD Setup for New microsoft/ Repo (2026-08-18)
+
+- **Repo migration context:** The project moved from `yortch/payment-disputes` (old) to
+  `microsoft/fsi-banking-payments-dispute-resolution-accelerator` (new). The local remote was
+  updated to point `origin` at the new repo; the old repo remains accessible as `yortch/payment-disputes`
+  (both `yortch/disputes` and `yortch/payment-disputes` slugs resolve to the same repo).
+- **What was auto-copied (gh CLI):** All 7 GitHub Actions repo **variables** referenced in
+  `cd.yml` were successfully copied from `yortch/payment-disputes` to the new microsoft repo:
+  `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`, `AZURE_ENV_NAME`,
+  `AZURE_LOCATION`, `AZURE_RESOURCE_GROUP`, `AZURE_FUNCTION_APP_NAME`.
+  GitHub Actions **variable** values ARE readable via the API (`gh variable get`); **secret**
+  values are NOT — this is a hard GitHub security restriction.
+- **OIDC federated credential is repo-specific — the critical blocker:** The CD workflow uses
+  `azure/login@v2` with `client-id`/`tenant-id`/`subscription-id` (pure OIDC — no JSON secret).
+  The Azure AD App Registration's federated credential "subject" claim encodes the EXACT GitHub
+  repo slug (e.g. `repo:yortch/payment-disputes:ref:refs/heads/main`). Copying variable values to
+  the new repo is NOT sufficient — the OIDC token GitHub issues for the new repo will have a
+  different subject (`repo:microsoft/fsi-...:ref:refs/heads/main`) which Azure AD will reject.
+  **A new federated credential must be manually added** to the App Registration in Azure AD for
+  the new repo subject. This cannot be automated by Fenster (requires Application Admin or Owner
+  on the App Registration). Use `az ad app federated-credential create` or the Azure Portal UI.
+- **Secret found on old repo:** `GH_RUNNER_PAT` — was used for the legacy self-hosted VNet runner
+  (already removed from cd.yml). Not needed for current CD. Note: GH_RUNNER_PAT secret value
+  cannot be read back; must be re-entered by a human if ever re-introduced.
+- **Post-first-provision follow-up required:** `AZURE_FUNCTION_APP_NAME` was copied with the
+  old env's function app name (`func-uusdfray4gwsq-app`). After `azd provision` creates a new
+  environment in the new repo, this variable must be updated to the new function app name.
+- **Decision note:** `.squad/decisions/inbox/fenster-cd-setup-microsoft-repo.md`
+
+**Last updated:** 2026-08-18 (Fenster: CD setup investigation and variable copy for microsoft repo migration)
+
+### Dynamic Function App Name Lookup in CD (2026-08-18)
+- **`AZURE_FUNCTION_APP_NAME` repo variable is now vestigial:** Replaced static env var reference in `cd.yml` with a dynamic `az functionapp list --resource-group "$AZURE_RESOURCE_GROUP" --query "[0].name" -o tsv` lookup, matching the Cosmos DB pattern already in the same job. The GitHub Actions repo variable itself was NOT deleted (owner can clean up with `gh variable delete AZURE_FUNCTION_APP_NAME --repo microsoft/fsi-banking-payments-dispute-resolution-accelerator`).
+- **Rule for drift-proofing:** Any infra resource whose name is generated from a resource token (random suffix) during `azd provision` MUST be looked up at deploy time via ARM CLI — never hardcoded in a repo variable. Stable values (resource group, subscription, env name, location) are fine as variables because they don't change per-provision.
+- **Guard on empty lookup:** Added explicit `if [[ -z "$FUNC_APP_NAME" ]]; then exit 1; fi` to fail fast if no function app exists in the resource group, rather than silently passing an empty string to `azure/functions-action`.
+- **Single-app assumption documented in code:** This project has exactly one Function App per resource group (`functions.bicep` instantiated once in `main.bicep`). If a second is ever added, narrow `[0]` with a tag filter: `"[?tags.\"azd-service-name\"=='api'].name | [0]"`.
+- **Decision note:** `.squad/decisions/inbox/fenster-dynamic-function-app-name.md`
