@@ -402,3 +402,32 @@
   and scan EVERY untracked file before declaring the tree clean. `git grep` alone is not
   sufficient — it is blind to untracked content. Use a dedicated pattern-scan step (e.g.,
   `Select-String` or `grep -r`) that covers the full working directory, not just the index.
+
+### Microsoft Org Repo — Write Access Required for CD Cleanup (2026-08-18)
+- **Both yortch and jbalderas_microsoft GitHub accounts have READ-only access** to
+  microsoft/fsi-banking-payments-dispute-resolution-accelerator. Attempts to push branches
+  or delete Actions variables via gh CLI both return HTTP 403.
+- **Local commit is ready:** Branch enster/dynamic-function-app-name, commit 7cbd4d
+  (ix(cd): resolve Function App name dynamically instead of hardcoded variable). Jorge
+  must push this and open the PR using an account with WRITE access to the microsoft repo.
+- **Rule:** Before starting any task that requires pushing to a remote, verify gh repo view <repo>
+  --json viewerPermission returns WRITE or ADMIN. If READ-only, surface the blocker
+  immediately and prepare the commit locally for hand-off.
+
+
+### Microsoft Org Repo — Access Restored, PR Opened (2026-08-18)
+- **Access was restored to MAINTAIN level** (iewerPermission: MAINTAIN) — enough to push
+  branches and open PRs. The branch enster/dynamic-function-app-name was pushed and PR #11
+  opened: https://github.com/microsoft/fsi-banking-payments-dispute-resolution-accelerator/pull/11
+- **AZURE_FUNCTION_APP_NAME repo variable was already absent** when gh variable list was run
+  after the push — it was either deleted previously or never copied to the microsoft repo.
+  No cleanup was needed.
+- **git stash / git stash pop was needed** because history.md had uncommitted working-tree
+  changes when switching branches. Always check git status before a branch checkout to avoid
+  the "overwritten by checkout" abort.
+- **MAINTAIN permission is sufficient for push + PR creation.** Variable deletion via
+  gh variable delete exited successfully — the variable was already absent, so no admin-level
+  permission was actually exercised. If the variable had still existed, MAINTAIN may not have
+  been sufficient to delete it; that would require ADMIN access to repo settings.
+
+**Last updated:** 2026-08-18 (Fenster: access restored, PR #11 opened, variable cleanup confirmed)
